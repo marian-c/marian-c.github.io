@@ -1,0 +1,727 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Directive - org simple 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".org $1234",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "address": {
+            "kind": "vl",
+            "originalStringValue": "1234",
+            "range": [
+              5,
+              10,
+            ],
+            "valueLiteralKind": "hex",
+          },
+          "directiveKind": "org",
+          "kind": "d",
+          "range": [
+            0,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          10,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`Directive - org simple with comment 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".org $1234 ;comment",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            11,
+            19,
+          ],
+          "value": ";comment",
+        },
+        "contents": {
+          "address": {
+            "kind": "vl",
+            "originalStringValue": "1234",
+            "range": [
+              5,
+              10,
+            ],
+            "valueLiteralKind": "hex",
+          },
+          "directiveKind": "org",
+          "kind": "d",
+          "range": [
+            0,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          19,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      19,
+    ],
+  },
+}
+`;
+
+exports[`Directive - org simple with comment but no space 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".org $1234;comment",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            10,
+            18,
+          ],
+          "value": ";comment",
+        },
+        "contents": {
+          "address": {
+            "kind": "vl",
+            "originalStringValue": "1234",
+            "range": [
+              5,
+              10,
+            ],
+            "valueLiteralKind": "hex",
+          },
+          "directiveKind": "org",
+          "kind": "d",
+          "range": [
+            0,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          18,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      18,
+    ],
+  },
+}
+`;
+
+exports[`Directive - org simple with space 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".org $1234 ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "address": {
+            "kind": "vl",
+            "originalStringValue": "1234",
+            "range": [
+              5,
+              10,
+            ],
+            "valueLiteralKind": "hex",
+          },
+          "directiveKind": "org",
+          "kind": "d",
+          "range": [
+            0,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          10,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`Directive - org with ascii - multiple 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".org "abc"",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "address": {
+            "kind": "vl",
+            "originalStringValue": "abc",
+            "range": [
+              5,
+              10,
+            ],
+            "valueLiteralKind": "ascii",
+          },
+          "directiveKind": "org",
+          "kind": "d",
+          "range": [
+            0,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          10,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`Directive - org with ascii 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".org "a"",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "address": {
+            "kind": "vl",
+            "originalStringValue": "a",
+            "range": [
+              5,
+              8,
+            ],
+            "valueLiteralKind": "ascii",
+          },
+          "directiveKind": "org",
+          "kind": "d",
+          "range": [
+            0,
+            8,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          8,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`Directive - org with binary 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".org %0101",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "address": {
+            "kind": "vl",
+            "originalStringValue": "0101",
+            "range": [
+              5,
+              10,
+            ],
+            "valueLiteralKind": "bin",
+          },
+          "directiveKind": "org",
+          "kind": "d",
+          "range": [
+            0,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          10,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`Directive - org with decimal 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".org 12345",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "address": {
+            "kind": "vl",
+            "originalStringValue": "12345",
+            "range": [
+              5,
+              10,
+            ],
+            "valueLiteralKind": "dec",
+          },
+          "directiveKind": "org",
+          "kind": "d",
+          "range": [
+            0,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          10,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`Directive - org with symbol 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".org lbl",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "address": {
+            "kind": "r",
+            "range": [
+              5,
+              8,
+            ],
+            "referencedName": "lbl",
+          },
+          "directiveKind": "org",
+          "kind": "d",
+          "range": [
+            0,
+            8,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          8,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`Directive org - errors directive name not recognized 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          6,
+        ],
+        "start": [
+          1,
+          2,
+        ],
+      },
+      "message": "Expected a known directive, but got orgg",
+      "range": [
+        1,
+        5,
+      ],
+    },
+  ],
+  "originalLines": [
+    ".orgg",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      5,
+    ],
+  },
+}
+`;
+
+exports[`Directive org - errors directive name not recognized 2`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          6,
+        ],
+        "start": [
+          1,
+          2,
+        ],
+      },
+      "message": "Expected a known directive, but got orgg",
+      "range": [
+        1,
+        5,
+      ],
+    },
+  ],
+  "originalLines": [
+    ".orgg    ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`Directive org - errors missing address 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          5,
+        ],
+        "start": [
+          1,
+          5,
+        ],
+      },
+      "message": "Unexpected end of input, expected a valuable",
+      "range": [
+        4,
+        4,
+      ],
+    },
+  ],
+  "originalLines": [
+    ".org",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      4,
+    ],
+  },
+}
+`;
+
+exports[`Directive org - errors missing address and space 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          5,
+        ],
+        "start": [
+          2,
+          5,
+        ],
+      },
+      "message": "Unexpected end of input, expected a valuable",
+      "range": [
+        5,
+        5,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    ".org",
+    "    ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`Directive org - errors simple syntax error 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          6,
+        ],
+        "start": [
+          1,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: .org$, expected directiveName (because line starts with a '.')",
+      "range": [
+        0,
+        5,
+      ],
+    },
+  ],
+  "originalLines": [
+    ".org$",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      5,
+    ],
+  },
+}
+`;
+
+exports[`Directive org - errors simple syntax error 2`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          9,
+        ],
+        "start": [
+          1,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: .org.org, expected directiveName (because line starts with a '.')",
+      "range": [
+        0,
+        8,
+      ],
+    },
+  ],
+  "originalLines": [
+    ".org.org",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`Directive org - errors unrecognised address 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          10,
+        ],
+        "start": [
+          1,
+          6,
+        ],
+      },
+      "message": "Unexpected identifier: -ads, expected a valuable",
+      "range": [
+        5,
+        9,
+      ],
+    },
+  ],
+  "originalLines": [
+    ".org -ads",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`Directive org - errors valid address but no space A 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          10,
+        ],
+        "start": [
+          1,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: .org$1234, expected directiveName (because line starts with a '.')",
+      "range": [
+        0,
+        9,
+      ],
+    },
+  ],
+  "originalLines": [
+    ".org$1234",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`Directive org - errors valid address but no space B 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          12,
+        ],
+        "start": [
+          1,
+          11,
+        ],
+      },
+      "message": "Unexpected identifier: $, expected End of input",
+      "range": [
+        10,
+        11,
+      ],
+    },
+  ],
+  "originalLines": [
+    ".org $1234$",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      11,
+    ],
+  },
+}
+`;

@@ -1,0 +1,1973 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Forced suffix: Allow forcing of zp literal with length 2 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BBB.b $12",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zp0",
+            "range": [
+              7,
+              10,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "12",
+              "range": [
+                7,
+                10,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "forcedTo": "b",
+            "kind": "or",
+            "range": [
+              1,
+              6,
+            ],
+            "value": "bbb",
+          },
+          "range": [
+            1,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          10,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: Can not force an instruction that has no zp0 mode 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          6,
+        ],
+        "start": [
+          2,
+          1,
+        ],
+      },
+      "message": "Instruction can not be forced to byte (\`.b\`)",
+      "range": [
+        1,
+        6,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "DDD.b symbol",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      22,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: Disallow forcing outside of ZP modes 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          6,
+        ],
+        "start": [
+          2,
+          1,
+        ],
+      },
+      "message": "Instruction can not be forced to byte (\`.b\`)",
+      "range": [
+        1,
+        6,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "EEE.b #$12",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      20,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: ERROR incomplete 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          6,
+        ],
+        "start": [
+          2,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: $, expected an valid operand for instruction operand (abs,imm)",
+      "range": [
+        5,
+        6,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "GGG $",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      15,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: ERROR this is ZPX syntax 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          10,
+        ],
+        "start": [
+          2,
+          8,
+        ],
+      },
+      "message": "Unexpected identifier: ,x, expected end of ABS mode",
+      "range": [
+        8,
+        10,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "GGG $12,x",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      19,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: ERROR this is ZPY syntax 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          10,
+        ],
+        "start": [
+          2,
+          8,
+        ],
+      },
+      "message": "Unexpected identifier: ,y, expected end of ABS mode",
+      "range": [
+        8,
+        10,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "GGG $12,y",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      19,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: ERROR this is zp0 syntax 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          8,
+        ],
+        "start": [
+          2,
+          6,
+        ],
+      },
+      "message": "Hex literals must not have length 1 or 2 for ABS mode",
+      "range": [
+        6,
+        8,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "GGG $12",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      17,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: ERROR, zp modes not available for this instruction (2) 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          6,
+        ],
+        "start": [
+          2,
+          1,
+        ],
+      },
+      "message": "Instruction can not be forced to byte (\`.b\`)",
+      "range": [
+        1,
+        6,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "HHH.b symbol",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      22,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: ERROR, zp modes not available for this instruction 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          6,
+        ],
+        "start": [
+          2,
+          1,
+        ],
+      },
+      "message": "Instruction can not be forced to byte (\`.b\`)",
+      "range": [
+        1,
+        6,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "CCC.b symbol ; ERROR, zp modes not available for this instruction ",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      76,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: OK, assumed 4 bytes (abx) 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "AAX SR,x",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abx",
+            "range": [
+              5,
+              9,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                5,
+                7,
+              ],
+              "referencedName": "sr",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "aax",
+          },
+          "range": [
+            1,
+            9,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: OK, assumed 4 bytes (aby) 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "AAY SR,y",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "aby",
+            "range": [
+              5,
+              9,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                5,
+                7,
+              ],
+              "referencedName": "sr",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "aay",
+          },
+          "range": [
+            1,
+            9,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: OK, assumed 4 bytes 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "AAA SR",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              5,
+              7,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                5,
+                7,
+              ],
+              "referencedName": "sr",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "aaa",
+          },
+          "range": [
+            1,
+            7,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          7,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      7,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: OK, immediate (abx) 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "DDX #SR",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              5,
+              8,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                6,
+                8,
+              ],
+              "referencedName": "sr",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "ddx",
+          },
+          "range": [
+            1,
+            8,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          8,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: OK, immediate (aby) 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "DDY #SR",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              5,
+              8,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                6,
+                8,
+              ],
+              "referencedName": "sr",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "ddy",
+          },
+          "range": [
+            1,
+            8,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          8,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: OK, immediate 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "DDD #SR",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              5,
+              8,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                6,
+                8,
+              ],
+              "referencedName": "sr",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "ddd",
+          },
+          "range": [
+            1,
+            8,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          8,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: REL errors if it looks like zp0 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "EEE $12",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "rel",
+            "range": [
+              5,
+              8,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "12",
+              "range": [
+                5,
+                8,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "eee",
+          },
+          "range": [
+            1,
+            8,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          8,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: REL mode still works 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "EEE $122",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "rel",
+            "range": [
+              5,
+              9,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "122",
+              "range": [
+                5,
+                9,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "eee",
+          },
+          "range": [
+            1,
+            9,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: Some error 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          6,
+        ],
+        "start": [
+          2,
+          1,
+        ],
+      },
+      "message": "Forcing to byte (\`.b\`) is only allowed for ZP modes",
+      "range": [
+        1,
+        6,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "III.b #$12",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      20,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bbb ERROR forcing an absolute address 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          12,
+        ],
+        "start": [
+          2,
+          8,
+        ],
+      },
+      "message": "You can not force to byte (.b) hex literal with length bigger than 2",
+      "range": [
+        8,
+        12,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "BBB.b $1234 ; ERROR forcing an absolute address",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      57,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bbb OK, ABS, assumed 4 bytes 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BBB SRR",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              5,
+              8,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                5,
+                8,
+              ],
+              "referencedName": "srr",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "bbb",
+          },
+          "range": [
+            1,
+            8,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          8,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bbb OK, ABS, known 4 bytes 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BBB $1234 ; OK, ABS, known 4 bytes",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            11,
+            35,
+          ],
+          "value": "; OK, ABS, known 4 bytes",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              5,
+              10,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "1234",
+              "range": [
+                5,
+                10,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "bbb",
+          },
+          "range": [
+            1,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          35,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      35,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bbb OK, ZP0, forced 2 bytes 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BBB.b symbol ; OK, ZP0, forced 2 bytes",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            14,
+            39,
+          ],
+          "value": "; OK, ZP0, forced 2 bytes",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zp0",
+            "range": [
+              7,
+              13,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                7,
+                13,
+              ],
+              "referencedName": "symbol",
+            },
+          },
+          "operator": {
+            "forcedTo": "b",
+            "kind": "or",
+            "range": [
+              1,
+              6,
+            ],
+            "value": "bbb",
+          },
+          "range": [
+            1,
+            13,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          39,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      39,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bbb OK, ZP0, known 1 byte 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BBB $1 ; OK, ZP0, known 1 byte",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            8,
+            31,
+          ],
+          "value": "; OK, ZP0, known 1 byte",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zp0",
+            "range": [
+              5,
+              7,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "1",
+              "range": [
+                5,
+                7,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "bbb",
+          },
+          "range": [
+            1,
+            7,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          31,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      31,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bbb OK, ZP0, known 2 bytes 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BBB $12 ; OK, ZP0, known 2 bytes",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            9,
+            33,
+          ],
+          "value": "; OK, ZP0, known 2 bytes",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zp0",
+            "range": [
+              5,
+              8,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "12",
+              "range": [
+                5,
+                8,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "bbb",
+          },
+          "range": [
+            1,
+            8,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          33,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      33,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bbx ERROR forcing an ABX address 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          11,
+        ],
+        "start": [
+          2,
+          8,
+        ],
+      },
+      "message": "You can not force to byte (.b) hex literal with length bigger than 2",
+      "range": [
+        8,
+        11,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "BBX.b $123,x ; ERROR forcing an ABX address",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      53,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bbx OK, ABX, assumed 4 bytes 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BBX SRR,x",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abx",
+            "range": [
+              5,
+              10,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                5,
+                8,
+              ],
+              "referencedName": "srr",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "bbx",
+          },
+          "range": [
+            1,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          10,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bbx OK, ABX, known 4 bytes 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BBX $1234,x ; OK, ABX, known 4 bytes",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            13,
+            37,
+          ],
+          "value": "; OK, ABX, known 4 bytes",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abx",
+            "range": [
+              5,
+              12,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "1234",
+              "range": [
+                5,
+                10,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "bbx",
+          },
+          "range": [
+            1,
+            12,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          37,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      37,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bbx OK, ZPX, forced 2 bytes 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BBX.b symbol,x ; OK, ZPX, forced 2 bytes",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            16,
+            41,
+          ],
+          "value": "; OK, ZPX, forced 2 bytes",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zpx",
+            "range": [
+              7,
+              15,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                7,
+                13,
+              ],
+              "referencedName": "symbol",
+            },
+          },
+          "operator": {
+            "forcedTo": "b",
+            "kind": "or",
+            "range": [
+              1,
+              6,
+            ],
+            "value": "bbx",
+          },
+          "range": [
+            1,
+            15,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          41,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      41,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bbx OK, ZPX, known 1 byte 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BBX $1,x ; OK, ZPX, known 1 byte",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            10,
+            33,
+          ],
+          "value": "; OK, ZPX, known 1 byte",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zpx",
+            "range": [
+              5,
+              9,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "1",
+              "range": [
+                5,
+                7,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "bbx",
+          },
+          "range": [
+            1,
+            9,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          33,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      33,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bbx OK, ZPX, known 2 bytes 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BBX $12,x ; OK, ZPX, known 2 bytes",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            11,
+            35,
+          ],
+          "value": "; OK, ZPX, known 2 bytes",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zpx",
+            "range": [
+              5,
+              10,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "12",
+              "range": [
+                5,
+                8,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "bbx",
+          },
+          "range": [
+            1,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          35,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      35,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bby ERROR forcing an ABY address 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          12,
+        ],
+        "start": [
+          2,
+          8,
+        ],
+      },
+      "message": "You can not force to byte (.b) hex literal with length bigger than 2",
+      "range": [
+        8,
+        12,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "BBY.b $1234,y ; ERROR forcing an ABY address",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      54,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bby OK, ABY, assumed 4 bytes 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BBY SRR,y",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "aby",
+            "range": [
+              5,
+              10,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                5,
+                8,
+              ],
+              "referencedName": "srr",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "bby",
+          },
+          "range": [
+            1,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          10,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bby OK, ABY, known 4 bytes 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BBY $1234,y ; OK, ABY, known 4 bytes",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            13,
+            37,
+          ],
+          "value": "; OK, ABY, known 4 bytes",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "aby",
+            "range": [
+              5,
+              12,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "1234",
+              "range": [
+                5,
+                10,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "bby",
+          },
+          "range": [
+            1,
+            12,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          37,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      37,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bby OK, ZPY, forced 2 bytes 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BBY.b symbol,y ; OK, ZPY, forced 2 bytes",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            16,
+            41,
+          ],
+          "value": "; OK, ZPY, forced 2 bytes",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zpy",
+            "range": [
+              7,
+              15,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                7,
+                13,
+              ],
+              "referencedName": "symbol",
+            },
+          },
+          "operator": {
+            "forcedTo": "b",
+            "kind": "or",
+            "range": [
+              1,
+              6,
+            ],
+            "value": "bby",
+          },
+          "range": [
+            1,
+            15,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          41,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      41,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bby OK, ZPY, known 1 byte 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BBY $1,y ; OK, ZPY, known 1 byte",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            10,
+            33,
+          ],
+          "value": "; OK, ZPY, known 1 byte",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zpy",
+            "range": [
+              5,
+              9,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "1",
+              "range": [
+                5,
+                7,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "bby",
+          },
+          "range": [
+            1,
+            9,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          33,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      33,
+    ],
+  },
+}
+`;
+
+exports[`Forced suffix: bby OK, ZPY, known 2 bytes 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BBY $12,y ; OK, ZPY, known 2 bytes",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            11,
+            35,
+          ],
+          "value": "; OK, ZPY, known 2 bytes",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zpy",
+            "range": [
+              5,
+              10,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "12",
+              "range": [
+                5,
+                8,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "bby",
+          },
+          "range": [
+            1,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          35,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      35,
+    ],
+  },
+}
+`;

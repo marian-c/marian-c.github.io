@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Relative mode with address 1`] = `
+[
+  "d0",
+  "fe",
+  "d0",
+  "fc",
+  "d0",
+  "fd",
+  "d0",
+  "fe",
+  "d0",
+  "ff",
+  "d0",
+  "00",
+  "d0",
+  "01",
+]
+`;

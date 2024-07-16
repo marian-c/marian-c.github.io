@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Org directive Instruction before and after Simple 1`] = `
+{
+  "data": [
+    "ad",
+    "34",
+    "12",
+    "00",
+    "00",
+    "00",
+    "00",
+    "00",
+    "00",
+    "00",
+    "ad",
+    "cd",
+    "ab",
+  ],
+  "startingAddress": 0,
+}
+`;
+
+exports[`Org directive Simple - one line - non zero - again 1`] = `
+{
+  "data": [],
+  "startingAddress": 10,
+}
+`;
+
+exports[`Org directive Simple - one line - non zero 1`] = `
+{
+  "data": [],
+  "startingAddress": 1,
+}
+`;
+
+exports[`Org directive Simple - one line only 1`] = `
+{
+  "data": [],
+  "startingAddress": 0,
+}
+`;
+
+exports[`Org directive Simple - two lines - on-zero 1`] = `
+{
+  "data": [
+    "00",
+  ],
+  "startingAddress": 1,
+}
+`;
+
+exports[`Org directive Simple - two lines - zero - again 1`] = `
+{
+  "data": [
+    "00",
+    "00",
+    "00",
+    "00",
+    "00",
+    "00",
+    "00",
+    "00",
+    "00",
+    "00",
+  ],
+  "startingAddress": 0,
+}
+`;
+
+exports[`Org directive Simple - two lines - zero 1`] = `
+{
+  "data": [
+    "00",
+  ],
+  "startingAddress": 0,
+}
+`;
+
+exports[`Org directive instruction after Not so simple 1`] = `
+{
+  "data": [
+    "00",
+    "00",
+    "00",
+    "00",
+    "00",
+    "ad",
+    "34",
+    "12",
+  ],
+  "startingAddress": 5,
+}
+`;
+
+exports[`Org directive instruction after Simple - no effect 1`] = `
+{
+  "data": [
+    "ad",
+    "34",
+    "12",
+  ],
+  "startingAddress": 0,
+}
+`;
+
+exports[`Org directive instruction after Simple 1`] = `
+{
+  "data": [
+    "ad",
+    "34",
+    "12",
+  ],
+  "startingAddress": 5,
+}
+`;
+
+exports[`Org directive instruction first Simple - fill 1`] = `
+{
+  "data": [
+    "ad",
+    "34",
+    "12",
+    "00",
+    "00",
+  ],
+  "startingAddress": 0,
+}
+`;
+
+exports[`Org directive instruction first Simple - no effect 1`] = `
+{
+  "data": [
+    "ad",
+    "34",
+    "12",
+  ],
+  "startingAddress": 0,
+}
+`;
+
+exports[`Org directive very simple 1`] = `
+{
+  "data": [],
+  "startingAddress": 0,
+}
+`;

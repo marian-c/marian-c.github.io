@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`variable names should allow underscores 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "var_name = $abcd",
+    "LDA var_name",
+    "    ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "kind": "sd",
+          "range": [
+            1,
+            17,
+          ],
+          "symbolName": "var_name",
+          "symbolValue": {
+            "kind": "vl",
+            "originalStringValue": "abcd",
+            "range": [
+              12,
+              17,
+            ],
+            "valueLiteralKind": "hex",
+          },
+        },
+        "kind": "l",
+        "range": [
+          1,
+          17,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              22,
+              30,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                22,
+                30,
+              ],
+              "referencedName": "var_name",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              18,
+              21,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            18,
+            30,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          18,
+          30,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      30,
+    ],
+  },
+}
+`;

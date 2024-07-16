@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`milestone one debug 1`] = `
+{
+  "data": [
+    "ae",
+    "cd",
+    "ab",
+    "ae",
+    "cd",
+    "ab",
+    "03",
+    "00",
+    "05",
+    "00",
+    "34",
+    "12",
+    "cd",
+    "ab",
+    "0a",
+    "00",
+  ],
+  "startingAddress": 0,
+}
+`;
+
+exports[`milestone one debug zero 1`] = `
+{
+  "data": [
+    "ae",
+    "cd",
+    "ab",
+    "03",
+    "00",
+  ],
+  "startingAddress": 0,
+}
+`;

@@ -1,0 +1,900 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Directive - word simple 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".word $1234",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "directiveKind": "word",
+          "kind": "d",
+          "range": [
+            0,
+            11,
+          ],
+          "value": {
+            "kind": "vl",
+            "originalStringValue": "1234",
+            "range": [
+              6,
+              11,
+            ],
+            "valueLiteralKind": "hex",
+          },
+        },
+        "kind": "l",
+        "range": [
+          0,
+          11,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      11,
+    ],
+  },
+}
+`;
+
+exports[`Directive - word simple with comment 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".word $1234 ;comment",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            12,
+            20,
+          ],
+          "value": ";comment",
+        },
+        "contents": {
+          "directiveKind": "word",
+          "kind": "d",
+          "range": [
+            0,
+            11,
+          ],
+          "value": {
+            "kind": "vl",
+            "originalStringValue": "1234",
+            "range": [
+              6,
+              11,
+            ],
+            "valueLiteralKind": "hex",
+          },
+        },
+        "kind": "l",
+        "range": [
+          0,
+          20,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      20,
+    ],
+  },
+}
+`;
+
+exports[`Directive - word simple with comment but no space 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".word $1234;comment",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            11,
+            19,
+          ],
+          "value": ";comment",
+        },
+        "contents": {
+          "directiveKind": "word",
+          "kind": "d",
+          "range": [
+            0,
+            11,
+          ],
+          "value": {
+            "kind": "vl",
+            "originalStringValue": "1234",
+            "range": [
+              6,
+              11,
+            ],
+            "valueLiteralKind": "hex",
+          },
+        },
+        "kind": "l",
+        "range": [
+          0,
+          19,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      19,
+    ],
+  },
+}
+`;
+
+exports[`Directive - word simple with space 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".word $1234 ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "directiveKind": "word",
+          "kind": "d",
+          "range": [
+            0,
+            11,
+          ],
+          "value": {
+            "kind": "vl",
+            "originalStringValue": "1234",
+            "range": [
+              6,
+              11,
+            ],
+            "valueLiteralKind": "hex",
+          },
+        },
+        "kind": "l",
+        "range": [
+          0,
+          11,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      11,
+    ],
+  },
+}
+`;
+
+
+exports[`Directive - word with ascii - multiple 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".word "abc"",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "directiveKind": "word",
+          "kind": "d",
+          "range": [
+            0,
+            11,
+          ],
+          "value": {
+            "kind": "vl",
+            "originalStringValue": "abc",
+            "range": [
+              6,
+              11,
+            ],
+            "valueLiteralKind": "ascii",
+          },
+        },
+        "kind": "l",
+        "range": [
+          0,
+          11,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      11,
+    ],
+  },
+}
+`;
+
+exports[`Directive - word with ascii 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".word "a"",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "directiveKind": "word",
+          "kind": "d",
+          "range": [
+            0,
+            9,
+          ],
+          "value": {
+            "kind": "vl",
+            "originalStringValue": "a",
+            "range": [
+              6,
+              9,
+            ],
+            "valueLiteralKind": "ascii",
+          },
+        },
+        "kind": "l",
+        "range": [
+          0,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`Directive - word with binary 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".word %0101",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "directiveKind": "word",
+          "kind": "d",
+          "range": [
+            0,
+            11,
+          ],
+          "value": {
+            "kind": "vl",
+            "originalStringValue": "0101",
+            "range": [
+              6,
+              11,
+            ],
+            "valueLiteralKind": "bin",
+          },
+        },
+        "kind": "l",
+        "range": [
+          0,
+          11,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      11,
+    ],
+  },
+}
+`;
+
+exports[`Directive - word with decimal 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".word 12345",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "directiveKind": "word",
+          "kind": "d",
+          "range": [
+            0,
+            11,
+          ],
+          "value": {
+            "kind": "vl",
+            "originalStringValue": "12345",
+            "range": [
+              6,
+              11,
+            ],
+            "valueLiteralKind": "dec",
+          },
+        },
+        "kind": "l",
+        "range": [
+          0,
+          11,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      11,
+    ],
+  },
+}
+`;
+
+exports[`Directive - word with symbol 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".word lbl",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "directiveKind": "word",
+          "kind": "d",
+          "range": [
+            0,
+            9,
+          ],
+          "value": {
+            "kind": "r",
+            "range": [
+              6,
+              9,
+            ],
+            "referencedName": "lbl",
+          },
+        },
+        "kind": "l",
+        "range": [
+          0,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`Directive word - errors directive name not recognized 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          7,
+        ],
+        "start": [
+          1,
+          2,
+        ],
+      },
+      "message": "Expected a known directive, but got wordd",
+      "range": [
+        1,
+        6,
+      ],
+    },
+  ],
+  "originalLines": [
+    ".wordd",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      6,
+    ],
+  },
+}
+`;
+
+exports[`Directive word - errors directive name not recognized 2`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          7,
+        ],
+        "start": [
+          1,
+          2,
+        ],
+      },
+      "message": "Expected a known directive, but got wordd",
+      "range": [
+        1,
+        6,
+      ],
+    },
+  ],
+  "originalLines": [
+    ".wordd    ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`Directive word - errors missing value 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          6,
+        ],
+        "start": [
+          1,
+          6,
+        ],
+      },
+      "message": "Unexpected end of input, expected a valuable",
+      "range": [
+        5,
+        5,
+      ],
+    },
+  ],
+  "originalLines": [
+    ".word",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      5,
+    ],
+  },
+}
+`;
+
+exports[`Directive word - errors missing value and space 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          5,
+        ],
+        "start": [
+          2,
+          5,
+        ],
+      },
+      "message": "Unexpected end of input, expected a valuable",
+      "range": [
+        5,
+        5,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    ".org",
+    "    ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`Directive word - errors simple syntax error 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          7,
+        ],
+        "start": [
+          1,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: .word$, expected directiveName (because line starts with a '.')",
+      "range": [
+        0,
+        6,
+      ],
+    },
+  ],
+  "originalLines": [
+    ".word$",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      6,
+    ],
+  },
+}
+`;
+
+exports[`Directive word - errors simple syntax error 2`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          10,
+        ],
+        "start": [
+          1,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: .word.org, expected directiveName (because line starts with a '.')",
+      "range": [
+        0,
+        9,
+      ],
+    },
+  ],
+  "originalLines": [
+    ".word.org",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`Directive word - errors unrecognised value 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          11,
+        ],
+        "start": [
+          1,
+          7,
+        ],
+      },
+      "message": "Unexpected identifier: -ads, expected a valuable",
+      "range": [
+        6,
+        10,
+      ],
+    },
+  ],
+  "originalLines": [
+    ".word -ads",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`Directive word - errors unrecognised value 2`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".word $1",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "directiveKind": "word",
+          "kind": "d",
+          "range": [
+            0,
+            8,
+          ],
+          "value": {
+            "kind": "vl",
+            "originalStringValue": "1",
+            "range": [
+              6,
+              8,
+            ],
+            "valueLiteralKind": "hex",
+          },
+        },
+        "kind": "l",
+        "range": [
+          0,
+          8,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`Directive word - errors unrecognised value 3`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".word $12",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "directiveKind": "word",
+          "kind": "d",
+          "range": [
+            0,
+            9,
+          ],
+          "value": {
+            "kind": "vl",
+            "originalStringValue": "12",
+            "range": [
+              6,
+              9,
+            ],
+            "valueLiteralKind": "hex",
+          },
+        },
+        "kind": "l",
+        "range": [
+          0,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`Directive word - errors unrecognised value 4`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".word $123",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "directiveKind": "word",
+          "kind": "d",
+          "range": [
+            0,
+            10,
+          ],
+          "value": {
+            "kind": "vl",
+            "originalStringValue": "123",
+            "range": [
+              6,
+              10,
+            ],
+            "valueLiteralKind": "hex",
+          },
+        },
+        "kind": "l",
+        "range": [
+          0,
+          10,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`Directive word - errors unrecognised value 5`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ".word $12345",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "directiveKind": "word",
+          "kind": "d",
+          "range": [
+            0,
+            12,
+          ],
+          "value": {
+            "kind": "vl",
+            "originalStringValue": "12345",
+            "range": [
+              6,
+              12,
+            ],
+            "valueLiteralKind": "hex",
+          },
+        },
+        "kind": "l",
+        "range": [
+          0,
+          12,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      12,
+    ],
+  },
+}
+`;
+
+exports[`Directive word - errors valid value but no space  1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          11,
+        ],
+        "start": [
+          1,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: .word$1234, expected directiveName (because line starts with a '.')",
+      "range": [
+        0,
+        10,
+      ],
+    },
+  ],
+  "originalLines": [
+    ".word$1234",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`Directive word - errors valid value but no space  2`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          13,
+        ],
+        "start": [
+          1,
+          12,
+        ],
+      },
+      "message": "Unexpected identifier: $, expected End of input",
+      "range": [
+        11,
+        12,
+      ],
+    },
+  ],
+  "originalLines": [
+    ".word $1234$",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      12,
+    ],
+  },
+}
+`;

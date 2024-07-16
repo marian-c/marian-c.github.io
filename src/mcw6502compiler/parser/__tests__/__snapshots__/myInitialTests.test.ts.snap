@@ -1,0 +1,3464 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Absolute mode Negative 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          7,
+        ],
+        "start": [
+          2,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: $N, expected an valid operand for instruction operand (imm,abs,zpx,zpy,abx,aby)",
+      "range": [
+        5,
+        7,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "LDA $N",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`Absolute mode Positive 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "  LDA $0101    ",
+    "  ",
+    "",
+    "  ",
+    "LDA   $01aA",
+    "  LDA $0111  ",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              7,
+              12,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0101",
+              "range": [
+                7,
+                12,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              3,
+              6,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            3,
+            12,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          3,
+          12,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              30,
+              35,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "01aA",
+              "range": [
+                30,
+                35,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              24,
+              27,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            24,
+            35,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          24,
+          35,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              42,
+              47,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0111",
+              "range": [
+                42,
+                47,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              38,
+              41,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            38,
+            47,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          38,
+          47,
+        ],
+      },
+    ],
+    "range": [
+      3,
+      47,
+    ],
+  },
+}
+`;
+
+exports[`Basic tests Empty source 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      0,
+    ],
+  },
+}
+`;
+
+exports[`Basic tests Empty source 2`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "    ",
+    "",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      7,
+    ],
+  },
+}
+`;
+
+exports[`Basic tests Ignore empty lines 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BRK",
+    "  ",
+    "BRK",
+    "    ",
+    "BRK",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            1,
+            4,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          4,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              8,
+              11,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            8,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          8,
+          11,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              17,
+              20,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            17,
+            20,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          17,
+          20,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      20,
+    ],
+  },
+}
+`;
+
+exports[`Basic tests Multi invalid instruction with IMM mode 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          7,
+        ],
+        "start": [
+          2,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: BR, expected an instruction",
+      "range": [
+        8,
+        10,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          3,
+          8,
+        ],
+        "start": [
+          3,
+          5,
+        ],
+      },
+      "message": "Instruction not recognised: asd",
+      "range": [
+        15,
+        18,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          5,
+          7,
+        ],
+        "start": [
+          5,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: BA, expected an instruction",
+      "range": [
+        31,
+        33,
+      ],
+    },
+  ],
+  "originalLines": [
+    "BRK",
+    "    BR",
+    "    ASD",
+    "    BRK",
+    "    BA",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            0,
+            3,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          3,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              23,
+              26,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            23,
+            26,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          23,
+          26,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      26,
+    ],
+  },
+}
+`;
+
+exports[`Basic tests One semantically invalid instruction with IMM mode 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          4,
+        ],
+        "start": [
+          1,
+          1,
+        ],
+      },
+      "message": "Instruction not recognised: adc",
+      "range": [
+        0,
+        3,
+      ],
+    },
+  ],
+  "originalLines": [
+    "ADC",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      3,
+    ],
+  },
+}
+`;
+
+exports[`Basic tests One semantically invalid instruction with IMM mode after a valid instruction 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          8,
+        ],
+        "start": [
+          2,
+          5,
+        ],
+      },
+      "message": "Instruction not recognised: asd",
+      "range": [
+        8,
+        11,
+      ],
+    },
+  ],
+  "originalLines": [
+    "BRK",
+    "    ASD",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            0,
+            3,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          3,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      3,
+    ],
+  },
+}
+`;
+
+exports[`Basic tests One syntactically invalid instruction with IMM mode 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          3,
+        ],
+        "start": [
+          1,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: BR, expected an instruction",
+      "range": [
+        0,
+        2,
+      ],
+    },
+  ],
+  "originalLines": [
+    "BR",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      2,
+    ],
+  },
+}
+`;
+
+exports[`Basic tests One syntactically invalid instruction with IMM mode 2`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          3,
+        ],
+        "start": [
+          1,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: BR, expected an instruction",
+      "range": [
+        0,
+        2,
+      ],
+    },
+  ],
+  "originalLines": [
+    "BR K",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      4,
+    ],
+  },
+}
+`;
+
+exports[`Basic tests One syntactically invalid instruction with IMM mode before a valid instruction 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          7,
+        ],
+        "start": [
+          2,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: BR, expected an instruction",
+      "range": [
+        8,
+        10,
+      ],
+    },
+  ],
+  "originalLines": [
+    "BRK",
+    "    BR",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            0,
+            3,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          3,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      3,
+    ],
+  },
+}
+`;
+
+exports[`Basic tests One valid instruction with IMM mode 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "BRK",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            0,
+            3,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          3,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      3,
+    ],
+  },
+}
+`;
+
+exports[`Basic tests One valid instruction with IMM mode 2`] = `
+{
+  "errors": [],
+  "originalLines": [
+    " BRK",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            1,
+            4,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          4,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      4,
+    ],
+  },
+}
+`;
+
+exports[`Basic tests One valid instruction with IMM mode 3`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "  BRK",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              2,
+              5,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            2,
+            5,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          2,
+          5,
+        ],
+      },
+    ],
+    "range": [
+      2,
+      5,
+    ],
+  },
+}
+`;
+
+exports[`Basic tests One valid instruction with IMM mode 4`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "BRK  ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            0,
+            3,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          3,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      3,
+    ],
+  },
+}
+`;
+
+exports[`Basic tests One valid instruction with IMM mode 5`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "   BRK  ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              3,
+              6,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            3,
+            6,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          3,
+          6,
+        ],
+      },
+    ],
+    "range": [
+      3,
+      6,
+    ],
+  },
+}
+`;
+
+exports[`Basic tests Two valid instruction with IMM mode 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "BRK",
+    "BRK",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            0,
+            3,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          3,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              4,
+              7,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            4,
+            7,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          4,
+          7,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      7,
+    ],
+  },
+}
+`;
+
+exports[`Comments Negative 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          19,
+        ],
+        "start": [
+          2,
+          10,
+        ],
+      },
+      "message": "Unexpected identifier: ;$aabb,X), expected a valuable",
+      "range": [
+        10,
+        19,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          3,
+          15,
+        ],
+        "start": [
+          3,
+          10,
+        ],
+      },
+      "message": "Unexpected identifier: $n),Y, expected a valuable",
+      "range": [
+        29,
+        34,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "    IZX (;$aabb,X)",
+    "    IZY ($n),Y  ;comment 5",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      47,
+    ],
+  },
+}
+`;
+
+exports[`Comments Simple 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "        ; this is a comment",
+    "        ;",
+    "        LDX #$ab",
+    "        ;;",
+    "        ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            9,
+            28,
+          ],
+          "value": "; this is a comment",
+        },
+        "kind": "l",
+        "range": [
+          9,
+          28,
+        ],
+      },
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            37,
+            38,
+          ],
+          "value": ";",
+        },
+        "kind": "l",
+        "range": [
+          37,
+          38,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              51,
+              55,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "ab",
+              "range": [
+                52,
+                55,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              47,
+              50,
+            ],
+            "value": "ldx",
+          },
+          "range": [
+            47,
+            55,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          47,
+          55,
+        ],
+      },
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            64,
+            66,
+          ],
+          "value": ";;",
+        },
+        "kind": "l",
+        "range": [
+          64,
+          66,
+        ],
+      },
+    ],
+    "range": [
+      9,
+      66,
+    ],
+  },
+}
+`;
+
+exports[`Comments inline 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "    IZX ($ab,X);",
+    "IZY ($0c),Y  ;",
+    "    IZX ($ab,X); comment 4",
+    "IZY ($0c),Y  ;comment 5",
+    "",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            16,
+            17,
+          ],
+          "value": ";",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izx",
+            "range": [
+              9,
+              16,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "ab",
+              "range": [
+                10,
+                13,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              5,
+              8,
+            ],
+            "value": "izx",
+          },
+          "range": [
+            5,
+            16,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          5,
+          17,
+        ],
+      },
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            31,
+            32,
+          ],
+          "value": ";",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izy",
+            "range": [
+              22,
+              29,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0c",
+              "range": [
+                23,
+                26,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              18,
+              21,
+            ],
+            "value": "izy",
+          },
+          "range": [
+            18,
+            29,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          18,
+          32,
+        ],
+      },
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            48,
+            59,
+          ],
+          "value": "; comment 4",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izx",
+            "range": [
+              41,
+              48,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "ab",
+              "range": [
+                42,
+                45,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              37,
+              40,
+            ],
+            "value": "izx",
+          },
+          "range": [
+            37,
+            48,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          37,
+          59,
+        ],
+      },
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            73,
+            83,
+          ],
+          "value": ";comment 5",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izy",
+            "range": [
+              64,
+              71,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0c",
+              "range": [
+                65,
+                68,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              60,
+              63,
+            ],
+            "value": "izy",
+          },
+          "range": [
+            60,
+            71,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          60,
+          83,
+        ],
+      },
+    ],
+    "range": [
+      5,
+      83,
+    ],
+  },
+}
+`;
+
+exports[`IND Negative 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          12,
+        ],
+        "start": [
+          2,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: $aabb,y, expected an valid operand for instruction operand (ind)",
+      "range": [
+        5,
+        12,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          3,
+          12,
+        ],
+        "start": [
+          3,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: $bbcc,X, expected an valid operand for instruction operand (ind)",
+      "range": [
+        17,
+        24,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          4,
+          9,
+        ],
+        "start": [
+          4,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: $abc, expected an valid operand for instruction operand (ind)",
+      "range": [
+        29,
+        33,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          5,
+          8,
+        ],
+        "start": [
+          5,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: $ab, expected an valid operand for instruction operand (ind)",
+      "range": [
+        38,
+        41,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          6,
+          10,
+        ],
+        "start": [
+          6,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: $ab,y, expected an valid operand for instruction operand (ind)",
+      "range": [
+        48,
+        53,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          7,
+          10,
+        ],
+        "start": [
+          7,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: $bc,x, expected an valid operand for instruction operand (ind)",
+      "range": [
+        58,
+        63,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          8,
+          4,
+        ],
+        "start": [
+          8,
+          4,
+        ],
+      },
+      "message": "Unexpected end of input, expected an operand",
+      "range": [
+        67,
+        67,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          9,
+          12,
+        ],
+        "start": [
+          9,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: ($abab), expected an valid operand for instruction operand (abs)",
+      "range": [
+        72,
+        79,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          10,
+          12,
+        ],
+        "start": [
+          10,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: ($abab), expected End of input",
+      "range": [
+        84,
+        91,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          13,
+          5,
+        ],
+        "start": [
+          13,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: INDa, expected an instruction",
+      "range": [
+        111,
+        115,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          14,
+          5,
+        ],
+        "start": [
+          14,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: aind, expected an instruction",
+      "range": [
+        116,
+        120,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          15,
+          13,
+        ],
+        "start": [
+          15,
+          12,
+        ],
+      },
+      "message": "Unexpected identifier: ), expected End of input",
+      "range": [
+        140,
+        141,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "IND $aabb,y",
+    "IND $bbcc,X",
+    "IND $abc",
+    "IND $ab  ",
+    "ind $ab,y",
+    "ind $bc,x",
+    "IND",
+    "abs ($abab)",
+    "BRK ($abab)",
+    "          ",
+    "       ",
+    "INDa",
+    "aind ($abab)",
+    "IND ($abab))",
+    "          ",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      153,
+    ],
+  },
+}
+`;
+
+exports[`IND Positive 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "IND ($aabb)",
+    "IND ($0bbc)  ",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "ind",
+            "range": [
+              5,
+              12,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "aabb",
+              "range": [
+                6,
+                11,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "ind",
+          },
+          "range": [
+            1,
+            12,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          12,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "ind",
+            "range": [
+              17,
+              24,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0bbc",
+              "range": [
+                18,
+                23,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              13,
+              16,
+            ],
+            "value": "ind",
+          },
+          "range": [
+            13,
+            24,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          13,
+          24,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      24,
+    ],
+  },
+}
+`;
+
+exports[`IZX and IZY Negative 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          14,
+        ],
+        "start": [
+          2,
+          10,
+        ],
+      },
+      "message": "Unexpected identifier: $,X), expected a valuable",
+      "range": [
+        10,
+        14,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          3,
+          10,
+        ],
+        "start": [
+          3,
+          6,
+        ],
+      },
+      "message": "Unexpected identifier: $),Y, expected a valuable",
+      "range": [
+        20,
+        24,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          4,
+          11,
+        ],
+        "start": [
+          4,
+          6,
+        ],
+      },
+      "message": "Unexpected identifier: $n),x, expected a valuable",
+      "range": [
+        32,
+        37,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          5,
+          11,
+        ],
+        "start": [
+          5,
+          6,
+        ],
+      },
+      "message": "Unexpected identifier: $n,Y), expected a valuable",
+      "range": [
+        43,
+        48,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "    IZX ($,X)",
+    "IZY ($),Y  ",
+    "IZX ($n),x",
+    "IZY ($n,Y)  ",
+    "          ",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      62,
+    ],
+  },
+}
+`;
+
+exports[`IZX and IZY Positive 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "IZX ($ab,X)",
+    "IZY ($0c),Y  ",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izx",
+            "range": [
+              5,
+              12,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "ab",
+              "range": [
+                6,
+                9,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "izx",
+          },
+          "range": [
+            1,
+            12,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          12,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izy",
+            "range": [
+              17,
+              24,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0c",
+              "range": [
+                18,
+                21,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              13,
+              16,
+            ],
+            "value": "izy",
+          },
+          "range": [
+            13,
+            24,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          13,
+          24,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      24,
+    ],
+  },
+}
+`;
+
+exports[`Implied addressing mode Instruction can have IMP addressing mode as well as others 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "ASL",
+    "ASL $FF",
+    "    ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "asl",
+          },
+          "range": [
+            1,
+            4,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          4,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zp0",
+            "range": [
+              9,
+              12,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "FF",
+              "range": [
+                9,
+                12,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              5,
+              8,
+            ],
+            "value": "asl",
+          },
+          "range": [
+            5,
+            12,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          5,
+          12,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      12,
+    ],
+  },
+}
+`;
+
+exports[`Label definition Negative 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          9,
+        ],
+        "start": [
+          2,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: notequal, expected an instruction",
+      "range": [
+        1,
+        9,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          3,
+          9,
+        ],
+        "start": [
+          3,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: notequal, expected an instruction",
+      "range": [
+        10,
+        18,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "notequal",
+    "notequal :",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      21,
+    ],
+  },
+}
+`;
+
+exports[`Label definition Positive 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "    label1: ;test",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            13,
+            18,
+          ],
+          "value": ";test",
+        },
+        "contents": {
+          "kind": "ld",
+          "range": [
+            5,
+            12,
+          ],
+          "value": "label1",
+        },
+        "kind": "l",
+        "range": [
+          5,
+          18,
+        ],
+      },
+    ],
+    "range": [
+      5,
+      18,
+    ],
+  },
+}
+`;
+
+exports[`Label definition Positive2 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "start: ;some comment",
+    "  BNE $aabb",
+    "  LDA #$aa",
+    "notequal:",
+    "  BRK",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            8,
+            21,
+          ],
+          "value": ";some comment",
+        },
+        "contents": {
+          "kind": "ld",
+          "range": [
+            1,
+            7,
+          ],
+          "value": "start",
+        },
+        "kind": "l",
+        "range": [
+          1,
+          21,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "rel",
+            "range": [
+              28,
+              33,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "aabb",
+              "range": [
+                28,
+                33,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              24,
+              27,
+            ],
+            "value": "bne",
+          },
+          "range": [
+            24,
+            33,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          24,
+          33,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              40,
+              44,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "aa",
+              "range": [
+                41,
+                44,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              36,
+              39,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            36,
+            44,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          36,
+          44,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "kind": "ld",
+          "range": [
+            45,
+            54,
+          ],
+          "value": "notequal",
+        },
+        "kind": "l",
+        "range": [
+          45,
+          54,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              57,
+              60,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            57,
+            60,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          57,
+          60,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      60,
+    ],
+  },
+}
+`;
+
+exports[`Label reference Positive 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "start: ;some comment",
+    "  BNE notequal ; some comment",
+    "  LDA #$aa",
+    "notequal:",
+    "  BRK",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            8,
+            21,
+          ],
+          "value": ";some comment",
+        },
+        "contents": {
+          "kind": "ld",
+          "range": [
+            1,
+            7,
+          ],
+          "value": "start",
+        },
+        "kind": "l",
+        "range": [
+          1,
+          21,
+        ],
+      },
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            37,
+            51,
+          ],
+          "value": "; some comment",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "rel",
+            "range": [
+              28,
+              36,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                28,
+                36,
+              ],
+              "referencedName": "notequal",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              24,
+              27,
+            ],
+            "value": "bne",
+          },
+          "range": [
+            24,
+            36,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          24,
+          51,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              58,
+              62,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "aa",
+              "range": [
+                59,
+                62,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              54,
+              57,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            54,
+            62,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          54,
+          62,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "kind": "ld",
+          "range": [
+            63,
+            72,
+          ],
+          "value": "notequal",
+        },
+        "kind": "l",
+        "range": [
+          63,
+          72,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              75,
+              78,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            75,
+            78,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          75,
+          78,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      78,
+    ],
+  },
+}
+`;
+
+exports[`Label reference Positive0 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "  BNE notequal ; some comment",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            16,
+            30,
+          ],
+          "value": "; some comment",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "rel",
+            "range": [
+              7,
+              15,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                7,
+                15,
+              ],
+              "referencedName": "notequal",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              3,
+              6,
+            ],
+            "value": "bne",
+          },
+          "range": [
+            3,
+            15,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          3,
+          30,
+        ],
+      },
+    ],
+    "range": [
+      3,
+      30,
+    ],
+  },
+}
+`;
+
+exports[`Relative addressing mode Negative 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          12,
+        ],
+        "start": [
+          2,
+          9,
+        ],
+      },
+      "message": "Unexpected identifier: $nå, expected an valid operand for instruction operand (rel)",
+      "range": [
+        9,
+        12,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          3,
+          11,
+        ],
+        "start": [
+          3,
+          9,
+        ],
+      },
+      "message": "Unexpected identifier: $n, expected an valid operand for instruction operand (abs)",
+      "range": [
+        21,
+        23,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "    BNE $nå",
+    "    ABS $n",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      24,
+    ],
+  },
+}
+`;
+
+exports[`Relative addressing mode Positive 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "    BNE $abcd",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "rel",
+            "range": [
+              9,
+              14,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "abcd",
+              "range": [
+                9,
+                14,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              5,
+              8,
+            ],
+            "value": "bne",
+          },
+          "range": [
+            5,
+            14,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          5,
+          14,
+        ],
+      },
+    ],
+    "range": [
+      5,
+      14,
+    ],
+  },
+}
+`;
+
+exports[`Two separate instructions, one with immediate addressing mode Error if operand is missing 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          4,
+        ],
+        "start": [
+          2,
+          4,
+        ],
+      },
+      "message": "Unexpected end of input, expected an operand",
+      "range": [
+        4,
+        4,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "LDX",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      5,
+    ],
+  },
+}
+`;
+
+exports[`Two separate instructions, one with immediate addressing mode Error if operand is present 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          9,
+        ],
+        "start": [
+          2,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: #$c1, expected End of input",
+      "range": [
+        5,
+        9,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "BRK #$c1",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`Two separate instructions, one with immediate addressing mode Positive 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "BRK",
+    "LDX #$c0",
+    "brk",
+    "ldx #$C1",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            1,
+            4,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          4,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              9,
+              13,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "c0",
+              "range": [
+                10,
+                13,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              5,
+              8,
+            ],
+            "value": "ldx",
+          },
+          "range": [
+            5,
+            13,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          5,
+          13,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              14,
+              17,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            14,
+            17,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          14,
+          17,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              22,
+              26,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "C1",
+              "range": [
+                23,
+                26,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              18,
+              21,
+            ],
+            "value": "ldx",
+          },
+          "range": [
+            18,
+            26,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          18,
+          26,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      26,
+    ],
+  },
+}
+`;
+
+exports[`Two separate instructions, one with immediate addressing mode Syntax error for operand 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          5,
+          9,
+        ],
+        "start": [
+          5,
+          8,
+        ],
+      },
+      "message": "Unexpected identifier: k, expected End of input",
+      "range": [
+        37,
+        38,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "LDX #$ccc",
+    "LDX #cc",
+    "LDX asdasd",
+    "LDX #$ck",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              5,
+              10,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "ccc",
+              "range": [
+                6,
+                10,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "ldx",
+          },
+          "range": [
+            1,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          10,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              15,
+              18,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                16,
+                18,
+              ],
+              "referencedName": "cc",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              11,
+              14,
+            ],
+            "value": "ldx",
+          },
+          "range": [
+            11,
+            18,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          11,
+          18,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              23,
+              29,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                23,
+                29,
+              ],
+              "referencedName": "asdasd",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              19,
+              22,
+            ],
+            "value": "ldx",
+          },
+          "range": [
+            19,
+            29,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          19,
+          29,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      29,
+    ],
+  },
+}
+`;
+
+exports[`Zero page mode Negative 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          11,
+        ],
+        "start": [
+          2,
+          9,
+        ],
+      },
+      "message": "Unexpected identifier: $n, expected an valid operand for instruction operand (zp0)",
+      "range": [
+        9,
+        11,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "    ZPz $n",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      12,
+    ],
+  },
+}
+`;
+
+exports[`Zero page mode Positive 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "  ZPz $11    ",
+    "  ZPz $01    ",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zp0",
+            "range": [
+              7,
+              10,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "11",
+              "range": [
+                7,
+                10,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              3,
+              6,
+            ],
+            "value": "zpz",
+          },
+          "range": [
+            3,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          3,
+          10,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zp0",
+            "range": [
+              21,
+              24,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "01",
+              "range": [
+                21,
+                24,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              17,
+              20,
+            ],
+            "value": "zpz",
+          },
+          "range": [
+            17,
+            24,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          17,
+          24,
+        ],
+      },
+    ],
+    "range": [
+      3,
+      24,
+    ],
+  },
+}
+`;
+
+exports[`abx aby zpx zpy Negative 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          12,
+        ],
+        "start": [
+          2,
+          10,
+        ],
+      },
+      "message": "Unexpected identifier: ,y, expected the ",X" part of ABX mode",
+      "range": [
+        10,
+        12,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          3,
+          12,
+        ],
+        "start": [
+          3,
+          10,
+        ],
+      },
+      "message": "Unexpected identifier: ,X, expected the ",Y" part of ABY mode",
+      "range": [
+        22,
+        24,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          4,
+          10,
+        ],
+        "start": [
+          4,
+          8,
+        ],
+      },
+      "message": "Unexpected identifier: ,y, expected the ",X" part of ZPX mode",
+      "range": [
+        34,
+        36,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          5,
+          10,
+        ],
+        "start": [
+          5,
+          8,
+        ],
+      },
+      "message": "Unexpected identifier: ,x, expected the ",Y" part of ZPY mode",
+      "range": [
+        44,
+        46,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          6,
+          4,
+        ],
+        "start": [
+          6,
+          4,
+        ],
+      },
+      "message": "Unexpected end of input, expected an operand",
+      "range": [
+        50,
+        50,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          7,
+          4,
+        ],
+        "start": [
+          7,
+          4,
+        ],
+      },
+      "message": "Unexpected end of input, expected an operand",
+      "range": [
+        54,
+        54,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          8,
+          4,
+        ],
+        "start": [
+          8,
+          4,
+        ],
+      },
+      "message": "Unexpected end of input, expected an operand",
+      "range": [
+        58,
+        58,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          9,
+          4,
+        ],
+        "start": [
+          9,
+          4,
+        ],
+      },
+      "message": "Unexpected end of input, expected an operand",
+      "range": [
+        62,
+        62,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "ABX $aabb,y",
+    "ABY $bbcc,X  ",
+    "ZPX $ab,y",
+    "ZPY $bc,x",
+    "abx",
+    "aby",
+    "zpx",
+    "zpy",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      63,
+    ],
+  },
+}
+`;
+
+exports[`abx aby zpx zpy Positive 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "ABX $aabb,x",
+    "ABY $bbcc,y  ",
+    "ZPX $ab,x",
+    "ZPY $bc,y",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abx",
+            "range": [
+              5,
+              12,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "aabb",
+              "range": [
+                5,
+                10,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "abx",
+          },
+          "range": [
+            1,
+            12,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          12,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "aby",
+            "range": [
+              17,
+              24,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "bbcc",
+              "range": [
+                17,
+                22,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              13,
+              16,
+            ],
+            "value": "aby",
+          },
+          "range": [
+            13,
+            24,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          13,
+          24,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zpx",
+            "range": [
+              31,
+              36,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "ab",
+              "range": [
+                31,
+                34,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              27,
+              30,
+            ],
+            "value": "zpx",
+          },
+          "range": [
+            27,
+            36,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          27,
+          36,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zpy",
+            "range": [
+              41,
+              46,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "bc",
+              "range": [
+                41,
+                44,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              37,
+              40,
+            ],
+            "value": "zpy",
+          },
+          "range": [
+            37,
+            46,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          37,
+          46,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      46,
+    ],
+  },
+}
+`;

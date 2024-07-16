@@ -1,0 +1,555 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IZX addressing mode simple  1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA ($a1,X) ;",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            12,
+            13,
+          ],
+          "value": ";",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izx",
+            "range": [
+              4,
+              11,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a1",
+              "range": [
+                5,
+                8,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          13,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      13,
+    ],
+  },
+}
+`;
+
+exports[`IZX addressing mode simple 2 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA ($01,X);",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            11,
+            12,
+          ],
+          "value": ";",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izx",
+            "range": [
+              4,
+              11,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "01",
+              "range": [
+                5,
+                8,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          12,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      12,
+    ],
+  },
+}
+`;
+
+exports[`IZX addressing mode with ascii - multiple 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA ("abc",X)",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izx",
+            "range": [
+              4,
+              13,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "abc",
+              "range": [
+                5,
+                10,
+              ],
+              "valueLiteralKind": "ascii",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            13,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          13,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      13,
+    ],
+  },
+}
+`;
+
+exports[`IZX addressing mode with ascii 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA ("a",X)",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izx",
+            "range": [
+              4,
+              11,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a",
+              "range": [
+                5,
+                8,
+              ],
+              "valueLiteralKind": "ascii",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          11,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      11,
+    ],
+  },
+}
+`;
+
+exports[`IZX addressing mode with binary 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA (%0101,X)",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izx",
+            "range": [
+              4,
+              13,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0101",
+              "range": [
+                5,
+                10,
+              ],
+              "valueLiteralKind": "bin",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            13,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          13,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      13,
+    ],
+  },
+}
+`;
+
+exports[`IZX addressing mode with decimal 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA (12,X)",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izx",
+            "range": [
+              4,
+              10,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "12",
+              "range": [
+                5,
+                7,
+              ],
+              "valueLiteralKind": "dec",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          10,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`IZX addressing mode with symbol 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA (SR,X)",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izx",
+            "range": [
+              4,
+              10,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                5,
+                7,
+              ],
+              "referencedName": "sr",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          10,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`IZX mode errors errors 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          11,
+        ],
+        "start": [
+          2,
+          9,
+        ],
+      },
+      "message": "Unexpected identifier: ,x, expected the ",X)" part of IZX mode",
+      "range": [
+        9,
+        11,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          3,
+          10,
+        ],
+        "start": [
+          3,
+          9,
+        ],
+      },
+      "message": "Unexpected identifier: ,, expected the ",X)" part of IZX mode",
+      "range": [
+        22,
+        23,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          4,
+          10,
+        ],
+        "start": [
+          4,
+          9,
+        ],
+      },
+      "message": "Unexpected empty space, expected the ",X)" part of IZX mode",
+      "range": [
+        35,
+        36,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          5,
+          13,
+        ],
+        "start": [
+          5,
+          12,
+        ],
+      },
+      "message": "Unexpected identifier: ,, expected End of input",
+      "range": [
+        51,
+        52,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          6,
+          12,
+        ],
+        "start": [
+          6,
+          9,
+        ],
+      },
+      "message": "Unexpected identifier: ,v), expected the ",X)" part of IZX mode",
+      "range": [
+        61,
+        64,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          9,
+          13,
+        ],
+        "start": [
+          9,
+          6,
+        ],
+      },
+      "message": "Unexpected identifier: #$a1,x), expected a valuable",
+      "range": [
+        94,
+        101,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "LDA ($a1,x )",
+    "LDA ($a1, x)",
+    "LDA ($a1 ,x)",
+    "LDA ($a1,x),",
+    "LDA ($a1,v)",
+    "            ",
+    "          ",
+    "LDA (#$a1,x)",
+    "    ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      106,
+    ],
+  },
+}
+`;

@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`word directive Simple - one line - non zero - again 1`] = `
+{
+  "data": [
+    "34",
+    "12",
+  ],
+  "startingAddress": 0,
+}
+`;
+
+exports[`word directive Simple - one line - non zero 1`] = `
+{
+  "data": [
+    "01",
+    "00",
+  ],
+  "startingAddress": 0,
+}
+`;
+
+exports[`word directive Simple - one line only 1`] = `
+{
+  "data": [
+    "00",
+    "00",
+  ],
+  "startingAddress": 0,
+}
+`;
+
+exports[`word directive Simple - two lines - on-zero 1`] = `
+{
+  "data": [
+    "01",
+    "00",
+    "02",
+    "00",
+  ],
+  "startingAddress": 0,
+}
+`;
+
+exports[`word directive Simple - two lines - zero - again 1`] = `
+{
+  "data": [
+    "00",
+    "00",
+    "0a",
+    "00",
+  ],
+  "startingAddress": 0,
+}
+`;
+
+exports[`word directive Simple - two lines - zero 1`] = `
+{
+  "data": [
+    "00",
+    "00",
+    "01",
+    "00",
+  ],
+  "startingAddress": 0,
+}
+`;
+
+exports[`word directive very simple 1`] = `
+{
+  "data": [],
+  "startingAddress": 0,
+}
+`;

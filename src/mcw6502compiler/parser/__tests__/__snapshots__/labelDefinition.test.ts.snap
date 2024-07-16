@@ -1,0 +1,427 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`label definition Label and comment on the same line 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "ml: ;comment",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            4,
+            12,
+          ],
+          "value": ";comment",
+        },
+        "contents": {
+          "kind": "ld",
+          "range": [
+            0,
+            3,
+          ],
+          "value": "ml",
+        },
+        "kind": "l",
+        "range": [
+          0,
+          12,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      12,
+    ],
+  },
+}
+`;
+
+exports[`label definition error error when anything after 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          8,
+        ],
+        "start": [
+          2,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: zzz, expected End of input",
+      "range": [
+        10,
+        13,
+      ],
+    },
+  ],
+  "originalLines": [
+    "ml0: ",
+    "ml: zzz ",
+    "ml1:",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "kind": "ld",
+          "range": [
+            0,
+            4,
+          ],
+          "value": "ml0",
+        },
+        "kind": "l",
+        "range": [
+          0,
+          4,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "kind": "ld",
+          "range": [
+            15,
+            19,
+          ],
+          "value": "ml1",
+        },
+        "kind": "l",
+        "range": [
+          15,
+          19,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      19,
+    ],
+  },
+}
+`;
+
+exports[`label definition error error when multiple colons 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          5,
+        ],
+        "start": [
+          1,
+          4,
+        ],
+      },
+      "message": "Unexpected identifier: :, expected End of input",
+      "range": [
+        3,
+        4,
+      ],
+    },
+  ],
+  "originalLines": [
+    "ml::",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      4,
+    ],
+  },
+}
+`;
+
+exports[`label definition error error when multiple labels 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          8,
+        ],
+        "start": [
+          1,
+          4,
+        ],
+      },
+      "message": "Unexpected identifier: ml2:, expected End of input",
+      "range": [
+        3,
+        7,
+      ],
+    },
+  ],
+  "originalLines": [
+    "ml:ml2:",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      7,
+    ],
+  },
+}
+`;
+
+exports[`label definition error error when space before colon 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          3,
+        ],
+        "start": [
+          1,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: ml, expected an instruction",
+      "range": [
+        0,
+        2,
+      ],
+    },
+  ],
+  "originalLines": [
+    "ml :",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      4,
+    ],
+  },
+}
+`;
+
+exports[`label definition error multiple errors on the same line 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          3,
+        ],
+        "start": [
+          1,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: ml, expected an instruction",
+      "range": [
+        0,
+        2,
+      ],
+    },
+  ],
+  "originalLines": [
+    "ml :ml2 : ml3",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      13,
+    ],
+  },
+}
+`;
+
+exports[`label definition error no error when space after 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "ml:   ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "kind": "ld",
+          "range": [
+            0,
+            3,
+          ],
+          "value": "ml",
+        },
+        "kind": "l",
+        "range": [
+          0,
+          3,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      3,
+    ],
+  },
+}
+`;
+
+exports[`label definition multiple labels 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "ml:",
+    "ml2:",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "kind": "ld",
+          "range": [
+            0,
+            3,
+          ],
+          "value": "ml",
+        },
+        "kind": "l",
+        "range": [
+          0,
+          3,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "kind": "ld",
+          "range": [
+            4,
+            8,
+          ],
+          "value": "ml2",
+        },
+        "kind": "l",
+        "range": [
+          4,
+          8,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`label definition multiple labels same name 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "ml2:",
+    "ml2:",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "kind": "ld",
+          "range": [
+            0,
+            4,
+          ],
+          "value": "ml2",
+        },
+        "kind": "l",
+        "range": [
+          0,
+          4,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "kind": "ld",
+          "range": [
+            5,
+            9,
+          ],
+          "value": "ml2",
+        },
+        "kind": "l",
+        "range": [
+          5,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`label definition simple 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "ml:",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "kind": "ld",
+          "range": [
+            0,
+            3,
+          ],
+          "value": "ml",
+        },
+        "kind": "l",
+        "range": [
+          0,
+          3,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      3,
+    ],
+  },
+}
+`;

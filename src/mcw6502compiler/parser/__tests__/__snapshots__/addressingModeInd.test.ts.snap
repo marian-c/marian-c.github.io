@@ -1,0 +1,535 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IND mode errors errors 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          12,
+        ],
+        "start": [
+          2,
+          11,
+        ],
+      },
+      "message": "Unexpected empty space, expected the ")" part of IND mode",
+      "range": [
+        11,
+        12,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          3,
+          13,
+        ],
+        "start": [
+          3,
+          12,
+        ],
+      },
+      "message": "Unexpected empty space, expected the ")" part of IND mode",
+      "range": [
+        25,
+        26,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          4,
+          13,
+        ],
+        "start": [
+          4,
+          12,
+        ],
+      },
+      "message": "Unexpected identifier: ,, expected End of input",
+      "range": [
+        39,
+        40,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          5,
+          13,
+        ],
+        "start": [
+          5,
+          11,
+        ],
+      },
+      "message": "Unexpected identifier: ,), expected the ")" part of IND mode",
+      "range": [
+        51,
+        53,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          7,
+          13,
+        ],
+        "start": [
+          7,
+          6,
+        ],
+      },
+      "message": "Unexpected identifier: #$a1a1), expected a valuable",
+      "range": [
+        70,
+        77,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "LDA ($a1a1 )",
+    "LDA ( $a1a1 )",
+    "LDA ($a1a1),",
+    "LDA ($a1a1,)",
+    "          ",
+    "LDA (#$a1a1)",
+    "    ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      82,
+    ],
+  },
+}
+`;
+
+exports[`ind addressing mode simple  1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA ($a1a1) ;",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            12,
+            13,
+          ],
+          "value": ";",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "ind",
+            "range": [
+              4,
+              11,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a1a1",
+              "range": [
+                5,
+                10,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          13,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      13,
+    ],
+  },
+}
+`;
+
+exports[`ind addressing mode simple 2 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA ($0101);",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            11,
+            12,
+          ],
+          "value": ";",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "ind",
+            "range": [
+              4,
+              11,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0101",
+              "range": [
+                5,
+                10,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          12,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      12,
+    ],
+  },
+}
+`;
+
+exports[`ind addressing mode with ascii - multiple 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA ("abc")",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "ind",
+            "range": [
+              4,
+              11,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "abc",
+              "range": [
+                5,
+                10,
+              ],
+              "valueLiteralKind": "ascii",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          11,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      11,
+    ],
+  },
+}
+`;
+
+exports[`ind addressing mode with ascii 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA ("a")",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "ind",
+            "range": [
+              4,
+              9,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a",
+              "range": [
+                5,
+                8,
+              ],
+              "valueLiteralKind": "ascii",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            9,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`ind addressing mode with binary 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA (%0101)",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "ind",
+            "range": [
+              4,
+              11,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0101",
+              "range": [
+                5,
+                10,
+              ],
+              "valueLiteralKind": "bin",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          11,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      11,
+    ],
+  },
+}
+`;
+
+exports[`ind addressing mode with decimal 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA (12)",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "ind",
+            "range": [
+              4,
+              8,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "12",
+              "range": [
+                5,
+                7,
+              ],
+              "valueLiteralKind": "dec",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            8,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          8,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`ind addressing mode with symbol 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA (SR)",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "ind",
+            "range": [
+              4,
+              8,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                5,
+                7,
+              ],
+              "referencedName": "sr",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            8,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          8,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;

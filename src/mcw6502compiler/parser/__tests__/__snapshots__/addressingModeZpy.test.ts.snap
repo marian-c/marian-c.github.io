@@ -1,0 +1,447 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Absolute mode error error when operator is incomplete 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          3,
+        ],
+        "start": [
+          1,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: LD, expected an instruction",
+      "range": [
+        0,
+        2,
+      ],
+    },
+  ],
+  "originalLines": [
+    "LD $a1,y",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`zpy simple  1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA $a1,y",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zpy",
+            "range": [
+              4,
+              9,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a1",
+              "range": [
+                4,
+                7,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            9,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`zpy simple 2 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA $a1,Y",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zpy",
+            "range": [
+              4,
+              9,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a1",
+              "range": [
+                4,
+                7,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            9,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`zpy with ascii - multiple 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA.b "abc",y",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zpy",
+            "range": [
+              6,
+              13,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "abc",
+              "range": [
+                6,
+                11,
+              ],
+              "valueLiteralKind": "ascii",
+            },
+          },
+          "operator": {
+            "forcedTo": "b",
+            "kind": "or",
+            "range": [
+              0,
+              5,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            13,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          13,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      13,
+    ],
+  },
+}
+`;
+
+exports[`zpy with ascii 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA.b "a",y",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zpy",
+            "range": [
+              6,
+              11,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a",
+              "range": [
+                6,
+                9,
+              ],
+              "valueLiteralKind": "ascii",
+            },
+          },
+          "operator": {
+            "forcedTo": "b",
+            "kind": "or",
+            "range": [
+              0,
+              5,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          11,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      11,
+    ],
+  },
+}
+`;
+
+exports[`zpy with binary 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA.b %0101,y",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zpy",
+            "range": [
+              6,
+              13,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0101",
+              "range": [
+                6,
+                11,
+              ],
+              "valueLiteralKind": "bin",
+            },
+          },
+          "operator": {
+            "forcedTo": "b",
+            "kind": "or",
+            "range": [
+              0,
+              5,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            13,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          13,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      13,
+    ],
+  },
+}
+`;
+
+exports[`zpy with decimal 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA.b 12345,y",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zpy",
+            "range": [
+              6,
+              13,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "12345",
+              "range": [
+                6,
+                11,
+              ],
+              "valueLiteralKind": "dec",
+            },
+          },
+          "operator": {
+            "forcedTo": "b",
+            "kind": "or",
+            "range": [
+              0,
+              5,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            13,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          13,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      13,
+    ],
+  },
+}
+`;
+
+exports[`zpy with symbol 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA.b lbl,y",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "zpy",
+            "range": [
+              6,
+              11,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                6,
+                9,
+              ],
+              "referencedName": "lbl",
+            },
+          },
+          "operator": {
+            "forcedTo": "b",
+            "kind": "or",
+            "range": [
+              0,
+              5,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          11,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      11,
+    ],
+  },
+}
+`;

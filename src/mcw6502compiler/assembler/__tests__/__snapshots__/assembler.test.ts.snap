@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Assembler - positive - addressing modes abs 1`] = `
+[
+  "2c",
+  "cd",
+  "ab",
+]
+`;
+
+exports[`Assembler - positive - addressing modes abx 1`] = `
+[
+  "bd",
+  "cd",
+  "ab",
+]
+`;
+
+exports[`Assembler - positive - addressing modes aby 1`] = `
+[
+  "b9",
+  "cd",
+  "ab",
+]
+`;
+
+exports[`Assembler - positive - addressing modes accumulator (imp) 1`] = `
+[
+  "0a",
+]
+`;
+
+exports[`Assembler - positive - addressing modes imm 1`] = `
+[
+  "a9",
+  "ab",
+]
+`;
+
+exports[`Assembler - positive - addressing modes imp 1`] = `
+[
+  "08",
+]
+`;
+
+exports[`Assembler - positive - addressing modes ind 1`] = `
+[
+  "6c",
+  "cd",
+  "ab",
+]
+`;
+
+exports[`Assembler - positive - addressing modes ixy 1`] = `
+[
+  "b1",
+  "ab",
+]
+`;
+
+exports[`Assembler - positive - addressing modes ixz 1`] = `
+[
+  "a1",
+  "ab",
+]
+`;
+
+exports[`Assembler - positive - addressing modes zp0 1`] = `
+[
+  "a6",
+  "ab",
+]
+`;
+
+exports[`Assembler - positive - addressing modes zpx 1`] = `
+[
+  "b4",
+  "ab",
+]
+`;
+
+exports[`Assembler - positive - addressing modes zpy 1`] = `
+[
+  "b6",
+  "ab",
+]
+`;

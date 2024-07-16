@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Validator Error when duplicate labels 1`] = `
+[
+  {
+    "kind": 1,
+    "lineRange": {
+      "end": [
+        3,
+        20,
+      ],
+      "start": [
+        3,
+        1,
+      ],
+    },
+    "message": "Duplicate identifier: start",
+    "range": [
+      8,
+      27,
+    ],
+  },
+]
+`;
+
+exports[`Validator Error when duplicate symbols + labels 1`] = `
+[
+  {
+    "kind": 1,
+    "lineRange": {
+      "end": [
+        3,
+        11,
+      ],
+      "start": [
+        3,
+        1,
+      ],
+    },
+    "message": "Duplicate identifier: my_symbol",
+    "range": [
+      15,
+      25,
+    ],
+  },
+]
+`;
+
+exports[`Validator Error when duplicate symbols 1`] = `
+[
+  {
+    "kind": 1,
+    "lineRange": {
+      "end": [
+        3,
+        14,
+      ],
+      "start": [
+        3,
+        1,
+      ],
+    },
+    "message": "Duplicate identifier: my_symbol",
+    "range": [
+      15,
+      28,
+    ],
+  },
+]
+`;
+
+exports[`Validator Positive - empty 1`] = `[]`;
+
+exports[`Validator Positive - label defined first 1`] = `[]`;
+
+exports[`Validator Positive - label referenced first 1`] = `[]`;
+
+exports[`Validator no error when label does not exist (handled by the assembler) 1`] = `[]`;

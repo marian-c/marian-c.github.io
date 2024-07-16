@@ -1,0 +1,350 @@
+{
+	"target": {
+		"prefix": ".target",
+		"body": ".target \"${1:CPUTYPE}\"\r\n",
+		"description": "Target: CPU Type selector for the source code compiler.\r\n\r\nExample: .target \"6502\"\r\n\r\nAccepts: 6502, 65C02, 65SC02, 65816, 4004, 4040, 8008, 8080, 8085, Gameboy, Z80\r\n\r\n",
+		"scope": "source"
+	},
+	"format": {
+		"prefix": ".format",
+		"body": ".format \"${1:OUTPUTFORMAT}\"\r\n",
+		"description": "Format: The output format of the compiled file.\r\n\r\nExamples:\r\n.format \"bin\"\r\n.format \"prg\"\r\n\r\nAccepts: bin, sbin, prg, xex, txt, t64, d64, gb, nes, snes, sms, gg, tap\r\n\r\n",
+		"scope": "source"
+	},
+	"cpu": {
+		"prefix": ".cpu",
+		"body": ".cpu \"${1:CPUTYPE}\"\r\n",
+		"description": "CPU: Alternative of .target\r\n\r\n",
+		"scope": "source"
+	},
+	"org": {
+		"prefix": ".org",
+		"body": ".org ${1:MEMORYADDRESS}\r\n",
+		"description": "Org: Sets the target memory address for the next compiled bytes.\r\n\r\nExamples:\r\n.org $1234\r\n* = $1234\r\n\r\n",
+		"scope": "source"
+	},
+	"pc": {
+		"prefix": ".pc",
+		"body": ".pc ${1:MEMORYADDRESS}\r\n",
+		"description": "PC: Alternative of .org\r\n\r\n",
+		"scope": "source"
+	},
+	"equ": {
+		"prefix": ".equ",
+		"body": "${1:LABEL} .equ ${2:VALUE}\r\n",
+		"description": "Equ: Assigns a constant value to a Label.\r\n\r\nExamples:\r\nFont .equ $3800\r\nImage = $4000\r\n\r\n",
+		"scope": "source"
+	},
+	"var": {
+		"prefix": ".var",
+		"body": "${1:LABEL} .var ${2:VALUE}\r\n",
+		"description": "Var: Assigns a value to a Label. It can be updated afterwards.\r\n\r\nExample:\r\nCounter .var 10\r\nCounter = Counter - 1\r\n\r\n",
+		"scope": "source"
+	},
+	"random": {
+		"prefix": ".random",
+		"body": "${1:LABEL} .random ${2:VALUE}\r\n",
+		"description": "Random: Creates a variable with a random value.\r\n\r\nExamples:\r\nChoice1 .random 1, 10 //1-10\r\nChoice2 .random 55 //0-55\r\n\r\n",
+		"scope": "source"
+	},
+	"rnd": {
+		"prefix": ".rnd",
+		"body": "${1:LABEL} .rnd ${2:VALUE}\r\n",
+		"description": "Rnd: Alternative of .random\r\n\r\n",
+		"scope": "source"
+	},
+	"setting": {
+		"prefix": ".setting",
+		"body": ".setting \"${1:SETTINGNAME}\", ${2:VALUE}\r\n",
+		"description": "Setting: Updates a Setting value in the default/current settings of the assembler.\r\n\r\nExample:\r\n.setting \"CaseSensitiveMode\", true\r\n\r\n",
+		"scope": "source"
+	},
+	"breakpoint": {
+		"prefix": ".breakpoint",
+		"body": ".breakpoint\r\n",
+		"description": "Breakpoint: Sets a breakpoint at the current memory location in the Debug file.\r\n\r\nExamples:\r\n.breakpoint\r\n.breakpoint \"A == $01\"\r\n\r\n",
+		"scope": "source"
+	},
+	"closelabels": {
+		"prefix": ".closelabels",
+		"body": ".closelabels\r\n",
+		"description": "CloseLabels: Forcibly closes the range of currently opened @Local labels.\r\n\r\n",
+		"scope": "source"
+	},
+	"print": {
+		"prefix": ".print",
+		"body": ".print \"${1:TEXT}\"\r\n",
+		"description": "Print: Prints the debug text on the console while compiling the code.\r\n\r\nExample:\r\n.print \"Current mem address: \" * \" :)\"\r\n\r\n",
+		"scope": "source"
+	},
+	"debug": {
+		"prefix": ".debug",
+		"body": ".debug \"${1:TEXT}\"\r\n",
+		"description": "Debug: Alternative of .print\r\n\r\n",
+		"scope": "source"
+	},
+	"error": {
+		"prefix": ".error",
+		"body": ".error \"${1:TEXT}\"\r\n",
+		"description": "Error: Prints a user raised error text on the console and stops the compiler.\r\n\r\nExample:\r\n.if (* > $2010)\r\n.error \"Current mem address: \" * \" :(\"\r\n.endif\r\n\r\n",
+		"scope": "source"
+	},
+	"end": {
+		"prefix": ".end",
+		"body": ".end\r\n",
+		"description": "End: The loading and processing of source code lines stop at the line where this directive is used.\r\n\r\n",
+		"scope": "source"
+	},
+	"include": {
+		"prefix": ".include",
+		"body": ".include \"${1:FILENAME}\"\r\n",
+		"description": "Include: Includes the contents of the selected source code file.\r\n\r\nExample:\r\n.include \"my_macros.asm\"\r\n\r\n",
+		"scope": "source"
+	},
+	"incbin": {
+		"prefix": ".incbin",
+		"body": ".incbin \"${1:FILENAME}\"\r\n",
+		"description": "IncBin: Includes the contents of the selected binary file at the current memory location.\r\n\r\nExample:\r\n.org $4000\r\n.incbin \"mona_lisa.img\"\r\n\r\n",
+		"scope": "source"
+	},
+	"bank": {
+		"prefix": ".bank",
+		"body": ".bank ${1:BANKNUMBER}, ${2:SIZE_KB}, ${3:MAPADDRESS}\r\n",
+		"description": "Bank: Creates a new memory bank, or updates an existing bank's properties.\r\n\r\nExample:\r\n.bank 1, 16, $4000\r\n\r\n",
+		"scope": "source"
+	},
+	"segment": {
+		"prefix": ".segment",
+		"body": ".segment \"${1:SEGMENTNAME}\"\r\n",
+		"description": "Segment: Creates or selects a memory segment for code and data separation.\r\n\r\nExample:\r\n.segment \"Animation\"\r\n\r\n",
+		"scope": "source"
+	},
+	"code": {
+		"prefix": ".code",
+		"body": ".code\r\n",
+		"description": "Shortcut to select the Code Segment.\r\n\r\n",
+		"scope": "source"
+	},
+	"lib": {
+		"prefix": ".lib",
+		"body": ".lib\r\n",
+		"description": "Shortcut to select the Lib Segment.\r\n\r\n",
+		"scope": "source"
+	},
+	"data": {
+		"prefix": ".data",
+		"body": ".data\r\n",
+		"description": "Shortcut to select the Data Segment.\r\n\r\n",
+		"scope": "source"
+	},
+	"bss": {
+		"prefix": ".bss",
+		"body": ".bss\r\n",
+		"description": "Shortcut to select the BSS Segment.\r\n\r\n",
+		"scope": "source"
+	},
+	"namespace": {
+		"prefix": ".namespace",
+		"body": ".namespace \"${1:NAMESPACE}\"\r\n",
+		"description": "Namespace: Creates or selects a user-defined Namespace for Labels.\r\n\r\nExamples:\r\n.namespace \"MyNameSpace\"\r\n.namespace \"Global\" //Switch to Global\r\n.namespace //Switch to Global\r\n\r\n",
+		"scope": "source"
+	},
+	"region": {
+		"prefix": ".region",
+		"body": ".region ${1:REGIONNAME}\r\n${2}\r\n.endregion\r\n",
+		"description": "Region: Groups a section of the source code that can be toggled between shown/hidden in the editor.\r\n\r\nExample:\r\n.region RegionName\r\n(Source code lines)\r\n.endregion\r\n\r\n",
+		"scope": "source"
+	},
+	"endregion": {
+		"prefix": ".endregion",
+		"body": ".endregion\r\n",
+		"description": "EndRegion: Marks the end of a Region.\r\n\r\n",
+		"scope": "source"
+	},
+	"function": {
+		"prefix": ".function",
+		"body": ".function ${1:FUNCTIONNAME}()\r\n\t${2}\r\n.endfunction\r\n",
+		"description": "Function: Code block that can be called as a subroutine.\r\n\r\nExample:\r\n.function Scroller()\r\nlda #$ff\r\nsta $2000\r\n(...)\r\n.endfunction\r\n\r\n",
+		"scope": "source"
+	},
+	"endfunction": {
+		"prefix": ".endfunction",
+		"body": ".endfunction\r\n",
+		"description": "EndFunction: Marks the end of a Function block.\r\n\r\n",
+		"scope": "source"
+	},
+	"macro": {
+		"prefix": ".macro",
+		"body": ".macro ${1:MACRONAME}(${2:parameters})\r\n\t${3}\r\n.endmacro\r\n",
+		"description": "Macro: Configurable code block.\r\n\r\nExample:\r\n.macro SetByte(Address,Value=$12)\r\nlda #Value\r\nsta Address\r\n.endmacro\r\n\r\nSetByte($2000, $ff) //Sets $ff\r\nSetByte($2001) //Sets the default $12\r\n\r\n",
+		"scope": "source"
+	},
+	"endmacro": {
+		"prefix": ".endmacro",
+		"body": ".endmacro\r\n",
+		"description": "EndMacro: Marks the end of a Macro block.\r\n\r\n",
+		"scope": "source"
+	},
+	"loop": {
+		"prefix": ".loop",
+		"body": ".loop ${1:LOOPCOUNT}\r\n\t${2}\r\n.endloop\r\n",
+		"description": "Loop: Code block where the content will be generated the chosen number of times.\r\n\r\nExample:\r\n.loop 8\r\nnop\r\n.endloop\r\n\r\n",
+		"scope": "source"
+	},
+	"endloop": {
+		"prefix": ".endloop",
+		"body": ".endloop\r\n",
+		"description": "EndLoop: Marks the end of a Loop block.\r\n\r\n",
+		"scope": "source"
+	},
+	"if": {
+		"prefix": ".if",
+		"body": ".if ${1:CONDITION}\r\n\t${2}\r\n.endif\r\n",
+		"description": "If: Code block which gets compiled only when the chosen condition evaluates to 1 (True).\r\n\r\nExample:\r\n.if (Value >= 2) || (Other == 13)\r\nlda #$ff\r\nsta $2000\r\n.endif\r\n\r\n",
+		"scope": "source"
+	},
+	"endif": {
+		"prefix": ".endif",
+		"body": ".endif\r\n",
+		"description": "EndIf: Marks the end of an If block.\r\n\r\n",
+		"scope": "source"
+	},
+	"while": {
+		"prefix": ".while",
+		"body": ".while ${1:CONDITION}\r\n\t${2}\r\n.endwhile\r\n",
+		"description": "While: Code block which gets compiled as a loop, as long as the chosen condition evaluates to 1 (True).\r\n\r\nExample:\r\nMyCounter .var 0\r\n.while MyCounter != 20\r\nsta $3200 + MyCounter\r\nMyCounter = MyCounter+1\r\n.endwhile\r\n\r\n",
+		"scope": "source"
+	},
+	"endwhile": {
+		"prefix": ".endwhile",
+		"body": ".endwhile\r\n",
+		"description": "EndWhile: Marks the end of a While block.\r\n\r\n",
+		"scope": "source"
+	},
+	"break": {
+		"prefix": ".break",
+		"body": ".break\r\n",
+		"description": "Break: Terminates the While loop cycle where it's placed into.\r\n\r\n",
+		"scope": "source"
+	},
+	"align": {
+		"prefix": ".align",
+		"body": ".align ${1:ALIGNMENT}\r\n",
+		"description": "Align: Aligns the upcoming instructions or data to the next 'round' memory address. The alignment value must be the power of 2, such as 2, 4, 8, 16, 32, 64... up to 1 MB.\r\n\r\nExamples:\r\n.align $100\r\n.align $80, $ea //Fill with $ea\r\n\r\n",
+		"scope": "source"
+	},
+	"storage": {
+		"prefix": ".storage",
+		"body": ".storage ${1:LENGTH}\r\n",
+		"description": "Storage: Preserves the following Length number of bytes in the memory to be used as storage bytes.\r\n\r\nExamples:\r\n.storage $20\r\n.storage $20, $ff //Fill with $ff\r\n\r\n",
+		"scope": "source"
+	},
+	"ds": {
+		"prefix": ".ds",
+		"body": ".ds ${1:LENGTH}\r\n",
+		"description": "DS: Alternative of .storage\r\n\r\n",
+		"scope": "source"
+	},
+	"fill": {
+		"prefix": ".fill",
+		"body": ".fill ${1:LENGTH}\r\n",
+		"description": "Fill: Alternative of .storage\r\n\r\n",
+		"scope": "source"
+	},
+	"byte": {
+		"prefix": ".byte",
+		"body": ".byte ${1:VALUES}\r\n",
+		"description": "Byte: Puts one or more bytes (8-bit) at the current memory address.\r\n\r\nExamples:\r\n.byte $12, %1001, <MyLabel\r\n.byte '\\t', \"My string value\"\r\nMyAllocatedValues .byte ?, ?, ?\r\n\r\n",
+		"scope": "source"
+	},
+	"word": {
+		"prefix": ".word",
+		"body": ".word ${1:VALUES}\r\n",
+		"description": "Word: Puts one or more words (16-bit) at the current memory address.\r\n\r\nExamples:\r\n.word $1234, $12, %1001, MyLabel\r\nMyAllocatedValues .word ?, ?, ?\r\n\r\n",
+		"scope": "source"
+	},
+	"dword": {
+		"prefix": ".dword",
+		"body": ".dword ${1:VALUES}\r\n",
+		"description": "DWord: Puts one or more double words (32-bit) at the current memory address.\r\n\r\nExamples:\r\n.dword $12345678, $1234, $12, MyLabel\r\nMyAllocatedValues .dword ?, ?, ?\r\n\r\n",
+		"scope": "source"
+	},
+	"lobyte": {
+		"prefix": ".lobyte",
+		"body": ".lobyte ${1:VALUES}\r\n",
+		"description": "LoByte: Puts one or more bytes at the current memory address, using the entered value's Low byte (bits 1-8).\r\n\r\nExample:\r\n.lobyte $1234, MyLabel\r\n\r\n",
+		"scope": "source"
+	},
+	"hibyte": {
+		"prefix": ".hibyte",
+		"body": ".hibyte ${1:VALUES}\r\n",
+		"description": "HiByte: Puts one or more bytes at the current memory address, using the entered value's High byte (bits 9-16).\r\n\r\nExample:\r\n.hibyte $1234, MyLabel\r\n\r\n",
+		"scope": "source"
+	},
+	"loword": {
+		"prefix": ".loword",
+		"body": ".loword ${1:VALUES}\r\n",
+		"description": "LoWord: Puts two or more bytes at the current memory address, using the entered value's Low word (bits 1-16).\r\n\r\nExample:\r\n.loword $12345678, MyLabel\r\n\r\n",
+		"scope": "source"
+	},
+	"hiword": {
+		"prefix": ".hiword",
+		"body": ".hiword ${1:VALUES}\r\n",
+		"description": "HiWord: Puts two or more bytes at the current memory address, using the value's High word (bits 17-32).\r\n\r\nExample:\r\n.hiword $12345678, MyLabel\r\n\r\n",
+		"scope": "source"
+	},
+	"encoding": {
+		"prefix": ".encoding",
+		"body": ".encoding \"${1:TYPE}\", \"${2:CASE}\"\r\n",
+		"description": "Encoding: Sets the text encoding type and case, used by string directives .text and .textz\r\n\r\nExamples:\r\n.encoding \"latin1\", \"mixed\"\r\n.encoding \"screencode\", \"lower\"\r\n.encoding \"ascii\"\r\n.encoding 28595, \"mixed\"\r\n\r\n",
+		"scope": "source"
+	},
+	"text": {
+		"prefix": ".text",
+		"body": ".text ${1:VALUES}\r\n",
+		"description": "Text: Puts one or more bytes at the current memory address, by converting strings to text bytes, using the selected text encoding and case.\r\n\r\nExample:\r\n.text \"My String Value\", 'c'\r\n\r\n",
+		"scope": "source"
+	},
+	"textz": {
+		"prefix": ".textz",
+		"body": ".textz ${1:VALUES}\r\n",
+		"description": "TextZ: Puts one or more bytes at the current memory address, by converting strings to zero-terminated text bytes, using the selected text encoding and case.\r\n\r\nExample:\r\n.textz \"My String Value\", 'c'\r\n\r\n",
+		"scope": "source"
+	},
+	"stext": {
+		"prefix": ".stext",
+		"body": ".stext ${1:VALUES}\r\n",
+		"description": "SText: Puts one or more bytes at the current memory address, by converting strings to simplified ASCII bytes used in scroll texts and other, more compact text displays.\r\n\r\nExample:\r\n.stext \"my scroll text!\", 'c'\r\n\r\n",
+		"scope": "source"
+	},
+	"ascii": {
+		"prefix": ".ascii",
+		"body": ".ascii ${1:VALUES}\r\n",
+		"description": "ASCII: Puts one or more bytes at the current memory address, by converting strings to ASCII text bytes in mixed case.\r\n\r\nExample:\r\n.ascii \"My String Value\", 'c'\r\n\r\n",
+		"scope": "source"
+	},
+	"asciiz": {
+		"prefix": ".asciiz",
+		"body": ".asciiz ${1:VALUES}\r\n",
+		"description": "ASCIIZ: Puts one or more bytes at the current memory address, by converting strings to zero-terminated ASCII text bytes in mixed case.\r\n\r\nExample:\r\n.asciiz \"My String Value\", 'c'\r\n\r\n",
+		"scope": "source"
+	},
+	"generate": {
+		"prefix": ".generate",
+		"body": ".generate \"${1:MODE}\", ${2:MIN}, ${3:MAX}, ${4:LENGTH}\r\n",
+		"description": "Generate: Generates byte values at the current memory address, depending on the selected Mode, and on the Parameter(s) that the Mode expects. Usually these are data tables that can be utilized for demo effects.\r\n\r\nExample:\r\n.generate \"sinwave\", $00, $7f, $100\r\n\r\n",
+		"scope": "source"
+	},
+	"memory": {
+		"prefix": ".memory",
+		"body": ".memory \"${1:MODE}\", ${2:STARTADDRESS}, ${3:LENGTH}, ${4:PARAMETERS}\r\n",
+		"description": "Memory: Executes various memory operations in the current memory segment.\r\n\r\nExample:\r\n.memory \"copy\", $2000, $100, $2100\r\n\r\n",
+		"scope": "source"
+	},
+	"memorydump": {
+		"prefix": ".memorydump",
+		"body": ".memorydump \"${1:FILENAME}\", ${2:BANKNUMBER}, ${3:STARTADDRESS}, ${4:LENGTH}\r\n",
+		"description": "MemoryDump: Saves the selected number of bytes from the target's virtual memory buffer into a text file, as .byte source code lines.\r\n\r\nExample:\r\n.org $2000\r\n.generate \"sinwave\", 0, $00, $7f, $100\r\n.memorydump \"MyWaveData.asm\", 0,\r\n$2000, $100\r\n\r\n",
+		"scope": "source"
+	}
+}

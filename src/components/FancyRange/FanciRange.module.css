@@ -1,0 +1,12 @@
+.Input {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: white;
+}
+.Input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 15px;
+    width: var(--range-thumb-size);
+    background: grey;
+}

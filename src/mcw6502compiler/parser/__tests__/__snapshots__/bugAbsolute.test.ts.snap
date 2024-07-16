@@ -1,0 +1,376 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`bugs absolute case for parser matching abs for abx or aby 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "LDA $1234",
+    "LDA $1235,x",
+    "LDA $1236,y",
+    "LDA $1237 ",
+    "LDA $1238;",
+    "LDA $1239 ;",
+    "LDA $1240;com",
+    "LDA $1241 ; com",
+    "    ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              5,
+              10,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "1234",
+              "range": [
+                5,
+                10,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            1,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          10,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abx",
+            "range": [
+              15,
+              22,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "1235",
+              "range": [
+                15,
+                20,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              11,
+              14,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            11,
+            22,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          11,
+          22,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "aby",
+            "range": [
+              27,
+              34,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "1236",
+              "range": [
+                27,
+                32,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              23,
+              26,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            23,
+            34,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          23,
+          34,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              39,
+              44,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "1237",
+              "range": [
+                39,
+                44,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              35,
+              38,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            35,
+            44,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          35,
+          44,
+        ],
+      },
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            55,
+            56,
+          ],
+          "value": ";",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              50,
+              55,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "1238",
+              "range": [
+                50,
+                55,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              46,
+              49,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            46,
+            55,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          46,
+          56,
+        ],
+      },
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            67,
+            68,
+          ],
+          "value": ";",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              61,
+              66,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "1239",
+              "range": [
+                61,
+                66,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              57,
+              60,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            57,
+            66,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          57,
+          68,
+        ],
+      },
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            78,
+            82,
+          ],
+          "value": ";com",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              73,
+              78,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "1240",
+              "range": [
+                73,
+                78,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              69,
+              72,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            69,
+            78,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          69,
+          82,
+        ],
+      },
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            93,
+            98,
+          ],
+          "value": "; com",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              87,
+              92,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "1241",
+              "range": [
+                87,
+                92,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              83,
+              86,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            83,
+            92,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          83,
+          98,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      98,
+    ],
+  },
+}
+`;

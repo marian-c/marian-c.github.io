@@ -1,0 +1,42 @@
+import { Button } from '@/components/Button/Button';
+import { Icon } from '@/components/icon/icon';
+
+# Simple 6502 assembler and emulator
+
+The widget above allows you to emulate a fantasy 6502 based computer. You can provide your own ROM file, or you can use
+the integrated editor (labeled Compiler) to write a custom program in 6502 assembly language.
+
+This widget is designed to work on wide screens; using this on a mobile device is not supported.
+
+## Main controls
+
+The toolbar at the top of the widget contains the main controls:
+
+- <Button className="mr-2 not-prose" title="Start/continue execution" inaccessibleChildren={<Icon src="/svg/play.svg" />} />
+  This will start/resume the emulation, it will not compile the source in the Compiler tab and it will not reset anything.
+  It just starts the emulation with whatever contents are in the ROM. While the emulator is running this button will
+  be disabled.
+- <Button className="mr-2 not-prose" title="Pause execution" inaccessibleChildren={<Icon src="/svg/pause.svg" />} />
+  If the emulator is running, use this button to pause it;
+- <Button className="mr-2 not-prose" title="Build source" inaccessibleChildren={<Icon src="/svg/build.svg" />} />
+  When the Compiler tab is visible, this button will build the source code. This will not load the result into memory.
+  If there are compilation errors, the will be shown at the bottom of the editor with line numbers on which you can
+  click to make the editor scroll to that line number. Note that these line numbers are accurate at the moment the
+  compilation took place and will could be inaccurate if you've changed the source code in the meantime.
+
+TODO: More info to come...
+
+## Emulator
+
+The emulator will only stop when the CPU jumps to the same instruction.
+
+You can achieve this with this assembly code:
+
+```
+end:
+    JMP end
+```
+
+export default function({children}) {
+    return <article className="prose">{children}</article>
+}

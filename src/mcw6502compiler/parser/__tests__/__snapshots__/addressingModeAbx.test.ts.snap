@@ -1,0 +1,592 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ABX mode error error when operand is incomplete 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          11,
+        ],
+        "start": [
+          1,
+          10,
+        ],
+      },
+      "message": "Unexpected identifier: ,, expected the ",X" part of ABX mode",
+      "range": [
+        9,
+        10,
+      ],
+    },
+  ],
+  "originalLines": [
+    "LDA $a1a1,",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`ABX mode error error when operand is incomplete, various values 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          8,
+        ],
+        "start": [
+          2,
+          7,
+        ],
+      },
+      "message": "Unexpected identifier: ,, expected the ",X" part of ABX mode",
+      "range": [
+        7,
+        8,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          3,
+          8,
+        ],
+        "start": [
+          3,
+          7,
+        ],
+      },
+      "message": "Unexpected identifier: ,, expected the ",X" part of ABX mode",
+      "range": [
+        15,
+        16,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          4,
+          11,
+        ],
+        "start": [
+          4,
+          10,
+        ],
+      },
+      "message": "Unexpected identifier: ,, expected the ",X" part of ABX mode",
+      "range": [
+        26,
+        27,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          5,
+          9,
+        ],
+        "start": [
+          5,
+          8,
+        ],
+      },
+      "message": "Unexpected identifier: ,, expected the ",X" part of ABX mode",
+      "range": [
+        35,
+        36,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          6,
+          11,
+        ],
+        "start": [
+          6,
+          10,
+        ],
+      },
+      "message": "Unexpected identifier: ,, expected the ",X" part of ABX mode",
+      "range": [
+        46,
+        47,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "LDA RR,",
+    "LDA 12,",
+    "LDA %1101,",
+    "LDA "a",",
+    "LDA "ABc",",
+    "    ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      52,
+    ],
+  },
+}
+`;
+
+exports[`ABX mode error error when operator is incomplete 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          3,
+        ],
+        "start": [
+          1,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: LD, expected an instruction",
+      "range": [
+        0,
+        2,
+      ],
+    },
+  ],
+  "originalLines": [
+    "LD $a1a1,X",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`ABX simple  1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA $a1a1,X",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abx",
+            "range": [
+              4,
+              11,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a1a1",
+              "range": [
+                4,
+                9,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          11,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      11,
+    ],
+  },
+}
+`;
+
+exports[`ABX simple 2 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA $a1a1,x",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abx",
+            "range": [
+              4,
+              11,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a1a1",
+              "range": [
+                4,
+                9,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          11,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      11,
+    ],
+  },
+}
+`;
+
+exports[`ABX with ascii - multiple 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA "abc",x",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abx",
+            "range": [
+              4,
+              11,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "abc",
+              "range": [
+                4,
+                9,
+              ],
+              "valueLiteralKind": "ascii",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          11,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      11,
+    ],
+  },
+}
+`;
+
+exports[`ABX with ascii 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA "a",x",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abx",
+            "range": [
+              4,
+              9,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a",
+              "range": [
+                4,
+                7,
+              ],
+              "valueLiteralKind": "ascii",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            9,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`ABX with binary 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA %0101,x",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abx",
+            "range": [
+              4,
+              11,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0101",
+              "range": [
+                4,
+                9,
+              ],
+              "valueLiteralKind": "bin",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          11,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      11,
+    ],
+  },
+}
+`;
+
+exports[`ABX with decimal 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA 12,x",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abx",
+            "range": [
+              4,
+              8,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "12",
+              "range": [
+                4,
+                6,
+              ],
+              "valueLiteralKind": "dec",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            8,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          8,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`ABX with symbol 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA SR,x",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abx",
+            "range": [
+              4,
+              8,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                4,
+                6,
+              ],
+              "referencedName": "sr",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            8,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          8,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;

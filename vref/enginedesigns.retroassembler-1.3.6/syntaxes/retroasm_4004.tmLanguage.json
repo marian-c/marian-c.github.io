@@ -1,0 +1,153 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "Retro Assembler (4004)",
+    "patterns": [
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#characters"
+        },
+        {
+            "include": "#locallabels"
+        },
+        {
+            "include": "#directives"
+        },
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#instructions"
+        },
+        {
+            "include": "#comments"
+        },
+        {
+            "include": "#constants"
+        },
+        {
+            "include": "#operators"
+        }
+    ],
+    "repository": {
+        "strings": {
+            "name": "string.quoted.double.retroasm_4004",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+                {
+                    "name": "constant.character.escape.retroasm_4004",
+                    "match": "\\\\."
+                }
+            ]
+        },
+        "characters": {
+            "patterns": [
+                {
+                    "name": "string.quoted.single.retroasm_4004",
+                    "match": "(?i)\\'.\\'"
+                }
+            ]
+        },
+        "locallabels": {
+            "patterns": [
+                {
+                    "name": "keyword.locallabel.retroasm_4004",
+                    "match": "(?i)\\@+[a-z0-9]+\\b"
+                }
+            ]
+        },
+        "directives": {
+            "patterns": [
+                {
+                    "name": "keyword.directive.retroasm_4004",
+                    "match": "(?i)(?:^|\\s)(\\.(org|pc|equ|var|random|rnd|storage|ds|fill|align|target|format|cpu|closelabels|breakpoint|print|debug|error|end|region|endregion|function|endfunction|endf|segment|code|lib|data|bss|bank|namespace|include|incbin|macro|endmacro|endm|if|endif|loop|endloop|endl|while|endwhile|endw|break|byte|b|word|w|dword|dw|lobyte|hibyte|loword|hiword|encoding|text|t|textz|stext|ascii|asciiz|generate|memory|memorydump|setting))\\b"
+                }
+            ]
+        },
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "keyword.keyword.retroasm_4004",
+                    "match": "(?i)\\b(auto|true|false)\\b"
+                }
+            ]
+        },
+        "instructions": {
+            "patterns": [
+                {
+                    "name": "keyword.instruction.retroasm_4004",
+                    "match": "(?i)[\\s]*\\b(add|adm|bbl|clb|clc|cma|cmc|daa|dac|dcl|fim|fin|iac|inc|isz|jc|jcn|jin|jms|jnc|jnt|jnz|jt|jun|jz|kbp|ld|ldm|nop|ral|rar|rd0|rd1|rd2|rd3|rdm|rdr|sbm|src|stc|sub|tcc|tcs|wmp|wpm|wr0|wr1|wr2|wr3|wrm|wrr|xch)\\b"
+                }
+            ]
+        },
+        "comments": {
+            "patterns": [
+                {
+                    "name": "comment.block.retroasm_4004",
+                    "begin": "/\\*",
+                    "end": "\\*/",
+                    "comment": "Block comment"
+                },
+                {
+                    "name": "comment.line.retroasm_4004",
+                    "begin": "//",
+                    "end": "$",
+                    "comment": "Single line comment with //"
+                },
+                {
+                    "name": "comment.line.retroasm_4004",
+                    "begin": ";",
+                    "end": "$",
+                    "comment": "Single line comment with ';'"
+                }
+            ]
+        },
+        "constants": {
+            "patterns": [
+                {
+                    "include": "#constants-numeric"
+                }
+            ]
+        },
+        "constants-numeric": {
+            "patterns": [
+                {
+                    "name": "constant.numeric.binary.retroasm_4004",
+                    "match": "(?i)(\\%|0b)[0-1_]+\\b",
+                    "comment": "Integer literal (binary)"
+                },
+                {
+                    "name": "constant.numeric.hexadecimal.retroasm_4004",
+                    "match": "(?i)(\\$|0x)[0-9a-f_]+\\b",
+                    "comment": "Integer literal (hexadecimal)"
+                },
+                {
+                    "name": "constant.numeric.octal.retroasm_4004",
+                    "match": "(?i)(0o)[0-7]+\\b",
+                    "comment": "Integer literal (octal)"
+                },
+                {
+                    "name": "constant.numeric.decimal.retroasm_4004",
+                    "match": "(?i)\\b[0-9]+\\b",
+                    "comment": "Integer literal (decimal)"
+                },
+                {
+                    "name": "constant.numeric.hash.retroasm_4004",
+                    "match": "\\#",
+                    "comment": "Hash"
+                }
+            ]
+        },
+        "operators": {
+            "patterns": [
+                {
+                    "name": "keyword.operator.retroasm_4004",
+                    "match": "(?i)(\\+|\\-|\\=|\\*|\\/|\\!|\\<|\\>|\\&|\\||\\^|\\(|\\)|\\[|\\]\\,)"
+                }
+            ]
+        }
+    },
+    "scopeName": "source.retroasm_4004"
+}

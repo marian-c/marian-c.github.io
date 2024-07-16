@@ -1,0 +1,573 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`REL addressing mode with address simple 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "BNE lbl",
+    "BNE $AB1D",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "rel",
+            "range": [
+              4,
+              7,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                4,
+                7,
+              ],
+              "referencedName": "lbl",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "bne",
+          },
+          "range": [
+            0,
+            7,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          7,
+        ],
+      },
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "rel",
+            "range": [
+              12,
+              17,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "AB1D",
+              "range": [
+                12,
+                17,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              8,
+              11,
+            ],
+            "value": "bne",
+          },
+          "range": [
+            8,
+            17,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          8,
+          17,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      17,
+    ],
+  },
+}
+`;
+
+exports[`REL addressing mode with address with ascii - multiple 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "BNE "abc"",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "rel",
+            "range": [
+              4,
+              9,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "abc",
+              "range": [
+                4,
+                9,
+              ],
+              "valueLiteralKind": "ascii",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "bne",
+          },
+          "range": [
+            0,
+            9,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`REL addressing mode with address with ascii 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "BNE "a"",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "rel",
+            "range": [
+              4,
+              7,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a",
+              "range": [
+                4,
+                7,
+              ],
+              "valueLiteralKind": "ascii",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "bne",
+          },
+          "range": [
+            0,
+            7,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          7,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      7,
+    ],
+  },
+}
+`;
+
+exports[`REL addressing mode with address with binary 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "BNE %0101",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "rel",
+            "range": [
+              4,
+              9,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0101",
+              "range": [
+                4,
+                9,
+              ],
+              "valueLiteralKind": "bin",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "bne",
+          },
+          "range": [
+            0,
+            9,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`REL addressing mode with address with decimal 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "BNE 12345",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "rel",
+            "range": [
+              4,
+              9,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "12345",
+              "range": [
+                4,
+                9,
+              ],
+              "valueLiteralKind": "dec",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "bne",
+          },
+          "range": [
+            0,
+            9,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`REL addressing mode with address with symbol 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "BNE lbl",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "rel",
+            "range": [
+              4,
+              7,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                4,
+                7,
+              ],
+              "referencedName": "lbl",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "bne",
+          },
+          "range": [
+            0,
+            7,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          7,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      7,
+    ],
+  },
+}
+`;
+
+exports[`REL addressing mode with reference to label simple  1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "BNE existingLabel ;",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            18,
+            19,
+          ],
+          "value": ";",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "rel",
+            "range": [
+              4,
+              17,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                4,
+                17,
+              ],
+              "referencedName": "existinglabel",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "bne",
+          },
+          "range": [
+            0,
+            17,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          19,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      19,
+    ],
+  },
+}
+`;
+
+exports[`REL addressing mode with reference to label simple 2 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "BNE existingLabel; ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            17,
+            18,
+          ],
+          "value": ";",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "rel",
+            "range": [
+              4,
+              17,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                4,
+                17,
+              ],
+              "referencedName": "existinglabel",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "bne",
+          },
+          "range": [
+            0,
+            17,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          19,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      19,
+    ],
+  },
+}
+`;
+
+exports[`REL mode errors errors 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          19,
+        ],
+        "start": [
+          2,
+          18,
+        ],
+      },
+      "message": "Unexpected identifier: ,, expected End of input",
+      "range": [
+        18,
+        19,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          3,
+          20,
+        ],
+        "start": [
+          3,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: (existingLabel), expected an valid operand for instruction operand (rel)",
+      "range": [
+        24,
+        39,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "BNE existingLabel,",
+    "BNE (existingLabel) ;",
+    "    ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      46,
+    ],
+  },
+}
+`;

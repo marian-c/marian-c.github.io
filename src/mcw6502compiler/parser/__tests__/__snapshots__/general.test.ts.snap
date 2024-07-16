@@ -1,0 +1,296 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`instructions with empty lines 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "brk",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            1,
+            4,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          4,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      4,
+    ],
+  },
+}
+`;
+
+exports[`instructions with empty lines and comments 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "brk ;comment",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            5,
+            13,
+          ],
+          "value": ";comment",
+        },
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              1,
+              4,
+            ],
+            "value": "brk",
+          },
+          "range": [
+            1,
+            4,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          1,
+          13,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      13,
+    ],
+  },
+}
+`;
+
+exports[`simple comments comments and empty lines 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    ";t",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            1,
+            3,
+          ],
+          "value": ";t",
+        },
+        "kind": "l",
+        "range": [
+          1,
+          3,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      3,
+    ],
+  },
+}
+`;
+
+exports[`simple comments comments and empty lines 2`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    ";t",
+    ";t",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            1,
+            3,
+          ],
+          "value": ";t",
+        },
+        "kind": "l",
+        "range": [
+          1,
+          3,
+        ],
+      },
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            4,
+            6,
+          ],
+          "value": ";t",
+        },
+        "kind": "l",
+        "range": [
+          4,
+          6,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      6,
+    ],
+  },
+}
+`;
+
+exports[`simple comments comments and empty lines 3`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    ";",
+    ";",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            1,
+            2,
+          ],
+          "value": ";",
+        },
+        "kind": "l",
+        "range": [
+          1,
+          2,
+        ],
+      },
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            3,
+            4,
+          ],
+          "value": ";",
+        },
+        "kind": "l",
+        "range": [
+          3,
+          4,
+        ],
+      },
+    ],
+    "range": [
+      1,
+      4,
+    ],
+  },
+}
+`;
+
+exports[`simple comments simple comment 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    ";this is a comment",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            0,
+            18,
+          ],
+          "value": ";this is a comment",
+        },
+        "kind": "l",
+        "range": [
+          0,
+          18,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      18,
+    ],
+  },
+}
+`;
+
+exports[`simple, empty lines empty line 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      0,
+    ],
+  },
+}
+`;
+
+exports[`simple, empty lines empty line 2`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "",
+    "",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      1,
+    ],
+  },
+}
+`;

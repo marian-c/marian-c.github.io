@@ -1,0 +1,608 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Absolute mode accept dev with leading 0 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA 0121",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              4,
+              8,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0121",
+              "range": [
+                4,
+                8,
+              ],
+              "valueLiteralKind": "dec",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            8,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          8,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`Absolute mode error error when ascii is incomplete 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          9,
+        ],
+        "start": [
+          1,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: "abc, expected an valid operand for instruction operand (abs)",
+      "range": [
+        4,
+        8,
+      ],
+    },
+  ],
+  "originalLines": [
+    "LDA "abc",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`Absolute mode error error when decimal is funky 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          8,
+        ],
+        "start": [
+          1,
+          5,
+        ],
+      },
+      "message": "Unexpected identifier: -12, expected an valid operand for instruction operand (abs)",
+      "range": [
+        4,
+        7,
+      ],
+    },
+  ],
+  "originalLines": [
+    "LDA -12",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      7,
+    ],
+  },
+}
+`;
+
+exports[`Absolute mode error error when decimal is funky after 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          9,
+        ],
+        "start": [
+          1,
+          8,
+        ],
+      },
+      "message": "Unexpected identifier: 1, expected End of input",
+      "range": [
+        7,
+        8,
+      ],
+    },
+  ],
+  "originalLines": [
+    "LDA 12 1",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`Absolute mode error error when operator is incomplete 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          3,
+        ],
+        "start": [
+          1,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: LD, expected an instruction",
+      "range": [
+        0,
+        2,
+      ],
+    },
+  ],
+  "originalLines": [
+    "LD $00B1",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`Absolute mode simple - len 4 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA $a1a1",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              4,
+              9,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a1a1",
+              "range": [
+                4,
+                9,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            9,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`Absolute mode simple - zeros 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA $00B1",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              4,
+              9,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "00B1",
+              "range": [
+                4,
+                9,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            9,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`Absolute mode with ascii - multiple 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA "abc"",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              4,
+              9,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "abc",
+              "range": [
+                4,
+                9,
+              ],
+              "valueLiteralKind": "ascii",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            9,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`Absolute mode with ascii 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA "a"",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              4,
+              7,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a",
+              "range": [
+                4,
+                7,
+              ],
+              "valueLiteralKind": "ascii",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            7,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          7,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      7,
+    ],
+  },
+}
+`;
+
+exports[`Absolute mode with binary 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA %0101",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              4,
+              9,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0101",
+              "range": [
+                4,
+                9,
+              ],
+              "valueLiteralKind": "bin",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            9,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`Absolute mode with decimal 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA 12",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              4,
+              6,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "12",
+              "range": [
+                4,
+                6,
+              ],
+              "valueLiteralKind": "dec",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            6,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          6,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      6,
+    ],
+  },
+}
+`;
+
+exports[`Absolute mode with symbol 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA SR",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "abs",
+            "range": [
+              4,
+              6,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                4,
+                6,
+              ],
+              "referencedName": "sr",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            6,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          6,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      6,
+    ],
+  },
+}
+`;

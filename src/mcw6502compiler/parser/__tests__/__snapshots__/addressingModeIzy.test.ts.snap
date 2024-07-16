@@ -1,0 +1,555 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IZY addressing mode simple  1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA ($a1),y ;",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            12,
+            13,
+          ],
+          "value": ";",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izy",
+            "range": [
+              4,
+              11,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a1",
+              "range": [
+                5,
+                8,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          13,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      13,
+    ],
+  },
+}
+`;
+
+exports[`IZY addressing mode simple 2 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA ($01),Y;",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            11,
+            12,
+          ],
+          "value": ";",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izy",
+            "range": [
+              4,
+              11,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "01",
+              "range": [
+                5,
+                8,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          12,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      12,
+    ],
+  },
+}
+`;
+
+exports[`IZY addressing mode with ascii - multiple 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA ("abc"),Y",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izy",
+            "range": [
+              4,
+              13,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "abc",
+              "range": [
+                5,
+                10,
+              ],
+              "valueLiteralKind": "ascii",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            13,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          13,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      13,
+    ],
+  },
+}
+`;
+
+exports[`IZY addressing mode with ascii 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA ("a"),Y",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izy",
+            "range": [
+              4,
+              11,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a",
+              "range": [
+                5,
+                8,
+              ],
+              "valueLiteralKind": "ascii",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            11,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          11,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      11,
+    ],
+  },
+}
+`;
+
+exports[`IZY addressing mode with binary 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA (%0101),Y",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izy",
+            "range": [
+              4,
+              13,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0101",
+              "range": [
+                5,
+                10,
+              ],
+              "valueLiteralKind": "bin",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            13,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          13,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      13,
+    ],
+  },
+}
+`;
+
+exports[`IZY addressing mode with decimal 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA (12),Y",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izy",
+            "range": [
+              4,
+              10,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "12",
+              "range": [
+                5,
+                7,
+              ],
+              "valueLiteralKind": "dec",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          10,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`IZY addressing mode with symbol 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA (SR),Y",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "izy",
+            "range": [
+              4,
+              10,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                5,
+                7,
+              ],
+              "referencedName": "sr",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          10,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`IZY mode errors errors 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          2,
+          10,
+        ],
+        "start": [
+          2,
+          9,
+        ],
+      },
+      "message": "Unexpected empty space, expected the "),Y" part of IZY mode",
+      "range": [
+        9,
+        10,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          3,
+          11,
+        ],
+        "start": [
+          3,
+          10,
+        ],
+      },
+      "message": "Unexpected identifier: ,, expected End of input",
+      "range": [
+        23,
+        24,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          4,
+          13,
+        ],
+        "start": [
+          4,
+          11,
+        ],
+      },
+      "message": "Unexpected identifier: ,y, expected End of input",
+      "range": [
+        37,
+        39,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          5,
+          13,
+        ],
+        "start": [
+          5,
+          12,
+        ],
+      },
+      "message": "Unexpected identifier: ,, expected End of input",
+      "range": [
+        51,
+        52,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          6,
+          12,
+        ],
+        "start": [
+          6,
+          10,
+        ],
+      },
+      "message": "Unexpected identifier: ,h, expected End of input",
+      "range": [
+        62,
+        64,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          9,
+          13,
+        ],
+        "start": [
+          9,
+          6,
+        ],
+      },
+      "message": "Unexpected identifier: #$a1),y, expected a valuable",
+      "range": [
+        94,
+        101,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "LDA ($a1 ),y",
+    "LDA ($a1), y",
+    "LDA ($a1) ,y",
+    "LDA ($a1),y,",
+    "LDA ($a1),h",
+    "            ",
+    "          ",
+    "LDA (#$a1),y",
+    "    ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      106,
+    ],
+  },
+}
+`;

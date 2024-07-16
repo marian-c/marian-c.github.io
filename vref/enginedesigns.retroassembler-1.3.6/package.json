@@ -1,0 +1,414 @@
+{
+	"name": "retroassembler",
+	"displayName": "Retro Assembler",
+	"description": "Assembly language extension for Retro Assembler using MOS 6502, WDC 65C02, WDC 65816, CSC 4510, MEGA65 45GS02, Intel 4004, 4040, 8008, 8080, 8085, Zilog Z80 and Nintendo Gameboy CPUs.",
+	"version": "1.3.6",
+	"author": "Peter Tihanyi",
+	"publisher": "EngineDesigns",
+	"icon": "images/icon.png",
+	"homepage": "https://enginedesigns.net/retroassembler",
+	"engines": {
+		"vscode": "^1.40.0"
+	},
+	"categories": [
+		"Programming Languages",
+		"Themes"
+	],
+	"activationEvents": [
+		"onCommand:retroassembler.build",
+		"onCommand:retroassembler.buildstart",
+		"onCommand:retroassembler.builddebug"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"languages": [
+			{
+				"id": "retroasm_z80",
+				"aliases": [
+					"Retro Assembler (Z80)",
+					"retroasm_z80"
+				],
+				"extensions": [
+					".asm",
+					".s",
+					".inc",
+					".z80.asm",
+					".z80.s",
+					".z80.inc"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "retroasm_gameboy",
+				"aliases": [
+					"Retro Assembler (Gameboy)",
+					"retroasm_gameboy"
+				],
+				"extensions": [
+					".asm",
+					".s",
+					".inc",
+					".gameboy.asm",
+					".gameboy.s",
+					".gameboy.inc"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "retroasm_8085",
+				"aliases": [
+					"Retro Assembler (8085)",
+					"retroasm_8085"
+				],
+				"extensions": [
+					".asm",
+					".s",
+					".inc",
+					".8085.asm",
+					".8085.s",
+					".8085.inc"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "retroasm_8080",
+				"aliases": [
+					"Retro Assembler (8080)",
+					"retroasm_8080"
+				],
+				"extensions": [
+					".asm",
+					".s",
+					".inc",
+					".8080.asm",
+					".8080.s",
+					".8080.inc"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "retroasm_8008",
+				"aliases": [
+					"Retro Assembler (8008)",
+					"retroasm_8008"
+				],
+				"extensions": [
+					".asm",
+					".s",
+					".inc",
+					".8008.asm",
+					".8008.s",
+					".8008.inc"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "retroasm_4040",
+				"aliases": [
+					"Retro Assembler (4040)",
+					"retroasm_4040"
+				],
+				"extensions": [
+					".asm",
+					".s",
+					".inc",
+					".4040.asm",
+					".4040.s",
+					".4040.inc"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "retroasm_4004",
+				"aliases": [
+					"Retro Assembler (4004)",
+					"retroasm_4004"
+				],
+				"extensions": [
+					".asm",
+					".s",
+					".inc",
+					".4004.asm",
+					".4004.s",
+					".4004.inc"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "retroasm_45gs02",
+				"aliases": [
+					"Retro Assembler (45GS02)",
+					"retroasm_45gs02"
+				],
+				"extensions": [
+					".asm",
+					".s",
+					".inc",
+					".45gs02.asm",
+					".45gs02.s",
+					".45gs02.inc",
+					".mega65.asm",
+					".mega65.s",
+					".mega65.inc"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "retroasm_4510",
+				"aliases": [
+					"Retro Assembler (4510)",
+					"retroasm_4510"
+				],
+				"extensions": [
+					".asm",
+					".s",
+					".inc",
+					".4510.asm",
+					".4510.s",
+					".4510.inc"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "retroasm_65816",
+				"aliases": [
+					"Retro Assembler (65816)",
+					"retroasm_65816"
+				],
+				"extensions": [
+					".asm",
+					".s",
+					".inc",
+					".65816.asm",
+					".65816.s",
+					".65816.inc"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "retroasm_65c02",
+				"aliases": [
+					"Retro Assembler (65C02)",
+					"retroasm_65c02"
+				],
+				"extensions": [
+					".asm",
+					".s",
+					".inc",
+					".65c02.asm",
+					".65c02.s",
+					".65c02.inc"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "retroasm_6502",
+				"aliases": [
+					"Retro Assembler (6502)",
+					"retroasm_6502"
+				],
+				"extensions": [
+					".asm",
+					".s",
+					".inc",
+					".6502.asm",
+					".6502.s",
+					".6502.inc"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "retroasm_z80",
+				"scopeName": "source.retroasm_z80",
+				"path": "./syntaxes/retroasm_z80.tmLanguage.json"
+			},
+			{
+				"language": "retroasm_gameboy",
+				"scopeName": "source.retroasm_gameboy",
+				"path": "./syntaxes/retroasm_gameboy.tmLanguage.json"
+			},
+			{
+				"language": "retroasm_8085",
+				"scopeName": "source.retroasm_8085",
+				"path": "./syntaxes/retroasm_8085.tmLanguage.json"
+			},
+			{
+				"language": "retroasm_8080",
+				"scopeName": "source.retroasm_8080",
+				"path": "./syntaxes/retroasm_8080.tmLanguage.json"
+			},
+			{
+				"language": "retroasm_8008",
+				"scopeName": "source.retroasm_8008",
+				"path": "./syntaxes/retroasm_8008.tmLanguage.json"
+			},
+			{
+				"language": "retroasm_4040",
+				"scopeName": "source.retroasm_4040",
+				"path": "./syntaxes/retroasm_4040.tmLanguage.json"
+			},
+			{
+				"language": "retroasm_4004",
+				"scopeName": "source.retroasm_4004",
+				"path": "./syntaxes/retroasm_4004.tmLanguage.json"
+			},
+			{
+				"language": "retroasm_45gs02",
+				"scopeName": "source.retroasm_45gs02",
+				"path": "./syntaxes/retroasm_45gs02.tmLanguage.json"
+			},
+			{
+				"language": "retroasm_4510",
+				"scopeName": "source.retroasm_4510",
+				"path": "./syntaxes/retroasm_4510.tmLanguage.json"
+			},
+			{
+				"language": "retroasm_65816",
+				"scopeName": "source.retroasm_65816",
+				"path": "./syntaxes/retroasm_65816.tmLanguage.json"
+			},
+			{
+				"language": "retroasm_65c02",
+				"scopeName": "source.retroasm_65c02",
+				"path": "./syntaxes/retroasm_65c02.tmLanguage.json"
+			},
+			{
+				"language": "retroasm_6502",
+				"scopeName": "source.retroasm_6502",
+				"path": "./syntaxes/retroasm_6502.tmLanguage.json"
+			}
+		],
+		"snippets": [
+			{
+				"language": "retroasm_z80",
+				"path": "./snippets/snippets.json"
+			},
+			{
+				"language": "retroasm_gameboy",
+				"path": "./snippets/snippets.json"
+			},
+			{
+				"language": "retroasm_8085",
+				"path": "./snippets/snippets.json"
+			},
+			{
+				"language": "retroasm_8080",
+				"path": "./snippets/snippets.json"
+			},
+			{
+				"language": "retroasm_8008",
+				"path": "./snippets/snippets.json"
+			},
+			{
+				"language": "retroasm_4040",
+				"path": "./snippets/snippets.json"
+			},
+			{
+				"language": "retroasm_4004",
+				"path": "./snippets/snippets.json"
+			},
+			{
+				"language": "retroasm_45gs02",
+				"path": "./snippets/snippets.json"
+			},
+			{
+				"language": "retroasm_4510",
+				"path": "./snippets/snippets.json"
+			},
+			{
+				"language": "retroasm_65816",
+				"path": "./snippets/snippets.json"
+			},
+			{
+				"language": "retroasm_65c02",
+				"path": "./snippets/snippets.json"
+			},
+			{
+				"language": "retroasm_6502",
+				"path": "./snippets/snippets.json"
+			}
+		],
+		"themes": [
+			{
+				"label": "Retro Assembler",
+				"uiTheme": "vs",
+				"path": "./themes/light.json"
+			},
+			{
+				"label": "Retro Assembler Dark",
+				"uiTheme": "vs-dark",
+				"path": "./themes/dark.json"
+			},
+			{
+				"label": "Retro Assembler Blue",
+				"uiTheme": "vs-dark",
+				"path": "./themes/blue.json"
+			}
+		],
+		"commands": [
+			{
+				"command": "retroassembler.build",
+				"title": "Retro Assembler: Build"
+			},
+			{
+				"command": "retroassembler.buildstart",
+				"title": "Retro Assembler: Build & Start"
+			},
+			{
+				"command": "retroassembler.builddebug",
+				"title": "Retro Assembler: Build & Debug"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "retroassembler.build",
+				"key": "ctrl+shift+b"
+			},
+			{
+				"command": "retroassembler.buildstart",
+				"key": "shift+f5"
+			},
+			{
+				"command": "retroassembler.buildstart",
+				"key": "f6"
+			},
+			{
+				"command": "retroassembler.builddebug",
+				"key": "f5"
+			}
+		],
+		"configuration": {
+			"title": "Retro Assembler",
+			"properties": {
+				"retroassembler.path": {
+					"type": "string",
+					"default": "retroassembler.exe",
+					"description": "Full path to retroassembler.exe, or it may be \"dotnet [path]\\retroassembler.dll\" for the .Net Core version. (Use / on Linux and macOS)"
+				},
+				"retroassembler.args": {
+					"type": "string",
+					"default": "",
+					"description": "(Optional) Assembler command line arguments.\r\nExample: \"-c -O=prg\"."
+				},
+				"retroassembler.mainfile": {
+					"type": "string",
+					"default": "",
+					"description": "(Optional) Full path to the main file of the project that the assembler should start compiling, instead of the currently edited file.\r\nExample: \"[path]\\main.6502.asm\" (Use / on Linux and macOS)"
+				}
+			}
+		}
+	},
+	"__metadata": {
+		"id": "29a8d740-a99d-40b3-a1e8-b6e6bf0cf7e5",
+		"publisherDisplayName": "Engine Designs",
+		"publisherId": "a746887c-2e47-4b93-bf9b-e1129ca67627",
+		"targetPlatform": "undefined",
+		"updated": false,
+		"isPreReleaseVersion": false,
+		"hasPreReleaseVersion": false,
+		"installedTimestamp": 1715252300210,
+		"pinned": false
+	}
+}

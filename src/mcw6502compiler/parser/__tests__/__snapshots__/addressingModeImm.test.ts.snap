@@ -1,0 +1,589 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Immediate mode errors errors 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          4,
+          10,
+        ],
+        "start": [
+          4,
+          6,
+        ],
+      },
+      "message": "Unexpected identifier: @01,, expected a valuable",
+      "range": [
+        20,
+        24,
+      ],
+    },
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          6,
+          9,
+        ],
+        "start": [
+          6,
+          6,
+        ],
+      },
+      "message": "Unexpected identifier: $MM, expected a valuable",
+      "range": [
+        41,
+        44,
+      ],
+    },
+  ],
+  "originalLines": [
+    "",
+    "      ",
+    "      ",
+    "LDA #@01,",
+    "          ",
+    "LDA #$MM",
+    "    ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      49,
+    ],
+  },
+}
+`;
+
+exports[`imm addressing mode allow 4 digit address 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA #$0001",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              4,
+              10,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0001",
+              "range": [
+                5,
+                10,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          10,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`imm addressing mode allow single digit address 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA #$0",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              4,
+              7,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0",
+              "range": [
+                5,
+                7,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            7,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          7,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      7,
+    ],
+  },
+}
+`;
+
+exports[`imm addressing mode simple 2 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LdA #$01;",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": {
+          "kind": "c",
+          "range": [
+            8,
+            9,
+          ],
+          "value": ";",
+        },
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              4,
+              8,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "01",
+              "range": [
+                5,
+                8,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            8,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          9,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      9,
+    ],
+  },
+}
+`;
+
+exports[`imm addressing mode simples 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA #$a1 ",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              4,
+              8,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a1",
+              "range": [
+                5,
+                8,
+              ],
+              "valueLiteralKind": "hex",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            8,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          8,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`imm addressing mode with ascii - multiple 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA #"abc"",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              4,
+              10,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "abc",
+              "range": [
+                5,
+                10,
+              ],
+              "valueLiteralKind": "ascii",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          10,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`imm addressing mode with ascii 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA #"a"",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              4,
+              8,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "a",
+              "range": [
+                5,
+                8,
+              ],
+              "valueLiteralKind": "ascii",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            8,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          8,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      8,
+    ],
+  },
+}
+`;
+
+exports[`imm addressing mode with binary 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA #%0101",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              4,
+              10,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "0101",
+              "range": [
+                5,
+                10,
+              ],
+              "valueLiteralKind": "bin",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            10,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          10,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      10,
+    ],
+  },
+}
+`;
+
+exports[`imm addressing mode with decimal 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA #12",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              4,
+              7,
+            ],
+            "value": {
+              "kind": "vl",
+              "originalStringValue": "12",
+              "range": [
+                5,
+                7,
+              ],
+              "valueLiteralKind": "dec",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            7,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          7,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      7,
+    ],
+  },
+}
+`;
+
+exports[`imm addressing mode with symbol 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "LDA #SR",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 1,
+          "kind": "i",
+          "operand": {
+            "kind": "imm",
+            "range": [
+              4,
+              7,
+            ],
+            "value": {
+              "kind": "r",
+              "range": [
+                5,
+                7,
+              ],
+              "referencedName": "sr",
+            },
+          },
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "lda",
+          },
+          "range": [
+            0,
+            7,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          7,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      7,
+    ],
+  },
+}
+`;

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+  <Metadata>
+    <Identity Language="en-US" Id="retroassembler" Version="1.3.6" Publisher="EngineDesigns"/>
+    <DisplayName>Retro Assembler</DisplayName>
+    <Description xml:space="preserve">Assembly language extension for Retro Assembler using MOS 6502, WDC 65C02, WDC 65816, CSC 4510, MEGA65 45GS02, Intel 4004, 4040, 8008, 8080, 8085, Zilog Z80 and Nintendo Gameboy CPUs.</Description>
+    <Tags>theme,color-theme,snippet,keybindings,retroasm_z80,Retro Assembler (Z80),__ext_asm,__ext_s,__ext_inc,__ext_z80asm,__ext_z80s,__ext_z80inc,retroasm_gameboy,Retro Assembler (Gameboy),__ext_gameboyasm,__ext_gameboys,__ext_gameboyinc,retroasm_8085,Retro Assembler (8085),__ext_8085asm,__ext_8085s,__ext_8085inc,retroasm_8080,Retro Assembler (8080),__ext_8080asm,__ext_8080s,__ext_8080inc,retroasm_8008,Retro Assembler (8008),__ext_8008asm,__ext_8008s,__ext_8008inc,retroasm_4040,Retro Assembler (4040),__ext_4040asm,__ext_4040s,__ext_4040inc,retroasm_4004,Retro Assembler (4004),__ext_4004asm,__ext_4004s,__ext_4004inc,retroasm_45gs02,Retro Assembler (45GS02),__ext_45gs02asm,__ext_45gs02s,__ext_45gs02inc,__ext_mega65asm,__ext_mega65s,__ext_mega65inc,retroasm_4510,Retro Assembler (4510),__ext_4510asm,__ext_4510s,__ext_4510inc,retroasm_65816,Retro Assembler (65816),__ext_65816asm,__ext_65816s,__ext_65816inc,retroasm_65c02,Retro Assembler (65C02),__ext_65c02asm,__ext_65c02s,__ext_65c02inc,retroasm_6502,Retro Assembler (6502),__ext_6502asm,__ext_6502s,__ext_6502inc</Tags>
+    <Categories>Programming Languages,Themes</Categories>
+    <GalleryFlags>Public</GalleryFlags>
+    <Badges></Badges>
+    <Properties>
+      <Property Id="Microsoft.VisualStudio.Code.Engine" Value="^1.40.0" />
+      <Property Id="Microsoft.VisualStudio.Code.ExtensionDependencies" Value="" />
+      <Property Id="Microsoft.VisualStudio.Code.ExtensionPack" Value="" />
+      <Property Id="Microsoft.VisualStudio.Code.ExtensionKind" Value="workspace" />
+      <Property Id="Microsoft.VisualStudio.Code.LocalizedLanguages" Value="" />
+      
+      
+      <Property Id="Microsoft.VisualStudio.Services.Links.Learn" Value="https://enginedesigns.net/retroassembler" />
+      
+      
+      <Property Id="Microsoft.VisualStudio.Services.GitHubFlavoredMarkdown" Value="true" />
+      
+      
+      
+    </Properties>
+    
+    <Icon>extension/images/icon.png</Icon>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Code"/>
+  </Installation>
+  <Dependencies/>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.Code.Manifest" Path="extension/package.json" Addressable="true" />
+    <Asset Type="Microsoft.VisualStudio.Services.Content.Details" Path="extension/README.md" Addressable="true" /><Asset Type="Microsoft.VisualStudio.Services.Content.Changelog" Path="extension/CHANGELOG.md" Addressable="true" /><Asset Type="Microsoft.VisualStudio.Services.Icons.Default" Path="extension/images/icon.png" Addressable="true" />
+  </Assets>
+</PackageManifest>

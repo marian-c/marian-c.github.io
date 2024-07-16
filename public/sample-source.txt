@@ -1,0 +1,185 @@
+PORTB = $6000
+PORTA = $6001
+DDRB = $6002
+DDRA = $6003
+
+E  = %10000000
+RW = %01000000
+RS = %00100000
+
+  .org $8000
+reset:
+  ldx #$ff
+  txs
+
+  lda #%11111111 ; Set all pins on  port B to output
+  sta DDRB
+  lda #%11100000 ; Set top 3 pins on port A to output
+  sta DDRA
+
+  lda #%00111000 ; Set 8-bit mode; 2-line display; 5x8 font
+  jsr lcd_instruction
+  lda #%00001110 ; Display on; cursor on; blink off
+  jsr lcd_instruction
+  lda #%00000110 ; Increment and shift cursor; don't shift display
+  jsr lcd_instruction
+  lda #$00000001 ; Clear display
+  jsr lcd_instruction
+
+  ldx #0
+print:
+  lda message,x
+  beq loop
+  jsr print_char
+  inx
+  jmp print
+
+loop:
+  jmp loop
+
+message: ;.ascii "Hello, world!"
+
+lcd_wait:
+  pha
+  lda #%00000000  ; Port B is input
+  sta DDRB
+lcdbusy:
+  lda #RW
+  sta PORTA
+  lda #RW
+  sta PORTA
+  lda PORTB
+  and #%10000000
+  bne lcdbusy
+
+  lda #RW
+  sta PORTA
+  lda #%11111111  ; Port B is output
+  sta DDRB
+  pla
+  rts
+
+lcd_instruction:
+  jsr lcd_wait
+  sta PORTB
+  lda #0         ; Clear RS/RW/E bits
+  sta PORTA
+  lda #E         ; Set E bit to send instruction
+  sta PORTA
+  lda #0         ; Clear RS/RW/E bits
+  sta PORTA
+  rts
+
+print_char:
+  jsr lcd_wait
+  sta PORTB
+  lda #RS         ; Set RS; Clear RW/E bits
+  sta PORTA
+  lda #RS   ; Set E bit to send instruction
+  sta PORTA
+  lda #RS         ; Clear E bits
+  sta PORTA
+  rts
+
+.org $fffc
+  .word reset
+  .word $0000
+
+
+
+  =======
+
+
+
+.org $0010
+LCD_CLEAR       = %110000000000000
+LCD_RS          = %110000000000010
+LCD_ENABLE      = %110000000000001
+LCD_ENABLE_RS   = %110000000000011
+reset:
+    LDA #%00111000  ; set 8bit mode, 2 line display, 5x8 font
+    STA LCD_CLEAR
+    STA LCD_ENABLE
+    STA LCD_CLEAR
+
+    LDA #%00001000  ; display on, cursor on, blink off
+    STA LCD_CLEAR
+    STA LCD_ENABLE
+    STA LCD_CLEAR
+
+    LDA #%00000110  ; increment and shift cursor, don't shift display
+    STA LCD_CLEAR
+    STA LCD_ENABLE
+    STA LCD_CLEAR
+
+    LDA #"H"
+    STA LCD_RS
+    STA LCD_ENABLE_RS
+    STA LCD_RS
+
+
+    LDA #"e"
+    STA LCD_RS
+    STA LCD_ENABLE_RS
+    STA LCD_RS
+
+
+    LDA #"l"
+    STA LCD_RS
+    STA LCD_ENABLE_RS
+    STA LCD_RS
+
+
+    LDA #"l"
+    STA LCD_RS
+    STA LCD_ENABLE_RS
+    STA LCD_RS
+
+
+    LDA #"o"
+    STA LCD_RS
+    STA LCD_ENABLE_RS
+    STA LCD_RS
+
+
+    LDA #","
+    STA LCD_RS
+    STA LCD_ENABLE_RS
+    STA LCD_RS
+
+    LDA #" "
+    STA LCD_RS
+    STA LCD_ENABLE_RS
+    STA LCD_RS
+
+    LDA #"W"
+    STA LCD_RS
+    STA LCD_ENABLE_RS
+    STA LCD_RS
+
+    LDA #"o"
+    STA LCD_RS
+    STA LCD_ENABLE_RS
+    STA LCD_RS
+
+    LDA #"r"
+    STA LCD_RS
+    STA LCD_ENABLE_RS
+    STA LCD_RS
+
+    LDA #"l"
+    STA LCD_RS
+    STA LCD_ENABLE_RS
+    STA LCD_RS
+
+    LDA #"d"
+    STA LCD_RS
+    STA LCD_ENABLE_RS
+    STA LCD_RS
+
+
+
+
+
+.org $fffc
+.word reset

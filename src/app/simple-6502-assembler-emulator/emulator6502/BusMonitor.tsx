@@ -1,0 +1,119 @@
+import React from 'react';
+import type { EmulationDriver6502 } from '@/app/simple-6502-assembler-emulator/emulator6502/types';
+import { View } from '@/components/view/view';
+import { useElementLayout } from '@/hooks/useElementLayout/useElementLayout';
+import { FixedSizeList, type ListChildComponentProps } from 'react-window';
+import { hex } from '@/helpers/numbers';
+
+const CELLS_PER_ROW = 16;
+
+type Data = { bytes: number[] };
+
+const VisualRow: React.FunctionComponent<{
+  rowData: number[];
+  leading?: number | undefined;
+  isHeader?: boolean | undefined;
+}> = function ({ rowData, leading, isHeader }) {
+  const valuesEl = rowData.map((cellValue, cellIndex) => {
+    return (
+      <span
+        className={`font-mono inline-block h-full hover:bg-[#ebf4ff] ${cellIndex === 7 ? 'mr-2' : ''} ${isHeader ? 'text-gray-500' : ''} `}
+        key={cellIndex}
+      >
+        {hex(2, '', cellValue)
+          .toUpperCase()
+          .split('')
+          .map((l, lIdx) => {
+            return (
+              <span
+                key={lIdx}
+                className={`group leading-[unset] text-lg ${lIdx === 0 ? 'pl-1.5' : 'pr-1.5'} inline-block h-full`}
+                onClick={() => {
+                  console.info('TODO: cell', cellIndex, lIdx);
+                }}
+              >
+                <span className="border-b border-transparent group-hover:border-[#67adef] p-0">
+                  {l}
+                </span>
+              </span>
+            );
+          })}
+      </span>
+    );
+  });
+
+  return (
+    <>
+      <span className="font-mono pr-1 border-r border-r-neutral-700 h-full inline-block text-gray-500">
+        {isHeader ? '↓↓↓→' : hex(4, '', leading || 0).toUpperCase()}
+      </span>
+      {valuesEl}
+    </>
+  );
+};
+
+const Row = ({ index, style, data }: ListChildComponentProps<Data>) => {
+  const rowData = data.bytes.slice(index * CELLS_PER_ROW, (index + 1) * CELLS_PER_ROW);
+  return (
+    <div style={style}>
+      <VisualRow rowData={rowData} leading={index * CELLS_PER_ROW} />
+    </div>
+  );
+};
+
+// TODO: preserve scroll position between mounts (probably via session storage)
+// TODO: have a way of programmatically tell it to scroll, TODO: highlight the cell it scrolled to
+// TODO: have a way of declaratively tell it to scroll (prop: scrollTo, will keep the scroll in sync with the prop), TODO:hightlight the cell it scrolled to, if prop is different
+// TODO: maybe have a rich editor for hex editing + selection across cell
+// TODO: reset the scroll when uploading a new ROM (or reloading the current one)
+const Grid: React.FunctionComponent<{ data: number[]; height: number }> = function ({
+  data,
+  height,
+}) {
+  return (
+    <div className="whitespace-pre">
+      <FixedSizeList<Data>
+        className="cursor-default"
+        itemData={{ bytes: data }}
+        height={height}
+        width="100%"
+        itemSize={30}
+        itemCount={data.length / CELLS_PER_ROW}
+      >
+        {Row}
+      </FixedSizeList>
+    </div>
+  );
+};
+
+const headerRow = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+
+export const BusMonitor: React.FunctionComponent<{
+  _driver: EmulationDriver6502;
+  stateSignal: number;
+}> = function ({ _driver }) {
+  const bus = _driver.getBus();
+  const [height, setHeight] = React.useState(0);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  useElementLayout(containerRef, function (e) {
+    setHeight(e.nativeEvent.layout.height);
+  });
+  return (
+    <View grow>
+      <div className="border-b border-b-neutral-500 pl-[1px]">
+        <VisualRow rowData={headerRow} isHeader />
+      </div>
+      <View
+        grow
+        containerRef={containerRef}
+        className="overflow-hidden min-h-[200px] min-w-[400px] flex-1"
+      >
+        {!bus || bus.mem.length === 0 ? (
+          'No data to show'
+        ) : height === 0 ? null : (
+          <Grid data={bus.mem} height={height} />
+        )}
+      </View>
+    </View>
+  );
+};

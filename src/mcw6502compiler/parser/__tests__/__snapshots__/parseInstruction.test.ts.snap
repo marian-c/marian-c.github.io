@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Instruction without operand simple - accumulator 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "ROR",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "ror",
+          },
+          "range": [
+            0,
+            3,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          3,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      3,
+    ],
+  },
+}
+`;
+
+exports[`Instruction without operand simple - implied 1`] = `
+{
+  "errors": [],
+  "originalLines": [
+    "INX",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [
+      {
+        "comment": undefined,
+        "contents": {
+          "instructionKind": 0,
+          "kind": "i",
+          "operator": {
+            "kind": "or",
+            "range": [
+              0,
+              3,
+            ],
+            "value": "inx",
+          },
+          "range": [
+            0,
+            3,
+          ],
+        },
+        "kind": "l",
+        "range": [
+          0,
+          3,
+        ],
+      },
+    ],
+    "range": [
+      0,
+      3,
+    ],
+  },
+}
+`;
+
+exports[`instruction without operand error when not recognised 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          4,
+        ],
+        "start": [
+          1,
+          1,
+        ],
+      },
+      "message": "Instruction not recognised: inl",
+      "range": [
+        0,
+        3,
+      ],
+    },
+  ],
+  "originalLines": [
+    "INL",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      3,
+    ],
+  },
+}
+`;
+
+exports[`instruction without operand error when too big 1`] = `
+{
+  "errors": [
+    {
+      "kind": 1,
+      "lineRange": {
+        "end": [
+          1,
+          5,
+        ],
+        "start": [
+          1,
+          1,
+        ],
+      },
+      "message": "Unexpected identifier: INXL, expected an instruction",
+      "range": [
+        0,
+        4,
+      ],
+    },
+  ],
+  "originalLines": [
+    "INXL",
+  ],
+  "program": {
+    "kind": "p",
+    "lines": [],
+    "range": [
+      0,
+      4,
+    ],
+  },
+}
+`;
