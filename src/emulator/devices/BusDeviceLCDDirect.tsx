@@ -5,7 +5,7 @@ import Image from 'next/image';
 import type { BusDeviceConstructorP } from '@/emulator/types';
 import { type CpuMemoryBus } from '@/vendor-in/my-emulator/6502/olc6502';
 
-const width = 301;
+const width = 300;
 type State = BusDeviceLCDDirect['state'];
 function BusDeviceLCDDirectUI({ componentState }: { componentState: State }) {
   return (

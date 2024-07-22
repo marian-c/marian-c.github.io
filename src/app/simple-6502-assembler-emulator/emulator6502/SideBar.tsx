@@ -18,7 +18,7 @@ export const SideBar: React.FunctionComponent<{
   setSpeed: Dispatch<SetStateAction<number>>;
   // emulation state
   running: boolean;
-  setRunning: Dispatch<SetStateAction<boolean>>;
+  stopRunning: (reason: string) => void;
   // rom section
   romDetails: RomInformation;
   setRomDetails: Dispatch<SetStateAction<RomInformation>>;
@@ -30,8 +30,7 @@ export const SideBar: React.FunctionComponent<{
   _driver,
   speed,
   setSpeed,
-  running,
-  setRunning,
+  stopRunning,
   romDetails,
   setRomDetails,
   sourceCompiledStatus,
@@ -68,39 +67,37 @@ export const SideBar: React.FunctionComponent<{
         );
       })}
 
-      <Box header={'About'} className="mb-4 border-r-0">
-        Cpu: 6502 <br />
-        Emulation: Documented instructions blah blah blah
-        <br />
-        Available Memory: 64k <br />
-      </Box>
-
-      <Box header="config" className="mb-4 border-r-0">
-        Target speed:{' '}
-        <input
-          className={textInputCN}
-          type="number"
-          value={speed}
-          onChange={() => {
-            console.info('TODO');
-          }}
-        />{' '}
-        <input
-          type="range"
-          value={speed}
-          min={0}
-          max={1_000_000}
-          onChange={(e) => {
-            const num = parseInt(e.target.value, 10);
-            _driver.setSpeed(num);
-            setSpeed(num);
-          }}
-        />
-      </Box>
-      <Box header="Status" className="mb-4 border-r-0">
-        Running: {running ? 'yes' : 'no'}
-        <br />
-        Speed: {state.calculatedSpeedInHz}
+      <Box header="Speed" className="mb-4 border-r-0">
+        <div className="flex justify-between">
+          <div>
+            Master clock (Hz)
+            <input
+              className={textInputCN}
+              type="number"
+              value={speed}
+              onChange={() => {
+                console.info('TODO');
+              }}
+            />{' '}
+            <input
+              type="range"
+              value={speed}
+              min={0}
+              max={2_000_000}
+              onChange={(e) => {
+                const num = parseInt(e.target.value, 10);
+                _driver.setSpeed(num);
+                setSpeed(num);
+              }}
+            />
+          </div>
+          <div className="text-right">
+            Actual <br />
+            {state.calculatedSpeedInHz < 1_000_000
+              ? `${Math.floor(state.calculatedSpeedInHz)}Hz`
+              : `${(state.calculatedSpeedInHz / 1_000_000).toFixed(2)}MHz`}
+          </div>
+        </div>
       </Box>
       <Box header="Source" className="mb-4 border-r-0">
         <table className={tableCN}>
@@ -124,7 +121,7 @@ export const SideBar: React.FunctionComponent<{
           setCurrentRom={(details) => {
             setRomDetails(details);
             _driver.stop();
-            setRunning(false);
+            stopRunning('load rom');
             _driver.setRom(details);
           }}
         />

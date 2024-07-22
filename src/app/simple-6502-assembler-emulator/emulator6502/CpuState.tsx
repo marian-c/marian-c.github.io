@@ -2,7 +2,7 @@ import React from 'react';
 import type { EmulationDriver6502 } from '@/app/simple-6502-assembler-emulator/emulator6502/types';
 import type { Bus } from '@/emulator/bus';
 import { HexInput } from '@/components/HexInput/HexInput';
-
+// TODO: show disassembly next to PC, TODO: action to jump to assembler or disassembler or memory
 function CpuStateInner({ bus }: { bus: Bus }) {
   const cpu = bus.cpu;
 
@@ -44,8 +44,6 @@ function CpuStateInner({ bus }: { bus: Bus }) {
           console.log('new value', v);
         }}
       />{' '}
-      TODO: show disassembly info here, TODO: action to jump to assembler or disassembler or memory
-      <br />
       SP:{' '}
       <HexInput
         className="mt-2"
@@ -55,7 +53,6 @@ function CpuStateInner({ bus }: { bus: Bus }) {
           console.log('new value', v);
         }}
       />
-      TODO: action to jump memory region
       <br />
       Status:{' '}
       {cpu.status

@@ -1,4 +1,5 @@
 import { type GenericResult, type GenericResultSuccess, GenericResultKind } from '@/types';
+import { type ReactElement, type ReactNode, type ReactPortal } from 'react';
 
 export function assertNever(value: never, noThrow?: boolean): never {
   if (noThrow) {
@@ -43,3 +44,29 @@ export const noop = () => {};
 export const noopThrow = () => {
   throw new Error('Should not be called');
 };
+
+export function assertIsReactElementBase(
+  node: ReactNode,
+): asserts node is ReactElement | ReactPortal {
+  if (
+    typeof node === 'object' &&
+    node !== null &&
+    'type' in node &&
+    typeof node.type === 'string'
+  ) {
+    return;
+  }
+  throw new Error('Node is not basic');
+}
+
+export function isReactElementBase(node: ReactNode): node is ReactElement | ReactPortal {
+  if (
+    typeof node === 'object' &&
+    node !== null &&
+    'type' in node &&
+    typeof node.type === 'string'
+  ) {
+    return true;
+  }
+  return false;
+}

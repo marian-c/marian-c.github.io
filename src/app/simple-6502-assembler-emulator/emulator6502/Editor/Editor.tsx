@@ -37,7 +37,7 @@ export const Editor: React.FunctionComponent<{
           setCurrentErrorIdx(0);
         },
         getSourceString() {
-          return localStorageSimpleGet(localstorageKey) || '';
+          return localStorageSimpleGet(localstorageKey) || defaultSourceCode;
         },
       };
     },

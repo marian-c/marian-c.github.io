@@ -4,10 +4,13 @@
 
 [marian-c.github.io](https://marian-c.github.io)
 
+![Screenshot](./public/screenshots/emulator_2.png)
+
 ## Emulator
 
-This is a 6502 based computer loosely based on the Ben Eater component but extensible enough that you can make emulate 
-different configurations. You can upload your own binaries or use the IDE feature
+This is a [6502](https://en.wikipedia.org/wiki/MOS_Technology_6502) based [computer](https://www.youtube.com/playlist?list=PLowKtXNTBypFbtuVMUVXNR0z1mu7dp7eH) loosely based on the Ben Eater computer
+but extensible enough that you can make emulate different configurations. You can upload your 
+own binaries or use the IDE feature
 
 ## IDE
 

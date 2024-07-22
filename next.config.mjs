@@ -11,6 +11,7 @@ const nextConfig = {
     unoptimized: true,
   },
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+  productionBrowserSourceMaps: true,
 };
 
 export default withMDX(nextConfig);
