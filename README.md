@@ -4,7 +4,7 @@
 
 [marian-c.github.io](https://marian-c.github.io)
 
-![Screenshot](./public/screenshots/emulator_2.png)
+[<img src="public/screenshots/emulator_2.png">](https://marian-c.github.io)
 
 ## Emulator
 

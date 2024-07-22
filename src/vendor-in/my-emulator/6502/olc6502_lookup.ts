@@ -46,6 +46,7 @@ export const IMP: AddressingMode = (cpu) => {
   cpu.fetched = cpu.a;
   return 0;
 };
+IMP.fName = 'IMP';
 
 // Address Mode: Immediate
 // The instruction expects the next byte to be used as a value, so we'll prep
@@ -56,6 +57,7 @@ export const IMM: AddressingMode = function IMM(cpu) {
   cpu.pc++;
   return 0;
 };
+IMM.fName = 'IMM';
 
 // Address Mode: Zero Page
 // To save program bytes, zero page addressing allows you to absolutely address
@@ -68,6 +70,7 @@ export const ZP0: AddressingMode = (cpu) => {
   cpu.addr_abs = expand(data);
   return 0;
 };
+ZP0.fName = 'ZP0';
 
 // Address Mode: Zero Page with X Offset
 // Fundamentally the same as Zero Page addressing, but the contents of the X Register
@@ -82,6 +85,7 @@ export const ZPX: AddressingMode = (cpu) => {
   cpu.addr_abs = actualAddress;
   return 0;
 };
+ZPX.fName = 'ZPX';
 
 // Address Mode: Zero Page with Y Offset
 // Same as above but uses Y Register for offset
@@ -94,6 +98,7 @@ export const ZPY: AddressingMode = (cpu) => {
   cpu.addr_abs = actualAddress;
   return 0;
 };
+ZPY.fName = 'ZPY';
 
 // Address Mode: Relative
 // This address mode is exclusive to branch instructions. The address
@@ -112,6 +117,7 @@ export const REL: AddressingMode = (cpu) => {
   }
   return 0;
 };
+REL.fName = 'REL';
 
 // Address Mode: Absolute
 // A full 16-bit address is loaded and used
@@ -126,6 +132,7 @@ export const ABS: AddressingMode = function ABS(cpu) {
   cpu.addr_abs = ((hi << 8) | lo) as UInt16;
   return 0;
 };
+ABS.fName = 'ABS';
 
 // Address Mode: Absolute with X Offset
 // Fundamentally the same as absolute addressing, but the contents of the X Register
@@ -150,6 +157,7 @@ export const ABX: AddressingMode = (cpu) => {
     return 0;
   }
 };
+ABX.fName = 'ABX';
 
 // Address Mode: Absolute with Y Offset
 // Fundamentally the same as absolute addressing, but the contents of the Y Register
@@ -174,6 +182,7 @@ export const ABY: AddressingMode = (cpu) => {
     return 0;
   }
 };
+ABY.fName = 'ABY';
 
 // Note: The next 3 address modes use indirection (aka Pointers!)
 
@@ -205,6 +214,7 @@ export const IND: AddressingMode = (cpu) => {
 
   return 0;
 };
+IND.fName = 'IND';
 
 // Address Mode: Indirect X
 // The supplied 8-bit address is offset by X Register to index
@@ -223,6 +233,7 @@ export const IZX: AddressingMode = function IZX(cpu) {
 
   return 0;
 };
+IZX.fName = 'IZX';
 
 // Address Mode: Indirect Y
 // The supplied 8-bit address indexes a location in page 0x00. From
@@ -248,6 +259,7 @@ export const IZY: AddressingMode = (cpu) => {
     return 0;
   }
 };
+IZY.fName = 'IZY';
 
 /// INSTRUCTIONS:
 

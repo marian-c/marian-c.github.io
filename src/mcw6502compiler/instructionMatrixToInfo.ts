@@ -19,7 +19,7 @@ export const instructionMatrixToInfo = (matrix: Instruction[]): InstructionsInfo
   const phase1 = matrix.reduce(
     (acc, el, idx) => {
       const [instructionName, _, addressingModeFn] = el;
-      const addresingMode = addressingModeFn.name;
+      const addresingMode = addressingModeFn.fName;
       if (acc[instructionName] === undefined) {
         acc[instructionName] = {};
       }
