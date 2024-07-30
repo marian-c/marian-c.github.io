@@ -36,6 +36,9 @@ Detect when dialog is open to make the body not scroll
 https://github.com/whatwg/html/issues/7732
  */
 ::backdrop {
-  background: grey;
-  opacity: 0.75;
+  @apply backdrop-blur-sm bg-gray-500/65 opacity-100
+}
+
+.noscroll {
+  overflow: hidden;
 }

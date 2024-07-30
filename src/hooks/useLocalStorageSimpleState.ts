@@ -5,30 +5,27 @@ import {
   localStorageSimpleSet,
 } from '@/helpers/window/localStorageSimple';
 import React from 'react';
+import { isBrowser } from '@/utils';
 
 /**
  * DO NOT CHANGE KEY AFTER MOUNTING
  */
 export function useLocalStorageSimpleState<T extends LocalStorageSimpleKey>(
   key: T,
+  defaultValueClient: LocalStorageSimple[T],
+  defaultValueServer: LocalStorageSimple[T],
 ): [
-  LocalStorageSimple[T] | undefined,
-  (
-    newValueOrFunc:
-      | LocalStorageSimple[T]
-      | ((oldState: LocalStorageSimple[T] | undefined) => LocalStorageSimple[T]),
-  ) => void,
+  value: LocalStorageSimple[T],
+  setter: React.Dispatch<React.SetStateAction<LocalStorageSimple[T]>>,
 ] {
-  const [value, setValue] = React.useState<LocalStorageSimple[T] | undefined>(() => {
-    return localStorageSimpleGet(key) ?? undefined;
+  const [value, setValue] = React.useState<LocalStorageSimple[T]>(() => {
+    return localStorageSimpleGet(key, isBrowser ? defaultValueClient : defaultValueServer);
   });
+  // const [hasRendered, setHasRendered]
   // TODO: useCallback
-  const set = (
-    newValueOrFunc:
-      | LocalStorageSimple[T]
-      | ((oldState: LocalStorageSimple[T] | undefined) => LocalStorageSimple[T]),
-  ) => {
-    const newValue = typeof newValueOrFunc === 'function' ? newValueOrFunc(value) : newValueOrFunc;
+  const set: React.Dispatch<React.SetStateAction<LocalStorageSimple[T]>> = (newValueOrGetter) => {
+    const newValue =
+      typeof newValueOrGetter === 'function' ? newValueOrGetter(value) : newValueOrGetter;
     localStorageSimpleSet(key, newValue);
     setValue(newValue);
   };

@@ -28,6 +28,7 @@ type Props = {
   'aria-label'?: string | undefined;
   disabled?: boolean | undefined;
   className?: string | undefined;
+  theRef?: React.Ref<HTMLButtonElement>;
 };
 
 export const Button: React.FunctionComponent<React.PropsWithChildren<Props>> = function ({
@@ -38,10 +39,12 @@ export const Button: React.FunctionComponent<React.PropsWithChildren<Props>> = f
   'aria-label': ariaLabel,
   disabled,
   className,
+  theRef,
 }) {
   const labelForAria = ariaLabel ?? title;
   return (
     <button
+      ref={theRef}
       className={`${buttonWrapperCN} ${disabled ? buttonWrapperCNDisabled : buttonWrapperCNEnabled} ${className ?? ''}`}
       disabled={disabled}
       onClick={onClick}

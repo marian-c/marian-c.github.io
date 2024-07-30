@@ -6,6 +6,9 @@ const knownSimpleKeys: Record<LocalStorageSimpleKey, 1> = {
   'load-from-local-storage-exp': 1,
   'simple-6502-editor-code': 1,
   simple_6502_emulator_computer_configuration: 1,
+  hide_emulator_greeting: 1,
+  editor_scroll: 1,
+  bus_monitor_scroll: 1,
 };
 
 const knownArrayKeys: Record<LocalStorageArrayKey, 1> = {

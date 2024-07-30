@@ -2,7 +2,7 @@ import React from 'react';
 
 import { noopThrow } from '@/utils';
 
-export function useFileUpload(onSelect: (file: File) => void) {
+export function useFileUpload($onSelect: (file: File) => void) {
   const inputRef = React.useRef<HTMLInputElement>();
   const onChangeRef = React.useRef<(target: HTMLInputElement) => void>(noopThrow);
 
@@ -14,11 +14,11 @@ export function useFileUpload(onSelect: (file: File) => void) {
         // TODO: better error handling, though unlikely
         return;
       }
-      onSelect(file);
+      $onSelect(file);
       // allow selecting the same file again
       target.value = '';
     };
-  }, [onSelect]);
+  }, [$onSelect]);
 
   React.useEffect(() => {
     const input = document.createElement('input');

@@ -7,6 +7,7 @@ type Props = {
   useChild?: boolean;
   dontWrapLeft?: boolean;
   dontWrapRight?: boolean;
+  inline?: boolean;
 };
 
 export const LayoutSpread: FunctionComponentWithChildren<Props> = function ({
@@ -14,12 +15,13 @@ export const LayoutSpread: FunctionComponentWithChildren<Props> = function ({
   children,
   dontWrapLeft,
   dontWrapRight,
+  inline,
 }) {
   if (useChild && React.Children.count(children) !== 1) {
     throw new Error('Expected only one child when useChild is set');
   }
 
-  const rootCn = 'flex justify-between';
+  const rootCn = `${inline ? 'inline-flex' : 'flex'} justify-between`;
 
   const childrenArr = React.Children.toArray(children);
   const firstChild = childrenArr[0];
@@ -28,8 +30,8 @@ export const LayoutSpread: FunctionComponentWithChildren<Props> = function ({
 
     const [left, right] = React.Children.toArray(firstChild.props.children);
 
-    const l = isReactElementBase(left) || dontWrapLeft ? left : <div>{left}</div>;
-    const r = isReactElementBase(right) || dontWrapRight ? right : <div>{right}</div>;
+    const l = isReactElementBase(left) || dontWrapLeft ? left : <div key="l">{left}</div>;
+    const r = isReactElementBase(right) || dontWrapRight ? right : <div key="r">{right}</div>;
 
     return React.cloneElement(
       firstChild,
@@ -39,8 +41,8 @@ export const LayoutSpread: FunctionComponentWithChildren<Props> = function ({
 
   const [left, right] = React.Children.toArray(children);
 
-  const l = isReactElementBase(left) || dontWrapLeft ? left : <div>{left}</div>;
-  const r = isReactElementBase(right) || dontWrapRight ? right : <div>{right}</div>;
+  const l = isReactElementBase(left) || dontWrapLeft ? left : <div key="l">{left}</div>;
+  const r = isReactElementBase(right) || dontWrapRight ? right : <div key="r">{right}</div>;
 
   return (
     <div className="flex justify-between">

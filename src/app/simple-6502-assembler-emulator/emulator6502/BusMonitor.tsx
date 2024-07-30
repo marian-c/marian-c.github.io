@@ -4,6 +4,7 @@ import { View } from '@/components/view/view';
 import { useElementLayout } from '@/hooks/useElementLayout/useElementLayout';
 import { FixedSizeList, type ListChildComponentProps } from 'react-window';
 import { hex } from '@/helpers/numbers';
+import { localStorageSimpleGet, localStorageSimpleSet } from '@/helpers/window/localStorageSimple';
 
 const CELLS_PER_ROW = 16;
 
@@ -61,7 +62,6 @@ const Row = ({ index, style, data }: ListChildComponentProps<Data>) => {
   );
 };
 
-// TODO: preserve scroll position between mounts (probably via session storage)
 // TODO: have a way of programmatically tell it to scroll, TODO: highlight the cell it scrolled to
 // TODO: have a way of declaratively tell it to scroll (prop: scrollTo, will keep the scroll in sync with the prop), TODO:hightlight the cell it scrolled to, if prop is different
 // TODO: maybe have a rich editor for hex editing + selection across cell
@@ -70,18 +70,31 @@ const Grid: React.FunctionComponent<{ data: number[]; height: number }> = functi
   data,
   height,
 }) {
+  const ref = React.useRef<FixedSizeList<Data>>(null);
+  const initialScrollOffset = React.useMemo(() => {
+    return localStorageSimpleGet('bus_monitor_scroll', 0);
+  }, []);
   return (
     <div className="whitespace-pre">
-      <FixedSizeList<Data>
-        className="cursor-default"
-        itemData={{ bytes: data }}
-        height={height}
-        width="100%"
-        itemSize={30}
-        itemCount={data.length / CELLS_PER_ROW}
-      >
-        {Row}
-      </FixedSizeList>
+      <div className="h-full w-full relative">
+        <div className="h-full w-full absolute">
+          <FixedSizeList<Data>
+            ref={ref}
+            className="cursor-default"
+            itemData={{ bytes: data }}
+            height={height}
+            width="100%"
+            itemSize={30}
+            itemCount={data.length / CELLS_PER_ROW}
+            initialScrollOffset={initialScrollOffset}
+            onScroll={({ scrollOffset }) => {
+              localStorageSimpleSet('bus_monitor_scroll', scrollOffset);
+            }}
+          >
+            {Row}
+          </FixedSizeList>
+        </div>
+      </div>
     </div>
   );
 };

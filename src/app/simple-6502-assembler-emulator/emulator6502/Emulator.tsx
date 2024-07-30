@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { type ComponentProps } from 'react';
 import { Pane } from '@/components/pane/pane';
 import { Button } from '@/components/Button/Button';
 import { Icon } from '@/components/icon/icon';
@@ -25,11 +25,13 @@ import { compile } from '@/mcw6502compiler/compiler';
 import { instructionMatrixToInfo } from '@/mcw6502compiler/instructionMatrixToInfo';
 import { lookup } from '@/vendor-in/my-emulator/6502/olc6502_lookup';
 import { GenericResultKind } from '@/types';
-import { PreferencesButton } from '@/app/simple-6502-assembler-emulator/emulator6502/PreferencesButton';
 import { defaultComputerConfiguration } from '@/app/simple-6502-assembler-emulator/emulator6502/utils';
 import { localStorageSimpleGet, localStorageSimpleSet } from '@/helpers/window/localStorageSimple';
 import { IntervalDriver } from '@/app/simple-6502-assembler-emulator/emulator6502/driver/internalDriver';
 import { LayoutSpread } from '@/components/_layouts/LayoutSpread';
+import { Preferences } from '@/app/simple-6502-assembler-emulator/emulator6502/Preferences';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/_helpers/tooltip';
+import { config } from '@/config';
 
 type TabKeys = 'system-editor' | 'system-busMonitor' | 'system-log';
 
@@ -47,21 +49,53 @@ const emptyRom = {
 const _driver = new IntervalDriver(emptyRom, initialComputerConfiguration);
 
 export const Emulator: React.FunctionComponent<{}> = ({}) => {
-  const [running, _setRunning] = React.useState(false);
-  const [stoppedBecause, setStoppedBecause] = React.useState('');
+  const [$running, _setRunning] = React.useState(false);
+  const [stoppedBecause, _setStoppedBecause] = React.useState('');
   const startRunning = function () {
     _setRunning(true);
-    setStoppedBecause('');
+    _setStoppedBecause('');
   };
+  const $stopRunning = React.useCallback(
+    function (reason: string) {
+      _setRunning(false);
+      if ($running) {
+        _setStoppedBecause(reason);
+      } else {
+        _setStoppedBecause('');
+      }
+    },
+    [$running],
+  );
 
-  const stopRunning = function (reason: string) {
-    _setRunning(false);
-    if (running) {
-      setStoppedBecause(reason);
-    } else {
-      setStoppedBecause('');
-    }
-  };
+  const [isPreferencesOpen, setIsPreferencesOpen] = React.useState(false);
+
+  const $onNewPreferences = React.useCallback<ComponentProps<typeof Preferences>['$onDone']>(
+    (newComputerConfiguration) => {
+      setIsPreferencesOpen(false);
+      if (newComputerConfiguration !== null) {
+        // cache the value for next time this mounts
+        initialComputerConfiguration = newComputerConfiguration;
+        // cache the value for next time browser refreshes
+        localStorageSimpleSet(
+          'simple_6502_emulator_computer_configuration',
+          newComputerConfiguration,
+        );
+        // cache the value for next time preferences open
+        setComputerConfiguration(newComputerConfiguration);
+
+        $stopRunning('config change');
+        _driver.stop();
+        _driver.setConfiguration(emptyRom, newComputerConfiguration);
+        setRomDetails({
+          type: 'empty',
+          description: 'zeroed out',
+          ...emptyRom,
+        });
+        setSourceLoadedStatus('outdated');
+      }
+    },
+    [$stopRunning],
+  );
 
   const [speed, setSpeed] = React.useState(65);
 
@@ -115,129 +149,184 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
     }, 60);
   }, [speed]);
 
+  // region: set no scroll when transitioning to 'max', remove otherwise and when unmounting
+  React.useEffect(() => {
+    return () => {
+      document.body.classList.remove('noscroll');
+    };
+  }, []);
+  React.useEffect(() => {
+    if (displayMode === 'max') {
+      document.body.classList.add('noscroll');
+    } else {
+      document.body.classList.remove('noscroll');
+    }
+  }, [displayMode]);
+  // endregion
+
   // TODO: make this position fixed and make the body overflow hidden to prevent scrolling of the background
   const wrapperCN =
     displayMode === 'normal' ? '' : 'absolute left-0 top-0 right-0 bottom-0  overflow-auto';
 
+  let disabledReasonStart: string | null = null;
+  if ($running) {
+    disabledReasonStart = 'The emulation is running';
+  }
+  if (romDetails.type === 'empty') {
+    disabledReasonStart = "There's nothing to run, the ROM is empty";
+  }
+
   const buttons = (
     <>
-      <Button
-        className="mr-2"
-        disabled={running || romDetails.type === 'empty'}
-        title="Start/continue execution"
-        inaccessibleChildren={<Icon src={running ? '/svg/play-disabled.svg' : '/svg/play.svg'} />}
-        onClick={
-          running
-            ? undefined
-            : () => {
+      <Tooltip delay={config.disabledButtonsTooltipDelay}>
+        <TooltipTrigger asChild>
+          <Button
+            className="mr-2"
+            disabled={!!disabledReasonStart}
+            title={disabledReasonStart === null ? 'Start/continue execution' : undefined}
+            inaccessibleChildren={
+              <Icon src={$running ? '/svg/play-disabled.svg' : '/svg/play.svg'} />
+            }
+            onClick={
+              $running
+                ? undefined
+                : () => {
+                    _driver.start();
+                    startRunning();
+                  }
+            }
+          />
+        </TooltipTrigger>
+        {disabledReasonStart && <TooltipContent>{disabledReasonStart}</TooltipContent>}
+      </Tooltip>
+
+      <Tooltip delay={config.disabledButtonsTooltipDelay}>
+        <TooltipTrigger asChild>
+          <Button
+            className="mr-2"
+            disabled={!$running}
+            title={!$running ? undefined : 'Pause execution'}
+            inaccessibleChildren={
+              <Icon src={$running ? '/svg/pause.svg' : '/svg/pause-disabled.svg'} />
+            }
+            onClick={
+              !$running
+                ? undefined
+                : () => {
+                    $stopRunning('paused');
+                    _driver.stop();
+                  }
+            }
+          />
+        </TooltipTrigger>
+        {!$running && <TooltipContent>The emulation is paused</TooltipContent>}
+      </Tooltip>
+      <Tooltip delay={config.disabledButtonsTooltipDelay}>
+        <TooltipTrigger asChild>
+          <Button
+            className="mr-2"
+            disabled={!isSourceActive}
+            inaccessibleChildren={<Icon src="/svg/build.svg" />}
+            title={!isSourceActive ? undefined : 'Build source'}
+            onClick={() => {
+              assertIsDefined(editorHandleRef.current);
+              const source = editorHandleRef.current.getSourceString();
+              const result = compile(source, { instructionsInfo: instructionMatrixToInfo(lookup) });
+              if (result.kind === GenericResultKind.error) {
+                setSourceCompiledStatus('errors');
+                editorHandleRef.current.setCompilationErrors(result.errors);
+              } else {
+                setSourceCompiledStatus('yes');
+                editorHandleRef.current.setCompilationErrors([]);
+              }
+            }}
+          />
+        </TooltipTrigger>
+        {!isSourceActive && <TooltipContent>Activate the compiler tab first</TooltipContent>}
+      </Tooltip>
+
+      <Tooltip delay={config.disabledButtonsTooltipDelay}>
+        <TooltipTrigger asChild>
+          <Button
+            className="mr-2"
+            disabled={!isSourceActive}
+            inaccessibleChildren={<Icon src="/svg/build-load.svg" />}
+            title={!isSourceActive ? undefined : 'Build and load into memory'}
+            onClick={() => {
+              assertIsDefined(editorHandleRef.current);
+              const source = editorHandleRef.current.getSourceString();
+              const result = compile(source, { instructionsInfo: instructionMatrixToInfo(lookup) });
+              if (result.kind === GenericResultKind.error) {
+                setSourceCompiledStatus('errors');
+                editorHandleRef.current.setCompilationErrors(result.errors);
+              } else {
+                editorHandleRef.current.setCompilationErrors([]);
+                const contents = result.result;
+                const romInformation: RomInformation = {
+                  startingAddress: contents.startAddress,
+                  initialPc: null,
+                  description: '[compiled from source]',
+                  type: 'compiled',
+                  contents: contents.data,
+                  size: contents.data.byteLength,
+                };
+                setRomDetails(romInformation);
+                $stopRunning('load from source');
+                _driver.stop();
+                _driver.setRom(romInformation);
+                setSourceCompiledStatus('yes');
+                setSourceLoadedStatus('yes');
+              }
+            }}
+          />
+        </TooltipTrigger>
+        {!isSourceActive && <TooltipContent>Activate the compiler tab first</TooltipContent>}
+      </Tooltip>
+
+      <Tooltip delay={config.disabledButtonsTooltipDelay}>
+        <TooltipTrigger asChild>
+          <Button
+            className="mr-2"
+            disabled={!isSourceActive}
+            inaccessibleChildren={<Icon src="/svg/build-run.svg" />}
+            title={!isSourceActive ? undefined : 'Build and run'}
+            onClick={() => {
+              assertIsDefined(editorHandleRef.current);
+              const source = editorHandleRef.current.getSourceString();
+              const result = compile(source, { instructionsInfo: instructionMatrixToInfo(lookup) });
+              if (result.kind === GenericResultKind.error) {
+                setSourceCompiledStatus('errors');
+                editorHandleRef.current.setCompilationErrors(result.errors);
+              } else {
+                editorHandleRef.current.setCompilationErrors([]);
+                const contents = result.result;
+                const romInformation: RomInformation = {
+                  startingAddress: contents.startAddress,
+                  initialPc: null,
+                  description: '[compiled from source]',
+                  type: 'compiled',
+                  contents: contents.data,
+                  size: contents.data.byteLength,
+                };
+                setRomDetails(romInformation);
+                _driver.stop();
+                _driver.setRom(romInformation);
                 _driver.start();
                 startRunning();
+                setSourceCompiledStatus('yes');
+                setSourceLoadedStatus('yes');
               }
-        }
-      />
-      <Button
-        className="mr-2"
-        disabled={!running}
-        title="Pause execution"
-        inaccessibleChildren={<Icon src={running ? '/svg/pause.svg' : '/svg/pause-disabled.svg'} />}
-        onClick={
-          !running
-            ? undefined
-            : () => {
-                stopRunning('paused');
-                _driver.stop();
-              }
-        }
-      />
-      <Button
-        className="mr-2"
-        disabled={!isSourceActive}
-        inaccessibleChildren={<Icon src="/svg/build.svg" />}
-        title="Build source"
-        onClick={() => {
-          assertIsDefined(editorHandleRef.current);
-          const source = editorHandleRef.current.getSourceString();
-          const result = compile(source, { instructionsInfo: instructionMatrixToInfo(lookup) });
-          if (result.kind === GenericResultKind.error) {
-            setSourceCompiledStatus('errors');
-            editorHandleRef.current.setCompilationErrors(result.errors);
-          } else {
-            setSourceCompiledStatus('yes');
-            editorHandleRef.current.setCompilationErrors([]);
-          }
-        }}
-      />
-      <Button
-        className="mr-2"
-        disabled={!isSourceActive}
-        inaccessibleChildren={<Icon src="/svg/build-load.svg" />}
-        title="Build and load into memory"
-        onClick={() => {
-          assertIsDefined(editorHandleRef.current);
-          const source = editorHandleRef.current.getSourceString();
-          const result = compile(source, { instructionsInfo: instructionMatrixToInfo(lookup) });
-          if (result.kind === GenericResultKind.error) {
-            setSourceCompiledStatus('errors');
-            editorHandleRef.current.setCompilationErrors(result.errors);
-          } else {
-            editorHandleRef.current.setCompilationErrors([]);
-            const contents = result.result;
-            const romInformation: RomInformation = {
-              startingAddress: contents.startAddress,
-              initialPc: null,
-              description: '[compiled from source]',
-              type: 'compiled',
-              contents: contents.data,
-              size: contents.data.byteLength,
-            };
-            setRomDetails(romInformation);
-            stopRunning('load from source');
-            _driver.stop();
-            _driver.setRom(romInformation);
-            setSourceCompiledStatus('yes');
-            setSourceLoadedStatus('yes');
-          }
-        }}
-      />
-      <Button
-        className="mr-2"
-        disabled={!isSourceActive}
-        inaccessibleChildren={<Icon src="/svg/build-run.svg" />}
-        title="Build and run"
-        onClick={() => {
-          assertIsDefined(editorHandleRef.current);
-          const source = editorHandleRef.current.getSourceString();
-          const result = compile(source, { instructionsInfo: instructionMatrixToInfo(lookup) });
-          if (result.kind === GenericResultKind.error) {
-            setSourceCompiledStatus('errors');
-            editorHandleRef.current.setCompilationErrors(result.errors);
-          } else {
-            editorHandleRef.current.setCompilationErrors([]);
-            const contents = result.result;
-            const romInformation: RomInformation = {
-              startingAddress: contents.startAddress,
-              initialPc: null,
-              description: '[compiled from source]',
-              type: 'compiled',
-              contents: contents.data,
-              size: contents.data.byteLength,
-            };
-            setRomDetails(romInformation);
-            _driver.stop();
-            _driver.setRom(romInformation);
-            _driver.start();
-            startRunning();
-            setSourceCompiledStatus('yes');
-            setSourceLoadedStatus('yes');
-          }
-        }}
-      />
+            }}
+          />
+        </TooltipTrigger>
+        {!isSourceActive && <TooltipContent>Activate the compiler tab first</TooltipContent>}
+      </Tooltip>
       <Button
         className="mr-2"
         inaccessibleChildren={<Icon src="/svg/reset.svg" />}
         title="Reset Computer"
         onClick={() => {
-          stopRunning('reset');
+          $stopRunning('reset');
           _driver.stop();
           _driver.reset();
         }}
@@ -247,7 +336,7 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
         inaccessibleChildren={<Icon src="/svg/reload.svg" />}
         title="Reload rom"
         onClick={() => {
-          stopRunning('reload');
+          $stopRunning('reload');
           _driver.stop();
           _driver.reload();
         }}
@@ -279,31 +368,28 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
           }}
         />,
         <SpaceHorizontal key="space-after-display-mode" />,
-        <PreferencesButton
-          key="preferences"
-          initialConfiguration={computerConfiguration}
-          onConfigurationChange={(newConfiguration) => {
-            initialComputerConfiguration = newConfiguration;
-            localStorageSimpleSet('simple_6502_emulator_computer_configuration', newConfiguration);
-            setComputerConfiguration(newConfiguration);
-            stopRunning('config change');
-            _driver.stop();
-            _driver.setConfiguration(emptyRom, newConfiguration);
-            setRomDetails({
-              type: 'empty',
-              description: 'zeroed out',
-              ...emptyRom,
-            });
-            setSourceLoadedStatus('outdated');
-          }}
-        />,
+        <React.Fragment key="preferences">
+          <Button
+            title="Open the preferences pane"
+            inaccessibleChildren={<Icon src={'/svg/preferences.svg'} />}
+            onClick={() => {
+              setIsPreferencesOpen(true);
+            }}
+          />
+          {isPreferencesOpen && (
+            <Preferences
+              $onDone={$onNewPreferences}
+              initialComputerConfiguration={computerConfiguration}
+            />
+          )}
+        </React.Fragment>,
       ]}
     >
       <LayoutSpread useChild>
         <div className="p-2">
           {buttons}
           <span>
-            Running: {running ? 'yes' : 'no'}
+            Running: {$running ? 'yes' : 'no'}
             {stoppedBecause && ` (${stoppedBecause})`}
           </span>
         </div>
@@ -344,7 +430,7 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
               key: 'system-log',
               header: 'Log',
               content: (
-                <Overflow vertical={fixedHeight} horizontal>
+                <Overflow vertical horizontal>
                   <div className="h-[2000px] w-[2000px] bg-amber-100">
                     <CpuState _driver={_driver} stateSignal={stateSignal} />
                     {stateSignal}
@@ -420,8 +506,8 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
             <SideBar
               stateSignal={stateSignal}
               _driver={_driver}
-              running={running}
-              stopRunning={stopRunning}
+              running={$running}
+              stopRunning={$stopRunning}
               speed={speed}
               setSpeed={setSpeed}
               romDetails={romDetails}

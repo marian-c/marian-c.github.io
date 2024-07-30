@@ -97,8 +97,23 @@ export const Editor: React.FunctionComponent<{
                 height="100%"
                 loading="Loading editor scripts"
                 language="mcw6502"
-                options={{ automaticLayout: true, language: 'mcw6502', wordWrap: 'on' }}
+                options={{
+                  automaticLayout: true,
+                  language: 'mcw6502',
+                  wordWrap: 'on',
+                  fontSize: 14,
+                }}
                 onMount={(editorInstance) => {
+                  // TODO: maybe remembering the line is better?
+                  editorInstance.onDidScrollChange(({ scrollTop }) => {
+                    localStorageSimpleSet('editor_scroll', scrollTop);
+                  });
+                  const scrollTop = localStorageSimpleGet('editor_scroll', 0);
+                  setTimeout(() => {
+                    // XXX: why the timeout
+                    editorInstance.setScrollPosition({ scrollTop: scrollTop, scrollLeft: 0 }, 0);
+                  }, 10);
+
                   monacoEditorRef.current = editorInstance;
                 }}
               />

@@ -4,6 +4,7 @@ import { H3 } from '../components/_atoms/H';
 import { Anchor } from '@/components/_atoms/Anchor';
 import { config } from '@/config';
 import { SiteHeader } from '@/components/_sections/SiteHeader';
+import { ToastDestination } from '@/components/_helpers/toast';
 
 export const metadata: Metadata = {
   title: 'Marian-C',
@@ -47,6 +48,7 @@ export default function RootLayout({
             </div>
           </footer>
         </div>
+        <ToastDestination />
       </body>
     </html>
   );

@@ -5,12 +5,13 @@ import Image from 'next/image';
 import type { BusDeviceConstructorP } from '@/emulator/types';
 import { type CpuMemoryBus } from '@/vendor-in/my-emulator/6502/olc6502';
 
-const width = 300;
 type State = BusDeviceLCDDirect['state'];
 function BusDeviceLCDDirectUI({ componentState }: { componentState: State }) {
   return (
     <div>
-      <div style={{ position: 'relative', width, height: width * (102 / 227), marginLeft: -10 }}>
+      <div
+        style={{ position: 'relative', aspectRatio: '227 / 102', marginLeft: -8, marginRight: -8 }}
+      >
         <Image src={'/lcd/lcd.png'} alt="LCD device" fill={true} />
         <pre
           className="text-lg"

@@ -1,5 +1,5 @@
 import React, { type Dispatch, type SetStateAction } from 'react';
-import { Box } from '@/components/box/box';
+import { Box } from '@/components/_templates/box/box';
 import { CpuState } from '@/app/simple-6502-assembler-emulator/emulator6502/CpuState';
 import { tableCN, textInputCN } from '@/app/classnames';
 import { RomSection } from '@/app/simple-6502-assembler-emulator/emulator6502/RomSection';

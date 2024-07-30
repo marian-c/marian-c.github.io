@@ -79,8 +79,11 @@ new directive to include precompiled stuff, like wozmon
   Only parse functions that execute regexp or look at the value should trim
 
 
-Variables should be case insensitive
+Variables should be case-insensitive
 
 
 tighter integration between source and rom viewer - mark sections that come from compilation vs sections left alone, 
 maybe color code rom section with corresponding sections/labels from the source
+
+
+get all icons from https://iconduck.com/

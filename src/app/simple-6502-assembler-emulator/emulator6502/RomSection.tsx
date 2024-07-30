@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { type ComponentProps } from 'react';
 import { UploadButton } from '@/components/upload-button/upload-button';
 import { Button } from '@/components/Button/Button';
 import { Icon } from '@/components/icon/icon';
@@ -6,7 +6,7 @@ import { Pane } from '@/components/pane/pane';
 import { HexInput } from '@/components/HexInput/HexInput';
 import { HexNumber } from '@/components/HexNumber/HexNumber';
 import { FancyRange } from '@/components/FancyRange/FancyRange';
-import { Box } from '@/components/box/box';
+import { Box } from '@/components/_templates/box/box';
 import { assertIsDefined, assertNever } from '@/utils';
 import { tableCN, textLinkCN } from '@/app/classnames';
 import type { RomInformation } from '@/app/simple-6502-assembler-emulator/emulator6502/types';
@@ -31,22 +31,25 @@ export const RomSection: React.FunctionComponent<Props> = function ({ currentRom
 
   const [selectedSampleRom, setSelectedSampleRom] = React.useState('');
 
-  function setStartingPosition(newStartingPosition: number) {
-    _setStartingPosition(newStartingPosition);
-    if (initialPc < newStartingPosition) {
-      setInitialPcError(false);
-      setInitialPc(newStartingPosition);
-    }
-    if (initialPc > newStartingPosition + uploadedFileSize - 1) {
-      setInitialPcError(false);
-      setInitialPc(newStartingPosition + uploadedFileSize - 1);
-    }
-  }
-
   const [startingPositionError, setStartingPositionError] = React.useState(false);
   const [initialPcError, setInitialPcError] = React.useState(false);
 
   const uploadedFileSize = uploadedFileDetails?.size ?? 0;
+
+  const $setStartingPosition = React.useCallback(
+    function setStartingPosition(newStartingPosition: number) {
+      _setStartingPosition(newStartingPosition);
+      if (initialPc < newStartingPosition) {
+        setInitialPcError(false);
+        setInitialPc(newStartingPosition);
+      }
+      if (initialPc > newStartingPosition + uploadedFileSize - 1) {
+        setInitialPcError(false);
+        setInitialPc(newStartingPosition + uploadedFileSize - 1);
+      }
+    },
+    [initialPc, uploadedFileSize],
+  );
 
   const dialogRef = React.useRef<HTMLDialogElement>(null);
   const sampleDialogRef = React.useRef<HTMLDialogElement>(null);
@@ -69,6 +72,23 @@ export const RomSection: React.FunctionComponent<Props> = function ({ currentRom
     default:
       assertNever(currentRomType);
   }
+
+  const $onFileReady = React.useCallback<ComponentProps<typeof UploadButton>['$onFileReady']>(
+    (buffer, name, size) => {
+      // TODO: showModal runs faster than react can process the state change and flashes the old/default content
+      setUploadedFileDetails({
+        uint8Array: new Uint8Array(buffer),
+        name,
+        size,
+      });
+      $setStartingPosition(0);
+      setInitialPc(0);
+      setHasCustomInitialPc(false);
+      dialogRef.current?.showModal();
+    },
+    [$setStartingPosition],
+  );
+
   return (
     <div>
       <table className={tableCN}>
@@ -110,22 +130,7 @@ export const RomSection: React.FunctionComponent<Props> = function ({ currentRom
         </tbody>
       </table>
       <p className="mt-4">
-        <UploadButton
-          onFileReady={(buffer, name, size) => {
-            // TODO: showModal runs faster than react can process the state change and flashes the old/default content
-            setUploadedFileDetails({
-              uint8Array: new Uint8Array(buffer),
-              name,
-              size,
-            });
-            setStartingPosition(0);
-            setInitialPc(0);
-            setHasCustomInitialPc(false);
-            dialogRef.current?.showModal();
-          }}
-        >
-          Upload
-        </UploadButton>{' '}
+        <UploadButton $onFileReady={$onFileReady}>Upload</UploadButton>{' '}
         <Button
           onClick={() => {
             setSelectedSampleRom('');
@@ -286,7 +291,7 @@ export const RomSection: React.FunctionComponent<Props> = function ({ currentRom
                         max={0xffff - uploadedFileSize + 1}
                         onChange={(v) => {
                           setStartingPositionError(false);
-                          setStartingPosition(v);
+                          $setStartingPosition(v);
                         }}
                       />{' '}
                       &ndash;{' '}
@@ -300,7 +305,7 @@ export const RomSection: React.FunctionComponent<Props> = function ({ currentRom
                         value={startingPosition + uploadedFileSize - 1}
                         onChange={(v) => {
                           setStartingPositionError(false);
-                          setStartingPosition(v - uploadedFileSize + 1);
+                          $setStartingPosition(v - uploadedFileSize + 1);
                         }}
                       />{' '}
                       &le; <HexNumber value={0xffff} use="hex" />
@@ -310,7 +315,7 @@ export const RomSection: React.FunctionComponent<Props> = function ({ currentRom
                         range={0xffff}
                         size={uploadedFileSize}
                         onChange={(v) => {
-                          setStartingPosition(v);
+                          $setStartingPosition(v);
                         }}
                       />
                     </p>
