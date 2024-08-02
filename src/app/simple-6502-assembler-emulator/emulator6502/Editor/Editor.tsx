@@ -112,7 +112,7 @@ export const Editor: React.FunctionComponent<{
                   setTimeout(() => {
                     // XXX: why the timeout
                     editorInstance.setScrollPosition({ scrollTop: scrollTop, scrollLeft: 0 }, 0);
-                  }, 10);
+                  }, 10); // macOS/safari still does not like it some of the times
 
                   monacoEditorRef.current = editorInstance;
                 }}

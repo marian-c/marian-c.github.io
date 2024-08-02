@@ -62,18 +62,40 @@ const Row = ({ index, style, data }: ListChildComponentProps<Data>) => {
   );
 };
 
+export type BusMonitorImperativeHandle = { scrollToStackPointer: () => void };
+type BusMonitorImperativeHandleRef = React.Ref<BusMonitorImperativeHandle>;
+
 // TODO: have a way of programmatically tell it to scroll, TODO: highlight the cell it scrolled to
 // TODO: have a way of declaratively tell it to scroll (prop: scrollTo, will keep the scroll in sync with the prop), TODO:hightlight the cell it scrolled to, if prop is different
 // TODO: maybe have a rich editor for hex editing + selection across cell
 // TODO: reset the scroll when uploading a new ROM (or reloading the current one)
-const Grid: React.FunctionComponent<{ data: number[]; height: number }> = function ({
-  data,
-  height,
-}) {
+const Grid: React.FunctionComponent<{
+  _driver: EmulationDriver6502;
+  height: number;
+  imperativeHandleRef: BusMonitorImperativeHandleRef;
+  $runOnMount: React.MutableRefObject<(() => void) | false>;
+}> = function ({ height, imperativeHandleRef, $runOnMount, _driver }) {
+  const data = _driver.getBus().mem;
   const ref = React.useRef<FixedSizeList<Data>>(null);
   const initialScrollOffset = React.useMemo(() => {
     return localStorageSimpleGet('bus_monitor_scroll', 0);
   }, []);
+  React.useImperativeHandle(
+    imperativeHandleRef,
+    () => {
+      return {
+        scrollToStackPointer() {
+          console.log('+++ Scroll to memory location', _driver.getBus().cpu.stkp);
+        },
+      };
+    },
+    [_driver],
+  );
+  React.useEffect(() => {
+    if ($runOnMount.current !== false) {
+      $runOnMount.current();
+    }
+  }, [$runOnMount]);
   return (
     <div className="whitespace-pre">
       <div className="h-full w-full relative">
@@ -103,14 +125,15 @@ const headerRow = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
 export const BusMonitor: React.FunctionComponent<{
   _driver: EmulationDriver6502;
-  stateSignal: number;
-}> = function ({ _driver }) {
-  const bus = _driver.getBus();
+  imperativeHandleRef: BusMonitorImperativeHandleRef;
+  $runOnMount: React.MutableRefObject<(() => void) | false>;
+}> = function ({ _driver, imperativeHandleRef, $runOnMount }) {
   const [height, setHeight] = React.useState(0);
   const containerRef = React.useRef<HTMLDivElement>(null);
   useElementLayout(containerRef, function (e) {
     setHeight(e.nativeEvent.layout.height);
   });
+  console.log('BusMonitorWrapper');
   return (
     <View grow>
       <div className="border-b border-b-neutral-500 pl-[1px]">
@@ -121,10 +144,13 @@ export const BusMonitor: React.FunctionComponent<{
         containerRef={containerRef}
         className="overflow-hidden min-h-[200px] min-w-[400px] flex-1"
       >
-        {!bus || bus.mem.length === 0 ? (
-          'No data to show'
-        ) : height === 0 ? null : (
-          <Grid data={bus.mem} height={height} />
+        {height === 0 ? null : (
+          <Grid
+            _driver={_driver}
+            height={height}
+            imperativeHandleRef={imperativeHandleRef}
+            $runOnMount={$runOnMount}
+          />
         )}
       </View>
     </View>

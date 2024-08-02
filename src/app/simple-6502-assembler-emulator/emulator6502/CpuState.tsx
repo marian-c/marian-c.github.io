@@ -1,10 +1,17 @@
 import React from 'react';
 import type { EmulationDriver6502 } from '@/app/simple-6502-assembler-emulator/emulator6502/types';
-import type { Bus } from '@/emulator/bus';
 import { HexInput } from '@/components/HexInput/HexInput';
+import { Button } from '@/components/Button/Button';
+import { Icon } from '@/components/icon/icon';
 // TODO: show disassembly next to PC, TODO: action to jump to assembler or disassembler or memory
-function CpuStateInner({ bus }: { bus: Bus }) {
-  const cpu = bus.cpu;
+export function CpuState({
+  locateStackAddress,
+  _driver,
+}: {
+  _driver: EmulationDriver6502;
+  locateStackAddress: () => void;
+}) {
+  const cpu = _driver.getBus().cpu;
 
   return (
     <div>
@@ -44,6 +51,7 @@ function CpuStateInner({ bus }: { bus: Bus }) {
           console.log('new value', v);
         }}
       />{' '}
+      <br />
       SP:{' '}
       <HexInput
         className="mt-2"
@@ -51,6 +59,22 @@ function CpuStateInner({ bus }: { bus: Bus }) {
         value={cpu.stkp}
         onChange={(v) => {
           console.log('new value', v);
+        }}
+      />
+      <Button
+        className="ml-2 hidden"
+        title="Locate in memory"
+        inaccessibleChildren={<Icon src="/svg/crosshair.svg" />}
+        onClick={() => {
+          locateStackAddress();
+        }}
+      />
+      <Button
+        className="ml-2 hidden"
+        title="Track location in memory"
+        inaccessibleChildren={<Icon src="/svg/crosshair_mega.svg" />}
+        onClick={() => {
+          // trackStackAddress()
         }}
       />
       <br />
@@ -64,11 +88,3 @@ function CpuStateInner({ bus }: { bus: Bus }) {
     </div>
   );
 }
-
-export const CpuState: React.FunctionComponent<{
-  _driver: EmulationDriver6502;
-  stateSignal: number;
-}> = function ({ _driver }) {
-  const bus = _driver.getBus();
-  return bus ? <CpuStateInner bus={bus} /> : <div>Not ready</div>;
-};

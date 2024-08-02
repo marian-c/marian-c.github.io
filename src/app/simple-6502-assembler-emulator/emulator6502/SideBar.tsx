@@ -12,7 +12,6 @@ import type { RomInformation } from '@/app/simple-6502-assembler-emulator/emulat
 
 export const SideBar: React.FunctionComponent<{
   _driver: EmulationDriver6502;
-  stateSignal: number;
   // speed
   speed: number;
   setSpeed: Dispatch<SetStateAction<number>>;
@@ -25,8 +24,8 @@ export const SideBar: React.FunctionComponent<{
   // source section
   sourceCompiledStatus: SourceCompiledStatus;
   sourceLoadedStatus: SourceLoadedStatus;
+  locateStackAddress: () => void;
 }> = ({
-  stateSignal,
   _driver,
   speed,
   setSpeed,
@@ -35,20 +34,15 @@ export const SideBar: React.FunctionComponent<{
   setRomDetails,
   sourceCompiledStatus,
   sourceLoadedStatus,
+  locateStackAddress,
 }) => {
-  const state = React.useMemo(() => {
-    return {
-      stateSignal,
-      calculatedSpeedInHz: _driver.calculatedSpeedInHz,
-    };
-  }, [_driver.calculatedSpeedInHz, stateSignal]);
   return (
     <>
       <Box
         header={<div className="bg-gradient-to-b from-pane-background to-amber-100">State</div>}
         className="mb-4 border-r-0 bg-amber-100"
       >
-        <CpuState _driver={_driver} stateSignal={stateSignal} />
+        <CpuState _driver={_driver} locateStackAddress={locateStackAddress} />
       </Box>
 
       {_driver.getBus().attachedDevices.map((attachedDevice) => {
@@ -71,6 +65,7 @@ export const SideBar: React.FunctionComponent<{
         <div className="flex justify-between">
           <div>
             Master clock (Hz)
+            <br />
             <input
               className={textInputCN}
               type="number"
@@ -93,9 +88,9 @@ export const SideBar: React.FunctionComponent<{
           </div>
           <div className="text-right">
             Actual <br />
-            {state.calculatedSpeedInHz < 1_000_000
-              ? `${Math.floor(state.calculatedSpeedInHz)}Hz`
-              : `${(state.calculatedSpeedInHz / 1_000_000).toFixed(2)}MHz`}
+            {_driver.calculatedSpeedInHz < 1_000_000
+              ? `${Math.floor(_driver.calculatedSpeedInHz)}Hz`
+              : `${(_driver.calculatedSpeedInHz / 1_000_000).toFixed(2)}MHz`}
           </div>
         </div>
       </Box>

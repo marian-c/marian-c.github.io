@@ -11,11 +11,12 @@ import type {
 } from '@/app/simple-6502-assembler-emulator/emulator6502/types';
 import { Tabs } from '@/components/tabs/tabs';
 import { assertIsDefined, assertNever } from '@/utils';
-import { SpaceHorizontal } from '@/components/space-horizontal/space-horizontal';
 import { View } from '@/components/view/view';
 import { Overflow } from '@/components/overflow/overflow';
-import { BusMonitor } from '@/app/simple-6502-assembler-emulator/emulator6502/BusMonitor';
-import { CpuState } from '@/app/simple-6502-assembler-emulator/emulator6502/CpuState';
+import {
+  BusMonitor,
+  type BusMonitorImperativeHandle,
+} from '@/app/simple-6502-assembler-emulator/emulator6502/BusMonitor';
 import {
   Editor,
   type EditorHandleRef,
@@ -33,7 +34,9 @@ import { Preferences } from '@/app/simple-6502-assembler-emulator/emulator6502/P
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/_helpers/tooltip';
 import { config } from '@/config';
 
-type TabKeys = 'system-editor' | 'system-busMonitor' | 'system-log';
+// TODO: add log pane to list all operations the CPU does
+
+type TabKeys = 'system-editor' | 'system-busMonitor';
 
 let initialComputerConfiguration =
   localStorageSimpleGet('simple_6502_emulator_computer_configuration') ||
@@ -99,7 +102,7 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
 
   const [speed, setSpeed] = React.useState(65);
 
-  const [stateSignal, setStateSignal] = React.useState(0);
+  const [_stateSignal, setStateSignal] = React.useState(0);
 
   const [activeTabKey, setActiveTabKey] = React.useState<TabKeys>('system-editor');
   const [activeTabKey2, setActiveTabKey2] = React.useState<TabKeys>('system-busMonitor');
@@ -164,10 +167,6 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
   }, [displayMode]);
   // endregion
 
-  // TODO: make this position fixed and make the body overflow hidden to prevent scrolling of the background
-  const wrapperCN =
-    displayMode === 'normal' ? '' : 'absolute left-0 top-0 right-0 bottom-0  overflow-auto';
-
   let disabledReasonStart: string | null = null;
   if ($running) {
     disabledReasonStart = 'The emulation is running';
@@ -175,6 +174,23 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
   if (romDetails.type === 'empty') {
     disabledReasonStart = "There's nothing to run, the ROM is empty";
   }
+
+  const busMonitorImperativeHandleRef = React.useRef<BusMonitorImperativeHandle>(null);
+  const $runOnMount = React.useRef<(() => void) | false>(false);
+  const locateStackAddress = () => {
+    if (busMonitorImperativeHandleRef.current) {
+      busMonitorImperativeHandleRef.current.scrollToStackPointer();
+    } else {
+      $runOnMount.current = () => {
+        busMonitorImperativeHandleRef.current?.scrollToStackPointer();
+        $runOnMount.current = false;
+      };
+      if (activeTabKey2 === 'system-busMonitor') {
+        setActiveTabKey2(activeTabKey);
+      }
+      setActiveTabKey('system-busMonitor');
+    }
+  };
 
   const buttons = (
     <>
@@ -344,6 +360,28 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
     </>
   );
 
+  const editorElement = (
+    <Editor
+      handleRef={editorHandleRef}
+      onChange={() => {
+        setSourceCompiledStatus('outdated');
+        setSourceLoadedStatus('outdated');
+      }}
+    />
+  );
+
+  const busMonitorElement = (
+    <BusMonitor
+      _driver={_driver}
+      imperativeHandleRef={busMonitorImperativeHandleRef}
+      $runOnMount={$runOnMount}
+    />
+  );
+
+  // TODO: make this position fixed and make the body overflow hidden to prevent scrolling of the background
+  const wrapperCN =
+    displayMode === 'normal' ? '' : 'fixed left-0 top-0 right-0 bottom-0  overflow-auto';
+
   return (
     <Pane
       className={`${wrapperCN}`}
@@ -353,6 +391,7 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
         <Button
           key="display-mode"
           title="Maximize this panel"
+          className="mr-2"
           inaccessibleChildren={<Icon src={sizeIcon} />}
           onClick={() => {
             setDisplayMode((oldDisplayMode) => {
@@ -367,7 +406,6 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
             });
           }}
         />,
-        <SpaceHorizontal key="space-after-display-mode" />,
         <React.Fragment key="preferences">
           <Button
             title="Open the preferences pane"
@@ -386,7 +424,7 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
       ]}
     >
       <LayoutSpread useChild>
-        <div className="p-2">
+        <div className="p-2 sticky top-0 z-10 bg-pane-background">
           {buttons}
           <span>
             Running: {$running ? 'yes' : 'no'}
@@ -395,7 +433,7 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
         </div>
       </LayoutSpread>
 
-      <View grow horizontal>
+      <View grow horizontal className="overflow-auto">
         <Tabs<TabKeys>
           grow
           wrapperCN={'mr-2 flex-1'}
@@ -411,49 +449,13 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
             {
               key: 'system-editor',
               header: 'Compiler',
-              content: (
-                <Editor
-                  handleRef={editorHandleRef}
-                  onChange={() => {
-                    setSourceCompiledStatus('outdated');
-                    setSourceLoadedStatus('outdated');
-                  }}
-                />
-              ),
+              content: editorElement,
             },
             {
               key: 'system-busMonitor',
               header: 'Bus Monitor',
-              content: <BusMonitor _driver={_driver} stateSignal={stateSignal}></BusMonitor>,
+              content: busMonitorElement,
             },
-            {
-              key: 'system-log',
-              header: 'Log',
-              content: (
-                <Overflow vertical horizontal>
-                  <div className="h-[2000px] w-[2000px] bg-amber-100">
-                    <CpuState _driver={_driver} stateSignal={stateSignal} />
-                    {stateSignal}
-                  </div>
-                </Overflow>
-              ),
-            },
-            // TODO: show the (only) tab if any of the attached devices has UI
-            // ...(_driver.getBus()?.attachedDevices.map((device) => {
-            //   const deviceConfig = Object.entries(possibleDevices).find((conf) => {
-            //     return device instanceof conf[1];
-            //   });
-            //   if (!deviceConfig) {
-            //     throw new ErrorShouldNotHappen();
-            //   }
-            //   const deviceName = deviceConfig[0] as PossibleDevices;
-            //
-            //   return {
-            //     key: deviceName,
-            //     header: deviceName,
-            //     content: device.getOutput(),
-            //   };
-            // }) || []),
           ]}
         />
         {showSecondPane ? (
@@ -471,32 +473,12 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
               {
                 key: 'system-editor',
                 header: 'Compiler',
-                content: (
-                  <Editor
-                    handleRef={editorHandleRef}
-                    onChange={() => {
-                      setSourceCompiledStatus('outdated');
-                      setSourceLoadedStatus('outdated');
-                    }}
-                  />
-                ),
+                content: editorElement,
               },
               {
                 key: 'system-busMonitor',
                 header: 'Bus Monitor',
-                content: <BusMonitor _driver={_driver} stateSignal={stateSignal}></BusMonitor>,
-              },
-              {
-                key: 'system-log',
-                header: 'Log',
-                content: (
-                  <Overflow vertical={fixedHeight} horizontal>
-                    <div className="h-[2000px] w-[2000px] bg-amber-100">
-                      <CpuState _driver={_driver} stateSignal={stateSignal} />
-                      {stateSignal}
-                    </div>
-                  </Overflow>
-                ),
+                content: busMonitorElement,
               },
             ]}
           />
@@ -504,8 +486,8 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
         <View className="w-[300px]">
           <Overflow vertical={fixedHeight}>
             <SideBar
-              stateSignal={stateSignal}
               _driver={_driver}
+              locateStackAddress={locateStackAddress}
               running={$running}
               stopRunning={$stopRunning}
               speed={speed}

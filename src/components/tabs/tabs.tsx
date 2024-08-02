@@ -20,7 +20,7 @@ export function Tabs<Key extends React.Key>({
 }: Props<Key>) {
   const content = tabs.find((t) => t.key === activeTabKey);
   return (
-    <View grow={grow} className={wrapperCN}>
+    <View grow={grow} className={`pt-[2px] ${wrapperCN}`}>
       <div className="border-b border-b-neutral-500 flex pl-1">
         {tabs.map(({ header, key }) => {
           const isActive = key === activeTabKey;
