@@ -5,7 +5,7 @@ import { type Metadata } from 'next';
 import { NewUserGreet } from '@/components/_organisms/NewUserGreet';
 
 export const metadata: Metadata = {
-  title: 'Marian-C - Simple 6002 based emulator and IDE',
+  title: 'Marian-C - Simple 6502 based emulator and IDE',
   description:
     'Configuration 6502 based computer emulated in a browser. Load it up with compiled assembler code',
 };

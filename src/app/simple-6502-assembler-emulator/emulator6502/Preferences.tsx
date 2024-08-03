@@ -61,7 +61,7 @@ export const Preferences: FunctionComponent<{
     <Dialog $onCancel={$onDialogCancel}>
       <Pane
         header="Configure your computer"
-        className="w-[500px] overflow-auto"
+        className=""
         contentClassName="p-2 pt-6"
         headerButtons={[
           <Button
