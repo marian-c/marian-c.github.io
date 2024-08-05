@@ -33,6 +33,7 @@ import { LayoutSpread } from '@/components/_layouts/LayoutSpread';
 import { Preferences } from '@/app/simple-6502-assembler-emulator/emulator6502/Preferences';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/_helpers/tooltip';
 import { config } from '@/config';
+import { addToast } from '@/components/_helpers/toast';
 
 // TODO: add log pane to list all operations the CPU does
 
@@ -175,6 +176,8 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
     disabledReasonStart = "There's nothing to run, the ROM is empty";
   }
 
+  const runningToastRef = React.useRef<(() => void) | false>(false);
+
   const busMonitorImperativeHandleRef = React.useRef<BusMonitorImperativeHandle>(null);
   const $runOnMount = React.useRef<(() => void) | false>(false);
   const locateStackAddress = () => {
@@ -209,6 +212,11 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
                 : () => {
                     _driver.start();
                     startRunning();
+                    runningToastRef.current = addToast({
+                      contents: 'Emulation running',
+                      dontAutoHide: true,
+                      showClose: false,
+                    });
                   }
             }
           />
@@ -231,11 +239,20 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
                 : () => {
                     $stopRunning('paused');
                     _driver.stop();
+                    if (runningToastRef.current !== false) {
+                      runningToastRef.current();
+                      runningToastRef.current = false;
+                    }
+                    addToast({
+                      contents: 'Emulation paused',
+                      autohideTimeout: 1000,
+                      showClose: true,
+                    });
                   }
             }
           />
         </TooltipTrigger>
-        {!$running && <TooltipContent>The emulation is paused</TooltipContent>}
+        {!$running && <TooltipContent>The emulation is not running</TooltipContent>}
       </Tooltip>
       <Tooltip delay={config.disabledButtonsTooltipDelay}>
         <TooltipTrigger asChild>
@@ -251,9 +268,15 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
               if (result.kind === GenericResultKind.error) {
                 setSourceCompiledStatus('errors');
                 editorHandleRef.current.setCompilationErrors(result.errors);
+                addToast({ contents: 'Compilation failed', showClose: true });
               } else {
                 setSourceCompiledStatus('yes');
                 editorHandleRef.current.setCompilationErrors([]);
+                addToast({
+                  contents: 'Compiled successfully (ROM and CPU state left untouched)',
+                  showClose: true,
+                  autohideTimeout: 2000,
+                });
               }
             }}
           />
@@ -275,6 +298,7 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
               if (result.kind === GenericResultKind.error) {
                 setSourceCompiledStatus('errors');
                 editorHandleRef.current.setCompilationErrors(result.errors);
+                addToast({ contents: 'Compilation failed', showClose: true });
               } else {
                 editorHandleRef.current.setCompilationErrors([]);
                 const contents = result.result;
@@ -292,6 +316,16 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
                 _driver.setRom(romInformation);
                 setSourceCompiledStatus('yes');
                 setSourceLoadedStatus('yes');
+                if (runningToastRef.current !== false) {
+                  runningToastRef.current();
+                  runningToastRef.current = false;
+                }
+                addToast({
+                  contents:
+                    'Compiled successfully and result loaded into ROM (CPU state was reset)',
+                  showClose: true,
+                  autohideTimeout: 2000,
+                });
               }
             }}
           />
@@ -313,6 +347,7 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
               if (result.kind === GenericResultKind.error) {
                 setSourceCompiledStatus('errors');
                 editorHandleRef.current.setCompilationErrors(result.errors);
+                addToast({ contents: 'Compilation failed', showClose: true });
               } else {
                 editorHandleRef.current.setCompilationErrors([]);
                 const contents = result.result;
@@ -331,6 +366,21 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
                 startRunning();
                 setSourceCompiledStatus('yes');
                 setSourceLoadedStatus('yes');
+                if (runningToastRef.current !== false) {
+                  runningToastRef.current();
+                  runningToastRef.current = false;
+                }
+                addToast({
+                  contents:
+                    'Compiled successfully and result loaded into ROM (CPU state was reset)',
+                  showClose: true,
+                  autohideTimeout: 2000,
+                });
+                runningToastRef.current = addToast({
+                  contents: 'Emulation running',
+                  dontAutoHide: true,
+                  showClose: false,
+                });
               }
             }}
           />
@@ -345,6 +395,15 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
           $stopRunning('reset');
           _driver.stop();
           _driver.reset();
+          if (runningToastRef.current !== false) {
+            runningToastRef.current();
+            runningToastRef.current = false;
+          }
+          addToast({
+            contents: 'Emulation stopped if it was running, CPU state reset, memory preserved',
+            showClose: true,
+            autohideTimeout: 4000,
+          });
         }}
       />
       <Button
@@ -355,6 +414,16 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
           $stopRunning('reload');
           _driver.stop();
           _driver.reload();
+          if (runningToastRef.current !== false) {
+            runningToastRef.current();
+            runningToastRef.current = false;
+          }
+          addToast({
+            contents:
+              'Emulation stopped if it was running, CPU state reset, memory re-loaded from last time',
+            showClose: true,
+            autohideTimeout: 4000,
+          });
         }}
       />
     </>

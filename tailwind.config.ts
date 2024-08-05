@@ -17,6 +17,8 @@ const config: Config = {
         "button-border": "#7a7a7a",
         "button-border-hover": "#2883da",
         "button-border-focus": "#2883da",
+        "color-zero-page": "#d1e7ef",
+        "color-stack": "#eafae8",
 
       },
       backgroundImage: {

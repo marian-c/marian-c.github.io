@@ -62,7 +62,7 @@ export function CpuState({
         }}
       />
       <Button
-        className="ml-2 hidden"
+        className="ml-2"
         title="Locate in memory"
         inaccessibleChildren={<Icon src="/svg/crosshair.svg" />}
         onClick={() => {

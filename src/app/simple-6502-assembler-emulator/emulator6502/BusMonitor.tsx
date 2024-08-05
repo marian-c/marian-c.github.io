@@ -5,47 +5,62 @@ import { useElementLayout } from '@/hooks/useElementLayout/useElementLayout';
 import { FixedSizeList, type ListChildComponentProps } from 'react-window';
 import { hex } from '@/helpers/numbers';
 import { localStorageSimpleGet, localStorageSimpleSet } from '@/helpers/window/localStorageSimple';
+import { div } from '@/vendor-in/my-emulator/_/numbers';
 
 const CELLS_PER_ROW = 16;
 
-type Data = { bytes: number[] };
+type Data = { bytes: number[]; _driver: EmulationDriver6502 };
 
 const VisualRow: React.FunctionComponent<{
   rowData: number[];
-  leading?: number | undefined;
+  leading: number;
   isHeader?: boolean | undefined;
-}> = function ({ rowData, leading, isHeader }) {
+  _driver: EmulationDriver6502;
+}> = function ({ rowData, leading, isHeader, _driver }) {
+  const isZeroPage = !isHeader && leading >= 0x0000 && leading <= 0x00ff;
+  const isStack = !isHeader && leading >= 0x0100 && leading <= 0x01ff;
+
+  const stkp = _driver.getBus().cpu.stkp;
+
   const valuesEl = rowData.map((cellValue, cellIndex) => {
+    const isSP = !isHeader && leading + cellIndex === stkp + 0x0100;
     return (
       <span
-        className={`font-mono inline-block h-full hover:bg-[#ebf4ff] ${cellIndex === 7 ? 'mr-2' : ''} ${isHeader ? 'text-gray-500' : ''} `}
+        className={`font-mono inline-block h-full ${cellIndex === 7 ? 'pr-2' : ''} ${isHeader ? 'text-gray-500' : ''} ${isSP ? 'border border-green-500' : ''}`}
         key={cellIndex}
       >
-        {hex(2, '', cellValue)
-          .toUpperCase()
-          .split('')
-          .map((l, lIdx) => {
-            return (
-              <span
-                key={lIdx}
-                className={`group leading-[unset] text-lg ${lIdx === 0 ? 'pl-1.5' : 'pr-1.5'} inline-block h-full`}
-                onClick={() => {
-                  console.info('TODO: cell', cellIndex, lIdx);
-                }}
-              >
-                <span className="border-b border-transparent group-hover:border-[#67adef] p-0">
-                  {l}
+        <span
+          id={isHeader ? undefined : `emulator_rom_${leading + cellIndex}`}
+          className="inline-block h-full hover:bg-[#ebf4ff]"
+        >
+          {hex(2, '', cellValue)
+            .toUpperCase()
+            .split('')
+            .map((l, lIdx) => {
+              return (
+                <span
+                  key={lIdx}
+                  className={`group leading-[unset] text-lg ${lIdx === 0 ? 'pl-1.5' : 'pr-1.5'} inline-block h-full`}
+                  onClick={() => {
+                    console.info('TODO: cell', cellIndex, lIdx);
+                  }}
+                >
+                  <span className="border-b border-transparent group-hover:border-[#67adef] p-0">
+                    {l}
+                  </span>
                 </span>
-              </span>
-            );
-          })}
+              );
+            })}
+        </span>
       </span>
     );
   });
 
   return (
     <>
-      <span className="font-mono pr-1 border-r border-r-neutral-700 h-full inline-block text-gray-500">
+      <span
+        className={`font-mono leading-[unset] text-lg pr-1 border-r border-r-neutral-700 h-full inline-block text-gray-500 ${isZeroPage ? 'bg-color-zero-page' : ''} ${isStack ? 'bg-color-stack' : ''}`}
+      >
         {isHeader ? '↓↓↓→' : hex(4, '', leading || 0).toUpperCase()}
       </span>
       {valuesEl}
@@ -57,7 +72,7 @@ const Row = ({ index, style, data }: ListChildComponentProps<Data>) => {
   const rowData = data.bytes.slice(index * CELLS_PER_ROW, (index + 1) * CELLS_PER_ROW);
   return (
     <div style={style}>
-      <VisualRow rowData={rowData} leading={index * CELLS_PER_ROW} />
+      <VisualRow rowData={rowData} leading={index * CELLS_PER_ROW} _driver={data._driver} />
     </div>
   );
 };
@@ -85,7 +100,15 @@ const Grid: React.FunctionComponent<{
     () => {
       return {
         scrollToStackPointer() {
-          console.log('+++ Scroll to memory location', _driver.getBus().cpu.stkp);
+          const stackPointer = _driver.getBus().cpu.stkp;
+          const memoryLocation = 0x0100 + stackPointer;
+          const rowIdx = div(memoryLocation, 16);
+          ref.current?.scrollToItem(rowIdx, 'smart');
+          document
+            .getElementById(`emulator_rom_${memoryLocation}`)
+            ?.animate([{ backgroundColor: 'yellow' }, { backgroundColor: 'transparent' }], {
+              duration: 1300,
+            });
         },
       };
     },
@@ -103,7 +126,7 @@ const Grid: React.FunctionComponent<{
           <FixedSizeList<Data>
             ref={ref}
             className="cursor-default"
-            itemData={{ bytes: data }}
+            itemData={{ bytes: data, _driver }}
             height={height}
             width="100%"
             itemSize={30}
@@ -137,7 +160,7 @@ export const BusMonitor: React.FunctionComponent<{
   return (
     <View grow>
       <div className="border-b border-b-neutral-500 pl-[1px]">
-        <VisualRow rowData={headerRow} isHeader />
+        <VisualRow rowData={headerRow} isHeader leading={0} _driver={_driver} />
       </div>
       <View
         grow
