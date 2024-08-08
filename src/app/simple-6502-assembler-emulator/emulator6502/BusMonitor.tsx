@@ -156,7 +156,6 @@ export const BusMonitor: React.FunctionComponent<{
   useElementLayout(containerRef, function (e) {
     setHeight(e.nativeEvent.layout.height);
   });
-  console.log('BusMonitorWrapper');
   return (
     <View grow>
       <div className="border-b border-b-neutral-500 pl-[1px]">

@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { localStorageCleanup } from '@/helpers/window/localStorageCleanup';
+// emit static files
+import * as _ from '@/staticFiles';
 
 localStorageCleanup();
 

@@ -8,17 +8,21 @@ import { HexNumber } from '@/components/HexNumber/HexNumber';
 import { FancyRange } from '@/components/FancyRange/FancyRange';
 import { Box } from '@/components/_templates/box/box';
 import { assertIsDefined, assertNever } from '@/utils';
-import { tableCN, textLinkCN } from '@/app/classnames';
+import { tableCN } from '@/app/classnames';
 import type { RomInformation } from '@/app/simple-6502-assembler-emulator/emulator6502/types';
+import { Samples } from '@/app/simple-6502-assembler-emulator/emulator6502/dialogs/Samples';
 
 type Props = {
   currentRom: RomInformation;
-  setCurrentRom: (newRomInformation: RomInformation) => void;
+  $setCurrentRom: (newRomInformation: RomInformation) => void;
 };
 
 // TODO: samples should come with their own computer configuration
 
-export const RomSection: React.FunctionComponent<Props> = function ({ currentRom, setCurrentRom }) {
+export const RomSection: React.FunctionComponent<Props> = function ({
+  currentRom,
+  $setCurrentRom,
+}) {
   const [uploadedFileDetails, setUploadedFileDetails] = React.useState<{
     uint8Array: Uint8Array;
     name: string;
@@ -28,8 +32,6 @@ export const RomSection: React.FunctionComponent<Props> = function ({ currentRom
   const [hasCustomInitialPc, setHasCustomInitialPc] = React.useState(false);
   const [startingPosition, _setStartingPosition] = React.useState(0);
   const [initialPc, setInitialPc] = React.useState(0);
-
-  const [selectedSampleRom, setSelectedSampleRom] = React.useState('');
 
   const [startingPositionError, setStartingPositionError] = React.useState(false);
   const [initialPcError, setInitialPcError] = React.useState(false);
@@ -52,7 +54,6 @@ export const RomSection: React.FunctionComponent<Props> = function ({ currentRom
   );
 
   const dialogRef = React.useRef<HTMLDialogElement>(null);
-  const sampleDialogRef = React.useRef<HTMLDialogElement>(null);
 
   let romKindElement: React.ReactNode = 'None';
   const currentRomType = currentRom.type;
@@ -89,6 +90,28 @@ export const RomSection: React.FunctionComponent<Props> = function ({ currentRom
     [$setStartingPosition],
   );
 
+  const [isSamplesOpen, setIsSamplesOpen] = React.useState(false);
+
+  const $onNewSample = React.useCallback<ComponentProps<typeof Samples>['$onDone']>(
+    async (sample) => {
+      setIsSamplesOpen(false);
+      if (sample !== null) {
+        // TODO: error handling
+        const fetchR = await fetch(sample);
+        const data = new Uint8Array(await fetchR.arrayBuffer());
+
+        $setCurrentRom({
+          type: 'sample',
+          description: sample,
+          size: data.byteLength,
+          initialPc: 0x0400,
+          startingAddress: 0x000a,
+          contents: data,
+        });
+      }
+    },
+    [$setCurrentRom],
+  );
   return (
     <div>
       <table className={tableCN}>
@@ -133,8 +156,7 @@ export const RomSection: React.FunctionComponent<Props> = function ({ currentRom
         <UploadButton $onFileReady={$onFileReady}>Upload</UploadButton>{' '}
         <Button
           onClick={() => {
-            setSelectedSampleRom('');
-            sampleDialogRef.current?.showModal();
+            setIsSamplesOpen(true);
           }}
         >
           Sample
@@ -147,92 +169,7 @@ export const RomSection: React.FunctionComponent<Props> = function ({ currentRom
           Download
         </Button>
       </p>
-      <dialog ref={sampleDialogRef}>
-        <Pane
-          header="Pick a sample"
-          className="w-[500px] overflow-auto"
-          contentClassName="p-2 pt-6"
-          headerButtons={[
-            <Button
-              className="ml-5"
-              key="close-button"
-              onClick={() => {
-                sampleDialogRef.current?.close();
-              }}
-            >
-              <Icon src="/svg/close.svg" />{' '}
-            </Button>,
-          ]}
-        >
-          <div className="">
-            <h4>
-              <label>
-                <input
-                  type="radio"
-                  name="sample-rom-option"
-                  className="mr-2"
-                  checked={selectedSampleRom === 'dec_dis_2_6502_functional_test.bin'}
-                  onChange={(e) => {
-                    if (e.target.checked) {
-                      setSelectedSampleRom('dec_dis_2_6502_functional_test.bin');
-                    }
-                  }}
-                />
-                Emulator test from Klaus - no decimal mode
-              </label>
-            </h4>
-            {selectedSampleRom === 'dec_dis_2_6502_functional_test.bin' && (
-              <div className="p-2">
-                <p>
-                  This was generated from these sources, compiled without dec mode tests, TODO: fill
-                  in the rest of the details, like github link and so on
-                </p>
-                <p>
-                  <a
-                    className={textLinkCN}
-                    href="emulator-test-roms/dec_dis_2_6502_functional_test.bin"
-                  >
-                    Download
-                  </a>
-                </p>
-              </div>
-            )}
-          </div>
-
-          <p className="mt-6 flex justify-end">
-            <Button
-              onClick={() => {
-                sampleDialogRef.current?.close();
-              }}
-            >
-              Cancel
-            </Button>
-
-            <Button
-              disabled={selectedSampleRom === ''}
-              className="ml-3"
-              onClick={async () => {
-                // TODO: error handling
-                const downloadLocation = `/emulator-test-roms/${selectedSampleRom}`;
-                const fetchR = await fetch(downloadLocation);
-                const data = new Uint8Array(await fetchR.arrayBuffer());
-
-                setCurrentRom({
-                  type: 'sample',
-                  description: selectedSampleRom,
-                  size: data.byteLength,
-                  initialPc: 0x0400,
-                  startingAddress: 0x000a,
-                  contents: data,
-                });
-                sampleDialogRef.current?.close();
-              }}
-            >
-              OK
-            </Button>
-          </p>
-        </Pane>
-      </dialog>
+      {isSamplesOpen && <Samples $onDone={$onNewSample} />}
       {
         <dialog ref={dialogRef}>
           <Pane
@@ -383,7 +320,7 @@ export const RomSection: React.FunctionComponent<Props> = function ({ currentRom
                   }
                   onClick={() => {
                     assertIsDefined(uploadedFileDetails);
-                    setCurrentRom({
+                    $setCurrentRom({
                       type: 'user_supplied',
                       description: uploadedFileDetails.name || '[name not found]',
                       size: uploadedFileSize,

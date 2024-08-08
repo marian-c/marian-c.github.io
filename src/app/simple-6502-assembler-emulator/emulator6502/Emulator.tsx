@@ -30,7 +30,7 @@ import { defaultComputerConfiguration } from '@/app/simple-6502-assembler-emulat
 import { localStorageSimpleGet, localStorageSimpleSet } from '@/helpers/window/localStorageSimple';
 import { IntervalDriver } from '@/app/simple-6502-assembler-emulator/emulator6502/driver/internalDriver';
 import { LayoutSpread } from '@/components/_layouts/LayoutSpread';
-import { Preferences } from '@/app/simple-6502-assembler-emulator/emulator6502/Preferences';
+import { Preferences } from '@/app/simple-6502-assembler-emulator/emulator6502/dialogs/Preferences';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/_helpers/tooltip';
 import { config } from '@/config';
 import { addToast } from '@/components/_helpers/toast';
@@ -69,6 +69,14 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
       }
     },
     [$running],
+  );
+
+  const $setRomDetails = React.useCallback<ComponentProps<typeof SideBar>['$setRomDetails']>(
+    (newRomDetails) => {
+      setSourceLoadedStatus('outdated');
+      setRomDetails(newRomDetails);
+    },
+    [],
   );
 
   const [isPreferencesOpen, setIsPreferencesOpen] = React.useState(false);
@@ -558,14 +566,11 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
               _driver={_driver}
               locateStackAddress={locateStackAddress}
               running={$running}
-              stopRunning={$stopRunning}
+              $stopRunning={$stopRunning}
               speed={speed}
               setSpeed={setSpeed}
               romDetails={romDetails}
-              setRomDetails={(newRomDetails) => {
-                setSourceLoadedStatus('outdated');
-                setRomDetails(newRomDetails);
-              }}
+              $setRomDetails={$setRomDetails}
               sourceCompiledStatus={sourceCompiledStatus}
               sourceLoadedStatus={sourceLoadedStatus}
             />

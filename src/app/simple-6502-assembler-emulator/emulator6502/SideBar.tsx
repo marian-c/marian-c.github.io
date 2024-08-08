@@ -1,4 +1,4 @@
-import React, { type Dispatch, type SetStateAction } from 'react';
+import React, { type ComponentProps, type Dispatch, type SetStateAction } from 'react';
 import { Box } from '@/components/_templates/box/box';
 import { CpuState } from '@/app/simple-6502-assembler-emulator/emulator6502/CpuState';
 import { tableCN, textInputCN } from '@/app/classnames';
@@ -17,10 +17,10 @@ export const SideBar: React.FunctionComponent<{
   setSpeed: Dispatch<SetStateAction<number>>;
   // emulation state
   running: boolean;
-  stopRunning: (reason: string) => void;
+  $stopRunning: (reason: string) => void;
   // rom section
   romDetails: RomInformation;
-  setRomDetails: Dispatch<SetStateAction<RomInformation>>;
+  $setRomDetails: Dispatch<SetStateAction<RomInformation>>;
   // source section
   sourceCompiledStatus: SourceCompiledStatus;
   sourceLoadedStatus: SourceLoadedStatus;
@@ -29,13 +29,23 @@ export const SideBar: React.FunctionComponent<{
   _driver,
   speed,
   setSpeed,
-  stopRunning,
+  $stopRunning,
   romDetails,
-  setRomDetails,
+  $setRomDetails,
   sourceCompiledStatus,
   sourceLoadedStatus,
   locateStackAddress,
 }) => {
+  const $setCurrentRom = React.useCallback<ComponentProps<typeof RomSection>['$setCurrentRom']>(
+    (details) => {
+      $setRomDetails(details);
+      _driver.stop();
+      $stopRunning('load rom');
+      _driver.setRom(details);
+    },
+    [_driver, $setRomDetails, $stopRunning],
+  );
+
   return (
     <>
       <Box
@@ -111,15 +121,7 @@ export const SideBar: React.FunctionComponent<{
         </table>
       </Box>
       <Box header="ROM" className="mb-4 border-r-0">
-        <RomSection
-          currentRom={romDetails}
-          setCurrentRom={(details) => {
-            setRomDetails(details);
-            _driver.stop();
-            stopRunning('load rom');
-            _driver.setRom(details);
-          }}
-        />
+        <RomSection currentRom={romDetails} $setCurrentRom={$setCurrentRom} />
       </Box>
     </>
   );
