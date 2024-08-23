@@ -32,7 +32,7 @@ export const Samples: FunctionComponent<{
             }}
             key="close-button"
           >
-            <Icon src="/svg/close.svg" />{' '}
+            <Icon src="/static_assets/svg/close.svg" />{' '}
           </Button>,
         ]}
       >

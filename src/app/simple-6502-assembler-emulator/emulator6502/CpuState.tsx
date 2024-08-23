@@ -64,7 +64,7 @@ export function CpuState({
       <Button
         className="ml-2"
         title="Locate in memory"
-        inaccessibleChildren={<Icon src="/svg/crosshair.svg" />}
+        inaccessibleChildren={<Icon src="/static_assets/svg/crosshair.svg" />}
         onClick={() => {
           locateStackAddress();
         }}
@@ -72,7 +72,7 @@ export function CpuState({
       <Button
         className="ml-2 hidden"
         title="Track location in memory"
-        inaccessibleChildren={<Icon src="/svg/crosshair_mega.svg" />}
+        inaccessibleChildren={<Icon src="/static_assets/svg/crosshair_mega.svg" />}
         onClick={() => {
           // trackStackAddress()
         }}

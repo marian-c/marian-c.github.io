@@ -7,5 +7,5 @@ Load the 48 KB binary into your emulator's memory space at $4000, which leaves 1
 
 References:
 https://www.nesdev.org/wiki/Visual6502wiki/6502TestPrograms
-I downlaoded compiled version from another user
+I downloaded compiled version from another user
 https://codegolf.stackexchange.com/questions/12844/emulate-a-mos-6502-cpu

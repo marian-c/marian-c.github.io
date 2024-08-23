@@ -29,7 +29,7 @@
 //       onClick={() => {
 //         duplicate(value);
 //       }}
-//       inaccessibleChildren={<Icon src="/svg/duplicate.svg" />}
+//       inaccessibleChildren={<Icon src="/static_assets/svg/duplicate.svg" />}
 //     />
 //   );
 //

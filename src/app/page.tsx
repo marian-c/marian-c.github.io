@@ -16,7 +16,7 @@ export default function Home() {
         <div className="bg-gradient-to-b from-gray-300 to-transparent relative">
           <Image
             className="border border-gray-400 opacity-45"
-            src="/screenshots/emulator_2.png"
+            src="/static_assets/screenshots/emulator_2.png"
             alt="Screenshot of the emulator widget"
             width={1845}
             height={529}

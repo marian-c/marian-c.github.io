@@ -183,7 +183,7 @@ export const RomSection: React.FunctionComponent<Props> = function ({
                   dialogRef.current?.close();
                 }}
               >
-                <Icon src="/svg/close.svg" />{' '}
+                <Icon src="/static_assets/svg/close.svg" />{' '}
               </Button>,
             ]}
           >

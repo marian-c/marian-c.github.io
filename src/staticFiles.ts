@@ -5,7 +5,7 @@
 
 // XXX: for the future: https://github.com/leebyron/ecmascript-more-export-from?tab=readme-ov-file
 
-export { default as sampleKlaus } from '../public/emulator-test-roms/dec_dis_2_6502_functional_test.bin';
+export { default as sampleKlaus } from '../public/static_assets/emulator-test-roms/dec_dis_2_6502_functional_test.bin';
 
-// this is just a test
-export { default as sampleKlaus2 } from '../public/emulator-test-roms/dec_dis_1_6502_functional_test.bin';
+export { default as sampleEhBasic } from '../public/static_assets/EhBasic/ehbasic.bin';
+export { default as sampleAllSuiteA } from '../public/static_assets/AllSuiteA/AllSuiteA.bin';

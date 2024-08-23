@@ -59,17 +59,6 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
     _setRunning(true);
     _setStoppedBecause('');
   };
-  const $stopRunning = React.useCallback(
-    function (reason: string) {
-      _setRunning(false);
-      if ($running) {
-        _setStoppedBecause(reason);
-      } else {
-        _setStoppedBecause('');
-      }
-    },
-    [$running],
-  );
 
   const $setRomDetails = React.useCallback<ComponentProps<typeof SideBar>['$setRomDetails']>(
     (newRomDetails) => {
@@ -81,6 +70,23 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
 
   const [isPreferencesOpen, setIsPreferencesOpen] = React.useState(false);
 
+  const runningToastRef = React.useRef<(() => void) | false>(false);
+
+  const $stopRunning = React.useCallback(
+    function (reason: string) {
+      _setRunning(false);
+      if (runningToastRef.current !== false) {
+        runningToastRef.current();
+        runningToastRef.current = false;
+      }
+      if ($running) {
+        _setStoppedBecause(reason);
+      } else {
+        _setStoppedBecause('');
+      }
+    },
+    [$running],
+  );
   const $onNewPreferences = React.useCallback<ComponentProps<typeof Preferences>['$onDone']>(
     (newComputerConfiguration) => {
       setIsPreferencesOpen(false);
@@ -135,17 +141,17 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
 
   const editorHandleRef = React.useRef<EditorHandleRef>(null);
 
-  let sizeIcon = '/svg/maximize.svg';
+  let sizeIcon = '/static_assets/svg/maximize.svg';
   let fixedHeight = false;
   let showSecondPane = false;
   switch (displayMode) {
     case 'max':
-      sizeIcon = '/svg/minimize.svg';
+      sizeIcon = '/static_assets/svg/minimize.svg';
       fixedHeight = true;
       showSecondPane = true;
       break;
     case 'normal':
-      sizeIcon = '/svg/maximize.svg';
+      sizeIcon = '/static_assets/svg/maximize.svg';
       break;
     default:
       assertNever(displayMode);
@@ -184,8 +190,6 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
     disabledReasonStart = "There's nothing to run, the ROM is empty";
   }
 
-  const runningToastRef = React.useRef<(() => void) | false>(false);
-
   const busMonitorImperativeHandleRef = React.useRef<BusMonitorImperativeHandle>(null);
   const $runOnMount = React.useRef<(() => void) | false>(false);
   const locateStackAddress = () => {
@@ -212,7 +216,11 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
             disabled={!!disabledReasonStart}
             title={disabledReasonStart === null ? 'Start/continue execution' : undefined}
             inaccessibleChildren={
-              <Icon src={$running ? '/svg/play-disabled.svg' : '/svg/play.svg'} />
+              <Icon
+                src={
+                  $running ? '/static_assets/svg/play-disabled.svg' : '/static_assets/svg/play.svg'
+                }
+              />
             }
             onClick={
               $running
@@ -239,7 +247,13 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
             disabled={!$running}
             title={!$running ? undefined : 'Pause execution'}
             inaccessibleChildren={
-              <Icon src={$running ? '/svg/pause.svg' : '/svg/pause-disabled.svg'} />
+              <Icon
+                src={
+                  $running
+                    ? '/static_assets/svg/pause.svg'
+                    : '/static_assets/svg/pause-disabled.svg'
+                }
+              />
             }
             onClick={
               !$running
@@ -247,10 +261,6 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
                 : () => {
                     $stopRunning('paused');
                     _driver.stop();
-                    if (runningToastRef.current !== false) {
-                      runningToastRef.current();
-                      runningToastRef.current = false;
-                    }
                     addToast({
                       contents: 'Emulation paused',
                       autohideTimeout: 1000,
@@ -267,7 +277,7 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
           <Button
             className="mr-2"
             disabled={!isSourceActive}
-            inaccessibleChildren={<Icon src="/svg/build.svg" />}
+            inaccessibleChildren={<Icon src="/static_assets/svg/build.svg" />}
             title={!isSourceActive ? undefined : 'Build source'}
             onClick={() => {
               assertIsDefined(editorHandleRef.current);
@@ -297,7 +307,7 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
           <Button
             className="mr-2"
             disabled={!isSourceActive}
-            inaccessibleChildren={<Icon src="/svg/build-load.svg" />}
+            inaccessibleChildren={<Icon src="/static_assets/svg/build-load.svg" />}
             title={!isSourceActive ? undefined : 'Build and load into memory'}
             onClick={() => {
               assertIsDefined(editorHandleRef.current);
@@ -324,10 +334,6 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
                 _driver.setRom(romInformation);
                 setSourceCompiledStatus('yes');
                 setSourceLoadedStatus('yes');
-                if (runningToastRef.current !== false) {
-                  runningToastRef.current();
-                  runningToastRef.current = false;
-                }
                 addToast({
                   contents:
                     'Compiled successfully and result loaded into ROM (CPU state was reset)',
@@ -346,7 +352,7 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
           <Button
             className="mr-2"
             disabled={!isSourceActive}
-            inaccessibleChildren={<Icon src="/svg/build-run.svg" />}
+            inaccessibleChildren={<Icon src="/static_assets/svg/build-run.svg" />}
             title={!isSourceActive ? undefined : 'Build and run'}
             onClick={() => {
               assertIsDefined(editorHandleRef.current);
@@ -371,13 +377,11 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
                 _driver.stop();
                 _driver.setRom(romInformation);
                 _driver.start();
+                $stopRunning('');
                 startRunning();
                 setSourceCompiledStatus('yes');
                 setSourceLoadedStatus('yes');
-                if (runningToastRef.current !== false) {
-                  runningToastRef.current();
-                  runningToastRef.current = false;
-                }
+
                 addToast({
                   contents:
                     'Compiled successfully and result loaded into ROM (CPU state was reset)',
@@ -397,16 +401,12 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
       </Tooltip>
       <Button
         className="mr-2"
-        inaccessibleChildren={<Icon src="/svg/reset.svg" />}
+        inaccessibleChildren={<Icon src="/static_assets/svg/reset.svg" />}
         title="Reset Computer"
         onClick={() => {
           $stopRunning('reset');
           _driver.stop();
           _driver.reset();
-          if (runningToastRef.current !== false) {
-            runningToastRef.current();
-            runningToastRef.current = false;
-          }
           addToast({
             contents: 'Emulation stopped if it was running, CPU state reset, memory preserved',
             showClose: true,
@@ -416,16 +416,12 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
       />
       <Button
         className="mr-2"
-        inaccessibleChildren={<Icon src="/svg/reload.svg" />}
+        inaccessibleChildren={<Icon src="/static_assets/svg/reload.svg" />}
         title="Reload rom"
         onClick={() => {
           $stopRunning('reload');
           _driver.stop();
           _driver.reload();
-          if (runningToastRef.current !== false) {
-            runningToastRef.current();
-            runningToastRef.current = false;
-          }
           addToast({
             contents:
               'Emulation stopped if it was running, CPU state reset, memory re-loaded from last time',
@@ -486,7 +482,7 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
         <React.Fragment key="preferences">
           <Button
             title="Open the preferences pane"
-            inaccessibleChildren={<Icon src={'/svg/preferences.svg'} />}
+            inaccessibleChildren={<Icon src={'/static_assets/svg/preferences.svg'} />}
             onClick={() => {
               setIsPreferencesOpen(true);
             }}

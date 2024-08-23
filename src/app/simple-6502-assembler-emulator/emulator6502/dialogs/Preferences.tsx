@@ -71,7 +71,7 @@ export const Preferences: FunctionComponent<{
               $onDialogCancel();
             }}
           >
-            <Icon src="/svg/close.svg" />{' '}
+            <Icon src="/static_assets/svg/close.svg" />{' '}
           </Button>,
         ]}
       >

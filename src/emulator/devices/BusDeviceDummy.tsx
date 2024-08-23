@@ -9,7 +9,7 @@ function BusDeviceDummyUI({ instanceState }: { instanceState: BusDeviceDummy['st
     <div>
       Start: {instanceState.startAddress}
       <div style={{ position: 'relative', width: 400, height: 400 * (102 / 227) }}>
-        <Image src={'/lcd/lcd.png'} alt="LCD device" fill={true} />
+        <Image src={'/static_assets/lcd/lcd.png'} alt="LCD device" fill={true} />
         <pre
           style={{
             position: 'absolute',

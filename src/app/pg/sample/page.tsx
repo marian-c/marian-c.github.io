@@ -23,7 +23,7 @@ export default function PageSample() {
       <Image
         width={16}
         height={16}
-        src="/svg/play.svg"
+        src="/static_assets/svg/play.svg"
         alt=""
         draggable={false}
         aria-hidden={true}

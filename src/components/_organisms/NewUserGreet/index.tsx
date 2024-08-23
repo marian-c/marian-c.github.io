@@ -26,7 +26,10 @@ export const NewUserGreet: FunctionComponent = function () {
           like this:{' '}
           <Tooltip delay={{ open: 1000 }}>
             <TooltipTrigger asChild>
-              <Button className="mr-2" inaccessibleChildren={<Icon src="/svg/build-run.svg" />} />
+              <Button
+                className="mr-2"
+                inaccessibleChildren={<Icon src="/static_assets/svg/build-run.svg" />}
+              />
             </TooltipTrigger>
             <TooltipContent>
               Not this button though, this is just an example, see below 😅

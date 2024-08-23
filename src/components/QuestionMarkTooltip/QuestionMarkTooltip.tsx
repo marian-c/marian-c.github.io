@@ -61,7 +61,7 @@ export const QuestionMarkTooltip: React.FunctionComponent<React.PropsWithChildre
       <>
         <span className="inline-block" ref={refs.setReference} {...getReferenceProps()}>
           <span className={`${buttonWrapperCN}`} aria-label={labelForAria}>
-            <Icon src="/svg/question.svg" />
+            <Icon src="/static_assets/svg/question.svg" />
           </span>
         </span>
         {isOpen && (

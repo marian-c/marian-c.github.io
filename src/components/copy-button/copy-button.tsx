@@ -26,7 +26,13 @@ export const CopyButton: React.FunctionComponent<
           onClick(e);
         }
       }}
-      inaccessibleChildren={!state ? <Icon src="/svg/copy.svg" /> : <Icon src="/svg/check.svg" />}
+      inaccessibleChildren={
+        !state ? (
+          <Icon src="/static_assets/svg/copy.svg" />
+        ) : (
+          <Icon src="/static_assets/svg/check.svg" />
+        )
+      }
     >
       {children}
     </Button>

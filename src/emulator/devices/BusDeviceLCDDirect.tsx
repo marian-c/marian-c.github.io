@@ -12,7 +12,7 @@ function BusDeviceLCDDirectUI({ componentState }: { componentState: State }) {
       <div
         style={{ position: 'relative', aspectRatio: '227 / 102', marginLeft: -8, marginRight: -8 }}
       >
-        <Image src={'/lcd/lcd.png'} alt="LCD device" fill={true} />
+        <Image src={'/static_assets/lcd/lcd.png'} alt="LCD device" fill={true} />
         <pre
           className="text-lg"
           style={{
