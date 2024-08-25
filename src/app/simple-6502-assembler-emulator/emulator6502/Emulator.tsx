@@ -34,6 +34,7 @@ import { Preferences } from '@/app/simple-6502-assembler-emulator/emulator6502/d
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/_helpers/tooltip';
 import { config } from '@/config';
 import { addToast } from '@/components/_helpers/toast';
+import type { UInt16 } from '@/vendor-in/my-emulator/_/numbers';
 
 // TODO: add log pane to list all operations the CPU does
 
@@ -192,12 +193,13 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
 
   const busMonitorImperativeHandleRef = React.useRef<BusMonitorImperativeHandle>(null);
   const $runOnMount = React.useRef<(() => void) | false>(false);
-  const locateStackAddress = () => {
+
+  const locateAddress = (address: UInt16) => {
     if (busMonitorImperativeHandleRef.current) {
-      busMonitorImperativeHandleRef.current.scrollToStackPointer();
+      busMonitorImperativeHandleRef.current.scrollToAddress(address);
     } else {
       $runOnMount.current = () => {
-        busMonitorImperativeHandleRef.current?.scrollToStackPointer();
+        busMonitorImperativeHandleRef.current?.scrollToAddress(address);
         $runOnMount.current = false;
       };
       if (activeTabKey2 === 'system-busMonitor') {
@@ -560,7 +562,7 @@ export const Emulator: React.FunctionComponent<{}> = ({}) => {
           <Overflow vertical={fixedHeight}>
             <SideBar
               _driver={_driver}
-              locateStackAddress={locateStackAddress}
+              locateAddress={locateAddress}
               running={$running}
               $stopRunning={$stopRunning}
               speed={speed}

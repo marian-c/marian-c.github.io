@@ -5,7 +5,7 @@ import { useElementLayout } from '@/hooks/useElementLayout/useElementLayout';
 import { FixedSizeList, type ListChildComponentProps } from 'react-window';
 import { hex } from '@/helpers/numbers';
 import { localStorageSimpleGet, localStorageSimpleSet } from '@/helpers/window/localStorageSimple';
-import { div } from '@/vendor-in/my-emulator/_/numbers';
+import { div, type UInt16 } from '@/vendor-in/my-emulator/_/numbers';
 
 const CELLS_PER_ROW = 16;
 
@@ -77,7 +77,7 @@ const Row = ({ index, style, data }: ListChildComponentProps<Data>) => {
   );
 };
 
-export type BusMonitorImperativeHandle = { scrollToStackPointer: () => void };
+export type BusMonitorImperativeHandle = { scrollToAddress: (address: UInt16) => void };
 type BusMonitorImperativeHandleRef = React.Ref<BusMonitorImperativeHandle>;
 
 // TODO: have a way of programmatically tell it to scroll, TODO: highlight the cell it scrolled to
@@ -99,20 +99,23 @@ const Grid: React.FunctionComponent<{
     imperativeHandleRef,
     () => {
       return {
-        scrollToStackPointer() {
-          const stackPointer = _driver.getBus().cpu.stkp;
-          const memoryLocation = 0x0100 + stackPointer;
-          const rowIdx = div(memoryLocation, 16);
+        scrollToAddress(address: UInt16) {
+          const rowIdx = div(address, 16);
           ref.current?.scrollToItem(rowIdx, 'smart');
-          document
-            .getElementById(`emulator_rom_${memoryLocation}`)
-            ?.animate([{ backgroundColor: 'yellow' }, { backgroundColor: 'transparent' }], {
-              duration: 1300,
-            });
+          // XXX: if the scrollToItem actually needs to scroll (when the destination is out of view)
+          // it would require a cycle apparently, so a timeout is used to allow for the element
+          // to be in the DOM before animating
+          setTimeout(() => {
+            document
+              .getElementById(`emulator_rom_${address}`)
+              ?.animate([{ backgroundColor: 'yellow' }, { backgroundColor: 'transparent' }], {
+                duration: 1300,
+              });
+          });
         },
       };
     },
-    [_driver],
+    [],
   );
   React.useEffect(() => {
     if ($runOnMount.current !== false) {

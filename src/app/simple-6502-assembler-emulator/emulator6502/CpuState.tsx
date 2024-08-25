@@ -3,13 +3,15 @@ import type { EmulationDriver6502 } from '@/app/simple-6502-assembler-emulator/e
 import { HexInput } from '@/components/HexInput/HexInput';
 import { Button } from '@/components/Button/Button';
 import { Icon } from '@/components/icon/icon';
+import type { UInt16 } from '@/vendor-in/my-emulator/_/numbers';
+import { disassembleNow } from '@/emulator/disassembler';
 // TODO: show disassembly next to PC, TODO: action to jump to assembler or disassembler or memory
 export function CpuState({
-  locateStackAddress,
+  locateAddress,
   _driver,
 }: {
   _driver: EmulationDriver6502;
-  locateStackAddress: () => void;
+  locateAddress: (address: UInt16) => void;
 }) {
   const cpu = _driver.getBus().cpu;
 
@@ -42,16 +44,6 @@ export function CpuState({
         }}
       />
       <br />
-      PC:{' '}
-      <HexInput
-        className="mt-2"
-        size={4}
-        value={cpu.pc}
-        onChange={(v) => {
-          console.log('new value', v);
-        }}
-      />{' '}
-      <br />
       SP:{' '}
       <HexInput
         className="mt-2"
@@ -66,7 +58,7 @@ export function CpuState({
         title="Locate in memory"
         inaccessibleChildren={<Icon src="/static_assets/svg/crosshair.svg" />}
         onClick={() => {
-          locateStackAddress();
+          locateAddress((_driver.getBus().cpu.stkp + 0x0100) as UInt16);
         }}
       />
       <Button
@@ -77,6 +69,26 @@ export function CpuState({
           // trackStackAddress()
         }}
       />
+      <br />
+      PC:{' '}
+      <HexInput
+        className="mt-2"
+        size={4}
+        value={cpu.pc}
+        onChange={(v) => {
+          console.log('new value', v);
+        }}
+      />
+      <Button
+        className="ml-2"
+        title="Locate in memory"
+        inaccessibleChildren={<Icon src="/static_assets/svg/crosshair.svg" />}
+        onClick={() => {
+          locateAddress(_driver.getBus().cpu.pc);
+        }}
+      />
+      <br />
+      {disassembleNow(_driver.getBus())}
       <br />
       Status:{' '}
       {cpu.status

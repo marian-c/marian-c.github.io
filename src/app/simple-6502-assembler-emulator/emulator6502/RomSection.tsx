@@ -97,17 +97,10 @@ export const RomSection: React.FunctionComponent<Props> = function ({
       setIsSamplesOpen(false);
       if (sample !== null) {
         // TODO: error handling
-        const fetchR = await fetch(sample);
+        const fetchR = await fetch(sample.sampleLocation);
         const data = new Uint8Array(await fetchR.arrayBuffer());
 
-        $setCurrentRom({
-          type: 'sample',
-          description: sample,
-          size: data.byteLength,
-          initialPc: 0x0400,
-          startingAddress: 0x000a,
-          contents: data,
-        });
+        $setCurrentRom({ ...sample.romInformation, size: data.byteLength, contents: data });
       }
     },
     [$setCurrentRom],

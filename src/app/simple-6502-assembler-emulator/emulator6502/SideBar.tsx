@@ -9,6 +9,7 @@ import type {
   SourceLoadedStatus,
 } from '@/app/simple-6502-assembler-emulator/emulator6502/types';
 import type { RomInformation } from '@/app/simple-6502-assembler-emulator/emulator6502/types';
+import type { UInt16 } from '@/vendor-in/my-emulator/_/numbers';
 
 export const SideBar: React.FunctionComponent<{
   _driver: EmulationDriver6502;
@@ -24,7 +25,7 @@ export const SideBar: React.FunctionComponent<{
   // source section
   sourceCompiledStatus: SourceCompiledStatus;
   sourceLoadedStatus: SourceLoadedStatus;
-  locateStackAddress: () => void;
+  locateAddress: (address: UInt16) => void;
 }> = ({
   _driver,
   speed,
@@ -34,7 +35,7 @@ export const SideBar: React.FunctionComponent<{
   $setRomDetails,
   sourceCompiledStatus,
   sourceLoadedStatus,
-  locateStackAddress,
+  locateAddress,
 }) => {
   const $setCurrentRom = React.useCallback<ComponentProps<typeof RomSection>['$setCurrentRom']>(
     (details) => {
@@ -52,7 +53,7 @@ export const SideBar: React.FunctionComponent<{
         header={<div className="bg-gradient-to-b from-pane-background to-amber-100">State</div>}
         className="mb-4 border-r-0 bg-amber-100"
       >
-        <CpuState _driver={_driver} locateStackAddress={locateStackAddress} />
+        <CpuState _driver={_driver} locateAddress={locateAddress} />
       </Box>
 
       {_driver.getBus().attachedDevices.map((attachedDevice) => {

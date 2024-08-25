@@ -46,7 +46,7 @@ export class Bus implements CpuMemoryBus {
   // TODO: Uint8Array should be faster
   mem: number[] = [];
   initialPc: UInt16 | null = null;
-  cpu = new Olc6502(this);
+  cpu: Olc6502 = new Olc6502(this);
   attachedDevices: BusDeviceWithConstructor[] = [];
 
   constructor(rom: Rom, config: BusConfiguration) {

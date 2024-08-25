@@ -11,7 +11,7 @@ import {
   useRole,
   useInteractions,
   useMergeRefs,
-  FloatingPortal,
+  // FloatingPortal,
   FloatingArrow,
   arrow,
   safePolygon,
@@ -180,24 +180,24 @@ export const TooltipContent = React.forwardRef<HTMLDivElement, React.HTMLProps<H
     if (!context.open) return null;
 
     return (
-      <FloatingPortal>
-        <div
-          className={tooltipCN}
-          ref={ref}
-          style={{
-            ...context.floatingStyles,
-            ...style,
-          }}
-          {...context.getFloatingProps(props)}
-        >
-          {children}
-          <FloatingArrow
-            className={tooltipFloatingArrowCN}
-            ref={context.arrowRef}
-            context={context.context}
-          />
-        </div>
-      </FloatingPortal>
+      // <FloatingPortal> // this makes it not work in <dialog> elements
+      <div
+        className={tooltipCN}
+        ref={ref}
+        style={{
+          ...context.floatingStyles,
+          ...style,
+        }}
+        {...context.getFloatingProps(props)}
+      >
+        {children}
+        <FloatingArrow
+          className={tooltipFloatingArrowCN}
+          ref={context.arrowRef}
+          context={context.context}
+        />
+      </div>
+      // </FloatingPortal>
     );
   },
 );

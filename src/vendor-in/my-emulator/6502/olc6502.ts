@@ -17,6 +17,7 @@ export const SF_OVERFLOW = 1 << 6; // Overflow
 export const SF_NEGATIVE = 1 << 7; // Negative
 
 export interface CpuMemoryBus {
+  cpu: Olc6502;
   cpuWrite(address: UInt16, data: UInt8): void;
   cpuRead(address: UInt16, readOnly?: boolean): UInt8;
 }
